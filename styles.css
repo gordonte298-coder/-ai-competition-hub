@@ -45,14 +45,14 @@ body {
 }
 
 .logo {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: #000;
   color: #fff;
   display: grid;
   place-items: center;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
