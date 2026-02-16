@@ -1,0 +1,35 @@
+[
+  {
+    "title": "AI 영상 페스티벌 2025",
+    "host": "한국콘텐츠진흥원",
+    "deadline": "2025-03-15",
+    "prize": "총 5,000만원",
+    "type": "AI 영상",
+    "url": "https://example.com",
+    "status": "모집중",
+    "category": "콘텐츠",
+    "region": "국내"
+  },
+  {
+    "title": "생성형 AI 이미지 공모전",
+    "host": "디지털문화재단",
+    "deadline": "2025-02-28",
+    "prize": "총 3,000만원",
+    "type": "AI 이미지",
+    "url": "https://example.com",
+    "status": "모집중",
+    "category": "예술",
+    "region": "국내"
+  },
+  {
+    "title": "AI 뮤직 챌린지",
+    "host": "한국음악저작권협회",
+    "deadline": "2025-04-10",
+    "prize": "총 2,000만원",
+    "type": "AI 음악",
+    "url": "https://example.com",
+    "status": "모집중",
+    "category": "음악",
+    "region": "국내"
+  }
+]
