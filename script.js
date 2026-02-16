@@ -55,13 +55,32 @@ const fallbackContests = [
 ];
 
 const tools = [
-  { name: "Sora", type: "영상", free: "High Quality", description: "OpenAI 텍스트-비디오 변환", link: "https://openai.com/sora", color: "#000" },
-  { name: "Runway Gen-3", type: "영상", free: "Editor", description: "영상 편집 및 생성", link: "https://runwayml.com", color: "#6d4aff" },
-  { name: "Luma Dream Machine", type: "영상", free: "3D & Video", description: "고품질 3D/비디오 생성", link: "https://lumalabs.ai", color: "#17b75f" },
-  { name: "Midjourney", type: "이미지", free: "Artistic", description: "이미지 생성 도구", link: "https://www.midjourney.com", color: "#2463eb" },
-  { name: "DALL·E 3", type: "이미지", free: "Precise", description: "정확한 프롬프트 이미지 생성", link: "https://chatgpt.com", color: "#ff6a00" },
-  { name: "Gemini", type: "기획", free: "무료", description: "기획/카피/리서치", link: "https://gemini.google.com", color: "#2563eb" },
-  { name: "ChatGPT", type: "기획", free: "무료 플랜", description: "시놉시스/스크립트 작성", link: "https://chatgpt.com", color: "#111827" }
+  // 영상 생성 (5개)
+  { name: "Sora", type: "영상", free: "Preview", description: "OpenAI 텍스트→영상 생성", link: "https://openai.com/sora", color: "#000" },
+  { name: "Runway Gen-3", type: "영상", free: "무료 체험", description: "영상 편집 및 생성", link: "https://runwayml.com", color: "#6d4aff" },
+  { name: "Kling AI", type: "영상", free: "무료 체험", description: "고품질 영상 생성", link: "https://klingai.com", color: "#ff6b35" },
+  { name: "Pika", type: "영상", free: "무료 플랜", description: "AI 영상 생성", link: "https://pika.art", color: "#00d4ff" },
+  { name: "Veo", type: "영상", free: "Preview", description: "Google 영상 생성", link: "https://deepmind.google/technologies/veo", color: "#4285f4" },
+
+  // 이미지 생성 (4개)
+  { name: "Midjourney", type: "이미지", free: "유료", description: "예술적 이미지 생성", link: "https://www.midjourney.com", color: "#2463eb" },
+  { name: "Whisk", type: "이미지", free: "무료", description: "Google 이미지 믹싱", link: "https://labs.google/fx/tools/whisk", color: "#34a853" },
+  { name: "Ideogram", type: "이미지", free: "무료 플랜", description: "텍스트 포함 이미지", link: "https://ideogram.ai", color: "#9333ea" },
+  { name: "나노바나나", type: "이미지", free: "무료", description: "Gemini 이미지 생성", link: "https://nanobanana.co.kr", color: "#fbbc04" },
+
+  // 음악/오디오 (4개)
+  { name: "Suno", type: "음악", free: "무료 플랜", description: "AI 음악 생성", link: "https://suno.com", color: "#ff3b30" },
+  { name: "Udio", type: "음악", free: "무료 체험", description: "AI 음악 생성", link: "https://udio.com", color: "#5856d6" },
+  { name: "ElevenLabs", type: "음악", free: "무료 플랜", description: "음성 합성/클로닝", link: "https://elevenlabs.io", color: "#000" },
+  { name: "Mubert", type: "음악", free: "무료 플랜", description: "AI 배경음악", link: "https://mubert.com", color: "#00e5ff" },
+
+  // 기획/텍스트 (6개)
+  { name: "ChatGPT", type: "기획", free: "무료 플랜", description: "텍스트 생성/대화", link: "https://chatgpt.com", color: "#10a37f" },
+  { name: "Claude", type: "기획", free: "무료 플랜", description: "Anthropic AI 어시스턴트", link: "https://claude.ai", color: "#d97706" },
+  { name: "Gemini", type: "기획", free: "무료", description: "Google AI 어시스턴트", link: "https://gemini.google.com", color: "#4285f4" },
+  { name: "Grok", type: "기획", free: "유료", description: "xAI 대화형 AI", link: "https://grok.x.ai", color: "#1d9bf0" },
+  { name: "Flow", type: "기획", free: "무료 체험", description: "AI 워크플로우 도구", link: "https://www.useflow.ai", color: "#8b5cf6" },
+  { name: "Perplexity", type: "기획", free: "무료 플랜", description: "AI 검색 엔진", link: "https://www.perplexity.ai", color: "#20a4f3" }
 ];
 
 const el = {
@@ -237,9 +256,9 @@ function renderCalendar() {
 
 function toolCard(t, compact = false) {
   if (compact) {
-    return `<article class="tool-card"><div class="tool-icon" style="background:${t.color}">${t.name.slice(0, 2)}</div><h4>${t.name}</h4><p>${t.description}</p></article>`;
+    return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool-card" style="text-decoration: none; color: inherit; cursor: pointer;"><div class="tool-icon" style="background:${t.color}">${t.name.slice(0, 2)}</div><h4>${t.name}</h4><p>${t.description}</p></a>`;
   }
-  return `<article class="tool"><div class="tool-icon" style="background:${t.color}">${t.name.slice(0, 2)}</div><div><h3>${t.name}</h3><p>${t.description}</p><small>${t.free}</small></div></article>`;
+  return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool" style="text-decoration: none; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 1rem;"><div class="tool-icon" style="background:${t.color}">${t.name.slice(0, 2)}</div><div><h3>${t.name}</h3><p>${t.description}</p><small>${t.free}</small></div></a>`;
 }
 
 function renderHomeTools() {
