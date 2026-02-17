@@ -950,7 +950,7 @@ function normalizeContests(raw) {
 
 async function loadContests() {
   try {
-    const response = await fetch("./data/contests.json", { cache: "no-store" });
+    const response = await fetch("./contests.json", { cache: "no-store" });
     if (!response.ok) throw new Error("load failed");
     const data = await response.json();
     const source = Array.isArray(data) && data.length ? data : fallbackContests;
