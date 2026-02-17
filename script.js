@@ -256,14 +256,33 @@ function renderCalendar() {
 
 function toolCard(t, compact = false) {
   if (compact) {
-    return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool-card" style="text-decoration: none; color: inherit; cursor: pointer;"><div class="tool-icon" style="background:${t.color}">${t.name.slice(0, 2)}</div><h4>${t.name}</h4><p>${t.description}</p></a>`;
+    return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool-card" style="text-decoration: none; color: inherit; cursor: pointer;"><h4>${t.name}</h4><p>${t.description}</p></a>`;
   }
   return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool" style="text-decoration: none; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 1rem;"><div class="tool-icon" style="background:${t.color}">${t.name.slice(0, 2)}</div><div><h3>${t.name}</h3><p>${t.description}</p><small>${t.free}</small></div></a>`;
 }
 
 function renderHomeTools() {
   if (!el.homeToolCards) return;
-  el.homeToolCards.innerHTML = tools.slice(0, 4).map((t) => toolCard(t, true)).join("");
+  // Featured tools: Sora, Midjourney, Suno
+  const featuredTools = [
+    tools.find(t => t.name === "Sora"),
+    tools.find(t => t.name === "Midjourney"),
+    tools.find(t => t.name === "Suno")
+  ].filter(Boolean);
+
+  const toolsHTML = featuredTools.map((t) => toolCard(t, true)).join("");
+  const moreButton = `<div class="tool-card more-card" data-jump="tools" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;">
+    <div style="font-size: 3rem; color: #9ca3af;">+</div>
+    <h4 style="margin: 0;">전체 도구 보기</h4>
+  </div>`;
+
+  el.homeToolCards.innerHTML = toolsHTML + moreButton;
+
+  // Add click event for the "more" button
+  const moreCard = el.homeToolCards.querySelector('.more-card');
+  if (moreCard) {
+    moreCard.addEventListener('click', () => setPage('tools'));
+  }
 }
 
 function filteredTools() {
