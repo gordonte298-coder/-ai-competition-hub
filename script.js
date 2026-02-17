@@ -862,8 +862,26 @@ function renderCalendar() {
 
   for (let d = 1; d <= total; d += 1) {
     const items = dayItems(year, month, d);
-    const title = items.map(c => `• ${c.name}`).join("\n");
-    const mark = items.length ? `<div class="day-item" title="${title}">${items.length}개</div>` : "";
+
+    let tooltipHtml = "";
+    if (items.length) {
+      const listHtml = items.map((c, idx) => {
+        // Find main index in full list to open correct drawer
+        const mainIdx = contests.indexOf(c);
+        return `
+        <div class="tooltip-item" onclick="openDrawer(contests[${mainIdx}]); event.stopPropagation();">
+          <span class="tooltip-title">${c.name}</span>
+          <span class="tooltip-link">자세히 보기 →</span>
+        </div>`;
+      }).join("");
+
+      tooltipHtml = `
+      <div class="calendar-tooltip">
+        ${listHtml}
+      </div>`;
+    }
+
+    const mark = items.length ? `<div class="day-item">+${items.length}</div>${tooltipHtml}` : "";
     el.calGrid.innerHTML += `<div class="day"><div class="day-num">${d}</div>${mark}</div>`;
   }
 }
