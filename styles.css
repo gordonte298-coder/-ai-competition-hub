@@ -58,6 +58,22 @@ body {
   font-weight: 700;
 }
 
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-text strong {
+  display: block;
+  font-size: clamp(1.1rem, 2.2vw, 2rem);
+}
+
+.brand-text small {
+  color: #9ca3af;
+  font-size: clamp(.75rem, 1.2vw, 1.1rem);
+}
+
 .brand-copy strong {
   display: block;
   font-size: 2rem;
