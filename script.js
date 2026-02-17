@@ -604,7 +604,7 @@ const fallbackContests = [
     "target": "AI에 관심 있는 누구나",
     "tags": ["#KGM", "#무쏘맨", "#AI영상"],
     "note": "무쏘 픽업 캐릭터 '무쏘맨' 활용 AI 영상 공모전. 조회수+심사로 수상 결정. 대상과 부문별 1등 중복수상 가능(최대 500만원). 수상작 발표 2/24.",
-    "link": "https://www.kg-mobility.com"
+    "link": "https://www.kg-mobility.com/br/news/event/0000001334"
   },
   {
     "name": "제2회 OMBF 오븐마루치킨 영상공모전",
@@ -621,7 +621,7 @@ const fallbackContests = [
     "target": "누구나 (개인/팀 최대 5명)",
     "tags": ["#오븐마루", "#브랜디드", "#영상공모전"],
     "note": "'치킨의 새로운 기준, 오븐마루치킨' 주제. AI 활용 가능하나 창작 요소 포함 필수. SNS 전체공개 업로드 후 구글폼 제출.",
-    "link": "https://www.ovenmaru.com"
+    "link": "https://ovenmaru.com/board/index.php?board=event_01&type=view&select=&search=&idx=10"
   },
   {
     "name": "빨라쪼(Palazzo) CM송 공모전",
@@ -784,7 +784,6 @@ function cardTemplate(c, index) {
       <span class="category">${c.category || "일반"}</span>
       <div class="card-info">
         <p>🏆 상금/혜택: ${c.reward || "혜택 미정"}</p>
-        <p title="마감일: ${deadlineDisplay}">📅 마감일: ${deadlineText}</p>
       </div>
     </article>`;
 }
@@ -863,7 +862,8 @@ function renderCalendar() {
 
   for (let d = 1; d <= total; d += 1) {
     const items = dayItems(year, month, d);
-    const mark = items.length ? `<div class="day-item">${items.length}개</div>` : "";
+    const title = items.map(c => `• ${c.name}`).join("\n");
+    const mark = items.length ? `<div class="day-item" title="${title}">${items.length}개</div>` : "";
     el.calGrid.innerHTML += `<div class="day"><div class="day-num">${d}</div>${mark}</div>`;
   }
 }
