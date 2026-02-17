@@ -590,7 +590,7 @@ const fallbackContests = [
     "link": "https://www.gamff.com"
   },
   {
-    "name": "KGM 무쏘맨 AI 어워즈 (MUSSOMAN AI AWARDS)",
+    "name": "KGM 무쏘맨 AI 어워즈",
     "host": "KG모빌리티(KGM)",
     "type": "영상",
     "category": "AI 영상·광고",
