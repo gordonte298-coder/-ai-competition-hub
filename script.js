@@ -588,6 +588,57 @@ const fallbackContests = [
     ],
     "note": "2025년 기준 총 1억원 상금. 2026년 일정은 추후 gamff.com에서 발표 예정. 경북 게임 페스티벌과 연계.",
     "link": "https://www.gamff.com"
+  },
+  {
+    "name": "KGM 무쏘맨 AI 어워즈 (MUSSOMAN AI AWARDS)",
+    "host": "KG모빌리티(KGM)",
+    "type": "영상",
+    "category": "AI 영상·광고",
+    "status": "모집중",
+    "startDate": "2026-01-23",
+    "deadline": "2026-02-19",
+    "region": "한국",
+    "language": "한국어",
+    "reward": "총 상금 1,100만원 (대상 300만원, 부문별 1등 각 200만원)",
+    "format": "AI 영상 (무쏘맨 캐릭터 활용, SNS 업로드)",
+    "target": "AI에 관심 있는 누구나",
+    "tags": ["#KGM", "#무쏘맨", "#AI영상"],
+    "note": "무쏘 픽업 캐릭터 '무쏘맨' 활용 AI 영상 공모전. 조회수+심사로 수상 결정. 대상과 부문별 1등 중복수상 가능(최대 500만원). 수상작 발표 2/24.",
+    "link": "https://www.kg-mobility.com"
+  },
+  {
+    "name": "제2회 OMBF 오븐마루치킨 영상공모전",
+    "host": "오븐마루치킨 (주식회사 오엠푸드)",
+    "type": "영상",
+    "category": "AI 광고·브랜디드",
+    "status": "모집중",
+    "startDate": "2025-12-29",
+    "deadline": "2026-03-03",
+    "region": "한국",
+    "language": "한국어",
+    "reward": "총 상금 600만원 (대상 300만원, 최우수상 100만원, 우수상 50만원x2)",
+    "format": "브랜드 영상 (SNS 업로드, AI 활용 가능)",
+    "target": "누구나 (개인/팀 최대 5명)",
+    "tags": ["#오븐마루", "#브랜디드", "#영상공모전"],
+    "note": "'치킨의 새로운 기준, 오븐마루치킨' 주제. AI 활용 가능하나 창작 요소 포함 필수. SNS 전체공개 업로드 후 구글폼 제출.",
+    "link": "https://www.ovenmaru.com"
+  },
+  {
+    "name": "빨라쪼(Palazzo) CM송 공모전",
+    "host": "해태제과 빨라쪼",
+    "type": "음악",
+    "category": "AI 음악·CM송",
+    "status": "모집중",
+    "startDate": "2026-02-01",
+    "deadline": "2026-02-28",
+    "region": "한국",
+    "language": "한국어",
+    "reward": "상금 및 상품 수여",
+    "format": "AI 활용 CM송 제작",
+    "target": "제한 없음",
+    "tags": ["#빨라쪼", "#CM송", "#AI음악"],
+    "note": "빨라쪼 브랜드를 주제로 한 CM송 제작 공모전. AI 활용 가능. 상세 내용은 공식 SNS 참조.",
+    "link": "https://www.instagram.com/palazzo_kr"
   }
 ];
 
@@ -780,9 +831,13 @@ function renderUrgentCards() {
   if (!el.urgentCards) return;
   const list = contests.filter((c) => {
     const d = daysDiff(c.deadline);
-    return d !== null && d >= 0 && d <= 7;
+    return d !== null && d >= 0 && d <= 10;
   });
-  const source = list.length ? list : contests.slice(0, 3);
+  if (!list.length) {
+    el.urgentCards.innerHTML = '<p style="padding:1rem;color:#9ca3af;">현재 D-10 이내 마감 임박 공모전이 없습니다.</p>';
+    return;
+  }
+  const source = list;
   el.urgentCards.innerHTML = source.map((c, i) => cardTemplate(c, i)).join("");
   bindCardEvents(el.urgentCards, source);
 }
