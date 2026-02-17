@@ -586,70 +586,68 @@
     ],
     "note": "2025년 기준 총 1억원 상금. 2026년 일정은 추후 gamff.com에서 발표 예정. 경북 게임 페스티벌과 연계.",
     "link": "https://www.gamff.com"
+  },
+  {
+    "name": "KGM 무쏘맨 AI 어워즈 (MUSSOMAN AI AWARDS)",
+    "host": "KG모빌리티(KGM)",
+    "type": "영상",
+    "category": "AI 영상·광고",
+    "status": "모집중",
+    "startDate": "2026-01-23",
+    "deadline": "2026-02-19",
+    "region": "한국",
+    "language": "한국어",
+    "reward": "총 상금 1,100만원 (대상 300만원, 부문별 1등 각 200만원)",
+    "format": "AI 영상 (무쏘맨 캐릭터 활용, SNS 업로드)",
+    "target": "AI에 관심 있는 누구나",
+    "tags": [
+      "#KGM",
+      "#무쏘맨",
+      "#AI영상"
+    ],
+    "note": "무쏘 픽업 캐릭터 '무쏘맨' 활용 AI 영상 공모전. 조회수+심사로 수상 결정. 대상과 부문별 1등 중복수상 가능(최대 500만원). 수상작 발표 2/24.",
+    "link": "https://www.kg-mobility.com"
+  },
+  {
+    "name": "제2회 OMBF 오븐마루치킨 영상공모전",
+    "host": "오븐마루치킨 (주식회사 오엠푸드)",
+    "type": "영상",
+    "category": "AI 광고·브랜디드",
+    "status": "모집중",
+    "startDate": "2025-12-29",
+    "deadline": "2026-03-03",
+    "region": "한국",
+    "language": "한국어",
+    "reward": "총 상금 600만원 (대상 300만원, 최우수상 100만원, 우수상 50만원x2)",
+    "format": "브랜드 영상 (SNS 업로드, AI 활용 가능)",
+    "target": "누구나 (개인/팀 최대 5명)",
+    "tags": [
+      "#오븐마루",
+      "#브랜디드",
+      "#영상공모전"
+    ],
+    "note": "'치킨의 새로운 기준, 오븐마루치킨' 주제. AI 활용 가능하나 창작 요소 포함 필수. SNS 전체공개 업로드 후 구글폼 제출.",
+    "link": "https://www.ovenmaru.com"
+  },
+  {
+    "name": "빨라쪼(Palazzo) CM송 공모전",
+    "host": "해태제과 빨라쪼",
+    "type": "음악",
+    "category": "AI 음악·CM송",
+    "status": "모집중",
+    "startDate": "2026-02-01",
+    "deadline": "2026-02-28",
+    "region": "한국",
+    "language": "한국어",
+    "reward": "상금 및 상품 수여",
+    "format": "AI 활용 CM송 제작",
+    "target": "제한 없음",
+    "tags": [
+      "#빨라쪼",
+      "#CM송",
+      "#AI음악"
+    ],
+    "note": "빨라쪼 브랜드를 주제로 한 CM송 제작 공모전. AI 활용 가능. 상세 내용은 공식 SNS 참조.",
+    "link": "https://www.instagram.com/palazzo_kr"
   }
 ]
-,
-{
-  "name": "KGM AI 콘텐츠 공모전 '무쏘맨 AI 어워즈'",
-  "host": "KGM (KG 모빌리티)",
-  "type": "영상",
-  "category": "AI 영상·광고",
-  "status": "접수중",
-  "startDate": "2026-01-20",
-  "deadline": "2026-02-19",
-  "region": "한국",
-  "language": "한국어",
-  "reward": "상금 150만원 + 상품권",
-  "format": "AI 콘텐츠 (영상/이미지)",
-  "target": "일반인",
-  "tags": [
-    "#무쏘맨",
-    "#AI콘텐츠",
-    "#AI영상"
-  ],
-  "note": "KG 모빌리티 무쏘맨을 소재로 한 AI 영상·이미지 공모전. AI를 활용해 무쏘맨 캐릭터를 활용한 콘텐츠 제작.",
-  "link": "https://www.kg-mobility.com/br/news/event/0000001334"
-},
-{
-  "name": "2026 OMBF 오븐마루치킨 영상공모전",
-  "host": "오븐마루치킨",
-  "type": "영상",
-  "category": "브랜드·홍보영상",
-  "status": "접수중",
-  "startDate": "2025-12-29",
-  "deadline": "2026-02-21",
-  "region": "한국",
-  "language": "한국어",
-  "reward": "총 상금 1,000만원 이상 (대상 500만원)",
-  "format": "영상 1분 내외",
-  "target": "대학생 및 일반인",
-  "tags": [
-    "#오븐마루",
-    "#브랜드영상",
-    "#CM영상"
-  ],
-  "note": "오븐마루치킨 브랜드를 홍보하는 1분 이내 숏폼 영상 공모. 대상 500만원, 최우수상 300만원, 우수상 100만원 지급.",
-  "link": "https://ovenmaru.com/html/ombf.html"
-},
-{
-  "name": "빨라쪼 CM송 공모전",
-  "host": "빨라쪼(Palazzo)",
-  "type": "음악",
-  "category": "AI 음악·브랜드 음원",
-  "status": "접수중",
-  "startDate": "2026-01-22",
-  "deadline": "2026-02-28",
-  "region": "한국",
-  "language": "한국어",
-  "reward": "상금 및 상품(금 1돈, 브랜드 쿠폰 등)",
-  "format": "브랜드 CM송(15~60초)",
-  "target": "일반인",
-  "tags": [
-    "#빨라쪼",
-    "#CM송",
-    "#AI음악"
-  ],
-  "note": "AI를 활용해 제작한 빨라쪼 CM송을 SNS에 업로드 후 빨라쪼 공식 인스타그램 프로필 하단 링크를 통해 신청. 여름 시즌 캠페인 영상에 활용 가능.",
-  "link": "https://www.instagram.com/palazzo_kr/"
-}
-
