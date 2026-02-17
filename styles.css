@@ -189,6 +189,11 @@ h1 {
   padding-bottom: 4px;
 }
 
+.h-scroll .card {
+  flex: 0 0 320px;
+  width: 320px;
+}
+
 .cards {
   display: grid;
   gap: 12px;
@@ -219,7 +224,9 @@ h1 {
   -webkit-box-orient: vertical;
   overflow: hidden;
   height: 3rem;
-  /* Enforce fixed height for 2 lines */
+  /* Fixed height for max 2 lines */
+  min-height: 3rem;
+  /* Force 2-line height even for 1-line titles */
 }
 
 .host {
@@ -784,6 +791,12 @@ summary {
   }
 
   .h-scroll .card {
-    min-width: calc(50% - 5px);
+    flex: 0 0 70vw;
+    width: 70vw;
   }
+}
+
+.h-scroll .card {
+  min-width: calc(50% - 5px);
+}
 }
