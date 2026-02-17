@@ -244,7 +244,15 @@ h1 {
 .category {
   background: #eef4ff;
   color: #3656a8;
-  display: inline-block;
+  display: inline-flex;
+  /* Changed from inline-block to allow padding/fit control */
+  width: fit-content;
+  /* Only take necessary width */
+  padding: 4px 12px;
+  border-radius: 100px;
+  /* Pill shape */
+  font-size: 0.85rem;
+  font-weight: 600;
   margin-top: 8px;
 }
 
@@ -266,6 +274,13 @@ h1 {
 
 .card-info p {
   margin: 4px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.8rem;
+  /* Enforce fixed height for 2 lines */
 }
 
 .dday {
