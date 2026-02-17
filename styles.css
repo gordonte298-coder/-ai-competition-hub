@@ -23,7 +23,9 @@ body {
   max-width: 1180px;
   margin: 0 auto;
   min-height: 100vh;
-  padding: 0 14px 24px;
+  padding: 0 14px 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .topbar {
@@ -85,6 +87,9 @@ body {
   color: #fff;
 }
 
+main {
+  flex: 1;
+}
 
 .page-section {
   display: none;
@@ -438,6 +443,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  margin-bottom: 20px;
 }
 
 .tool-card,
@@ -445,7 +451,19 @@ h1 {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 18px;
-  padding: 12px;
+  padding: 16px;
+}
+
+.tool-card h4 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.tool-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 .tool-icon {
@@ -457,6 +475,28 @@ h1 {
   display: grid;
   place-items: center;
   margin-bottom: 10px;
+}
+
+.tool-icon-rounded {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+}
+
+.tool-tag {
+  display: inline-block;
+  background: #f1f3f8;
+  color: #6b7280;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-top: 8px;
 }
 
 .tools-list {
@@ -591,8 +631,8 @@ summary {
 }
 
 .social-icon {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: #9ca3af;
   color: #fff;
@@ -605,7 +645,7 @@ summary {
 
 .social-icon:hover {
   background: #6b7280;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .official-link {
