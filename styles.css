@@ -703,4 +703,8 @@ summary {
     width: 94vw;
     max-height: 92vh;
   }
+
+  .h-scroll .card {
+    min-width: calc(50% - 5px);
+  }
 }
