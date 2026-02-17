@@ -178,9 +178,13 @@ function filteredContests() {
   });
 }
 
+
 function cardTemplate(c, index) {
   const status = effectiveStatus(c);
   const tags = Array.isArray(c.tags) ? c.tags : [];
+  const deadlineText = c.deadline || "미정";
+  const deadlineDisplay = deadlineText !== "미정" ? new Date(c.deadline).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }) : "일정 미정";
+
   return `<article class="card" data-index="${index}">
       <div class="card-top">
         <span class="badge ${statusClass(status)}">${status}</span>
@@ -192,7 +196,7 @@ function cardTemplate(c, index) {
       <span class="category">${c.category || "일반"}</span>
       <div class="card-info">
         <p>🏆 상금/혜택: ${c.reward || "혜택 미정"}</p>
-        <p>📅 마감일: ${c.deadline || "미정"}</p>
+        <p title="마감일: ${deadlineDisplay}">📅 마감일: ${deadlineText}</p>
       </div>
     </article>`;
 }
@@ -213,8 +217,26 @@ function renderCards() {
     el.cards.innerHTML = `<article class="card"><p>조건에 맞는 공모전이 없습니다.</p></article>`;
     return;
   }
-  el.cards.innerHTML = list.map((c, i) => cardTemplate(c, i)).join("");
-  bindCardEvents(el.cards, list);
+
+  // 정렬: 모집중/마감임박 먼저, 마감 나중, 각 그룹 내에서 D-day 오름차순
+  const sorted = [...list].sort((a, b) => {
+    const statusA = effectiveStatus(a);
+    const statusB = effectiveStatus(b);
+
+    // 마감되지 않은 것 우선
+    const activeA = statusA !== "마감" ? 0 : 1;
+    const activeB = statusB !== "마감" ? 0 : 1;
+
+    if (activeA !== activeB) return activeA - activeB;
+
+    // 같은 그룹 내에서 D-day 오름차순 (긴급한 것 먼저)
+    const ddayA = daysDiff(a.deadline) ?? 9999;
+    const ddayB = daysDiff(b.deadline) ?? 9999;
+    return ddayA - ddayB;
+  });
+
+  el.cards.innerHTML = sorted.map((c, i) => cardTemplate(c, i)).join("");
+  bindCardEvents(el.cards, sorted);
 }
 
 function renderUrgentCards() {
