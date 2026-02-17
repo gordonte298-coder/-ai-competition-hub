@@ -223,10 +223,11 @@ h1 {
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 3rem;
-  /* Fixed height for max 2 lines */
-  min-height: 3rem;
-  /* Force 2-line height even for 1-line titles */
+  line-height: 1.4;
+  /* Explicit line height */
+  height: 3.8rem;
+  /* 1.32rem * 1.4 * 2 lines ≈ 3.7rem + padding */
+  min-height: 3.8rem;
 }
 
 .host {
@@ -794,9 +795,13 @@ summary {
     flex: 0 0 70vw;
     width: 70vw;
   }
-}
 
-.h-scroll .card {
-  min-width: calc(50% - 5px);
-}
+  /* Prevent title truncation on mobile */
+  .card h3 {
+    font-size: 1.15rem;
+    /* Smaller font on mobile to fit 2 lines */
+    height: 3.4rem;
+    /* Adjusted height for smaller font */
+    min-height: 3.4rem;
+  }
 }
