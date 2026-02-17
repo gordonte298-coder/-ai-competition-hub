@@ -567,10 +567,45 @@ summary {
   display: none !important;
 }
 
+.global-footer {
+  background: #f3f4f6;
+  padding: 20px 18px;
+  margin: 40px -14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .copyright {
-  color: #8b93a5;
-  font-size: .88rem;
-  text-align: center;
+  color: #6b7280;
+  font-size: .9rem;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #9ca3af;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-icon:hover {
+  background: #6b7280;
+  transform: scale(1.05);
 }
 
 .official-link {
