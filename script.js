@@ -56,7 +56,7 @@ const fallbackContests = [
 
 const tools = [
   // 영상 생성 (6개)
-  { name: "Sora", type: "영상", free: "Preview", description: "OpenAI 텍스트→영상 생성", link: "https://openai.com/sora", color: "#000" },
+  { name: "Sora", type: "영상", free: "Preview", description: "텍스트→비디오 변환 모델, 사실적인 영상을 생성.", link: "https://openai.com/sora", color: "#000" },
   { name: "Runway Gen-3", type: "영상", free: "무료 체험", description: "영상 편집 및 생성", link: "https://runwayml.com", color: "#6d4aff" },
   { name: "Kling AI", type: "영상", free: "무료 체험", description: "고품질 영상 생성", link: "https://klingai.com", color: "#ff6b35" },
   { name: "Pika", type: "영상", free: "무료 플랜", description: "AI 영상 생성", link: "https://pika.art", color: "#00d4ff" },
@@ -64,13 +64,13 @@ const tools = [
   { name: "Grok", type: "영상", free: "유료", description: "xAI 영상 생성", link: "https://grok.x.ai", color: "#1d9bf0" },
 
   // 이미지 생성 (4개)
-  { name: "Midjourney", type: "이미지", free: "유료", description: "예술적 이미지 생성", link: "https://www.midjourney.com", color: "#2463eb" },
+  { name: "Midjourney", type: "이미지", free: "유료", description: "상상 속 이미지를 현실로 만드는 이미지 생성 AI.", link: "https://www.midjourney.com", color: "#2463eb" },
   { name: "Whisk", type: "이미지", free: "무료", description: "Google 이미지 믹싱", link: "https://labs.google/fx/tools/whisk", color: "#34a853" },
   { name: "Ideogram", type: "이미지", free: "무료 플랜", description: "텍스트 포함 이미지", link: "https://ideogram.ai", color: "#9333ea" },
   { name: "나노바나나", type: "이미지", free: "무료", description: "Gemini 이미지 생성", link: "https://nanobanana.co.kr", color: "#fbbc04" },
 
   // 음악/오디오 (4개)
-  { name: "Suno", type: "오디오", free: "무료 플랜", description: "AI 음악 생성", link: "https://suno.com", color: "#ff3b30" },
+  { name: "Suno", type: "오디오", free: "무료 플랜", description: "누구나 작곡가가 될 수 있는 음악 생성 도구.", link: "https://suno.com", color: "#ff3b30" },
   { name: "Udio", type: "오디오", free: "무료 체험", description: "AI 음악 생성", link: "https://udio.com", color: "#5856d6" },
   { name: "ElevenLabs", type: "오디오", free: "무료 플랜", description: "음성 합성/클로닝", link: "https://elevenlabs.io", color: "#000" },
   { name: "Mubert", type: "오디오", free: "무료 플랜", description: "AI 배경음악", link: "https://mubert.com", color: "#00e5ff" },
@@ -256,7 +256,20 @@ function renderCalendar() {
 
 function toolCard(t, compact = false) {
   if (compact) {
-    return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool-card" style="text-decoration: none; color: inherit; cursor: pointer;"><h4>${t.name}</h4><p>${t.description}</p></a>`;
+    // Category tag mapping
+    const categoryTags = {
+      "Sora": "Video",
+      "Midjourney": "Art",
+      "Suno": "Music"
+    };
+    const tag = categoryTags[t.name] || "";
+
+    return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+      <div class="tool-icon-rounded" style="background:${t.color}">${t.name.slice(0, 2)}</div>
+      <h4>${t.name}</h4>
+      <p>${t.description}</p>
+      ${tag ? `<span class="tool-tag">${tag}</span>` : ''}
+    </a>`;
   }
   return `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool" style="text-decoration: none; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 1rem;"><div class="tool-icon" style="background:${t.color}">${t.name.slice(0, 2)}</div><div><h3>${t.name}</h3><p>${t.description}</p><small>${t.free}</small></div></a>`;
 }
