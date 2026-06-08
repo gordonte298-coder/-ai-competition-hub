@@ -1,194 +1,285 @@
-import fs from 'node:fs/promises';
-import https from 'node:https';
+import fs from "node:fs/promises";
 
-const NOTION_TOKEN = process.env.NOTION_TOKEN;
-const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
+const WEVITY_BASE = "https://www.wevity.com/";
+const MIN_DEADLINE = "2026-06-01";
+const OUTPUT_JSON = "data/contests.json";
+const ROOT_JSON = "contests.json";
+const OUTPUT_CSV = "data/notion-import.csv";
 
-const CONTEST_QUERIES = [
-  'AI 공모전',
-  'AI 영상 공모전',
-  '생성형 AI 대회',
-  'AI 이미지 공모전'
+const WEVITY_LIST_URLS = [
+  "https://www.wevity.com/",
+  "https://www.wevity.com/?c=find&s=1&gub=1&cidx=2",
 ];
 
-function httpsGet(url) {
-  return new Promise((resolve, reject) => {
-    https.get(url, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(data));
-    }).on('error', reject);
-  });
+const TOPIC_KEYWORDS = [
+  "AI",
+  "인공지능",
+  "생성형",
+  "영상",
+  "숏폼",
+  "이미지",
+  "스토리",
+  "동화",
+  "콘텐츠",
+  "시나리오",
+  "공공데이터",
+  "데이터",
+];
+
+const NEGATIVE_KEYWORDS = [
+  "서포터즈",
+  "기자단",
+  "봉사단",
+  "체험단",
+  "대외활동",
+  "강연",
+  "교육",
+  "아카데미",
+  "채용",
+  "인턴",
+];
+
+function cleanText(value = "") {
+  return String(value)
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-async function fetchGoogleNewsContests(query) {
+function normalizeUrl(url = "") {
+  return new URL(url.replaceAll("&amp;", "&"), WEVITY_BASE).toString();
+}
+
+async function fetchText(url) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
   try {
-    const url = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ko&gl=KR&ceid=KR:ko`;
-    const xml = await httpsGet(url);
-    const items = xml.match(/<item>(.*?)<\/item>/gs) || [];
-    return items.slice(0, 5).map(item => {
-      const title = item.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/)?.[1] || '';
-      const link = item.match(/<link>(.*?)<\/link>/)?.[1] || '';
-      const pubDate = item.match(/<pubDate>(.*?)<\/pubDate>/)?.[1] || '';
-      
-      const deadlineMatch = title.match(/(\d{1,2})월\s*(\d{1,2})일|~\s*(\d{1,2})\/(\d{1,2})/);
-      let deadline = '2025-12-31';
-      if (deadlineMatch) {
-        const month = deadlineMatch[1] || deadlineMatch[3];
-        const day = deadlineMatch[2] || deadlineMatch[4];
-        deadline = `2025-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-      }
-
-      const prizeMatch = title.match(/(\d+(?:,\d+)*)\s*만원|(\d+)\s*억/);
-      let prize = '상금 미정';
-      if (prizeMatch) {
-        prize = prizeMatch[0].includes('억') ? `총 ${prizeMatch[2]}억원` : `총 ${prizeMatch[1]}만원`;
-      }
-
-      return {
-        title: title.replace(/\s*-\s*.*$/, '').trim(),
-        host: '주최기관',
-        deadline,
-        prize,
-        type: inferType(title),
-        url: link,
-        status: '모집중',
-        category: inferCategory(title),
-        region: title.includes('해외') || title.includes('글로벌') ? '해외' : '국내'
-      };
-    });
-  } catch (err) {
-    console.error('Google News fetch error:', err);
-    return [];
-  }
-}
-
-async function fetchKaggleRss() {
-  try {
-    const xml = await httpsGet('https://www.kaggle.com/competitions.atom');
-    const entries = xml.match(/<entry>(.*?)<\/entry>/gs) || [];
-    return entries.slice(0, 3).map(entry => {
-      const title = entry.match(/<title>(.*?)<\/title>/)?.[1] || '';
-      const link = entry.match(/<link href="(.*?)"\/>/)?.[1] || '';
-      const updated = entry.match(/<updated>(.*?)<\/updated>/)?.[1] || '';
-      
-      const deadlineDate = new Date(updated);
-      deadlineDate.setMonth(deadlineDate.getMonth() + 2);
-      const deadline = deadlineDate.toISOString().split('T')[0];
-
-      return {
-        title,
-        host: 'Kaggle',
-        deadline,
-        prize: '상금 정보 확인 필요',
-        type: 'AI 모델·데이터',
-        url: link,
-        status: '모집중',
-        category: '데이터분석',
-        region: '해외'
-      };
-    });
-  } catch (err) {
-    console.error('Kaggle RSS fetch error:', err);
-    return [];
-  }
-}
-
-function inferType(title) {
-  if (title.includes('영상') || title.includes('동영상')) return 'AI 영상';
-  if (title.includes('이미지') || title.includes('그림')) return 'AI 이미지';
-  if (title.includes('음악') || title.includes('오디오')) return 'AI 음악';
-  if (title.includes('모델') || title.includes('데이터')) return 'AI 모델·데이터';
-  return 'AI 콘텐츠';
-}
-
-function inferCategory(title) {
-  if (title.includes('예술') || title.includes('미술')) return '예술';
-  if (title.includes('음악')) return '음악';
-  if (title.includes('영상') || title.includes('콘텐츠')) return '콘텐츠';
-  if (title.includes('데이터') || title.includes('분석')) return '데이터분석';
-  return '기타';
-}
-
-function dedupeContests(contests) {
-  const seen = new Set();
-  return contests.filter(c => {
-    const key = c.title.toLowerCase().replace(/\s+/g, '');
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
-async function syncFromWeb() {
-  const sets = await Promise.all([
-    ...CONTEST_QUERIES.map(q => fetchGoogleNewsContests(q)),
-    fetchKaggleRss()
-  ]);
-  return dedupeContests(sets.flat());
-}
-
-async function syncFromNotion() {
-  if (!NOTION_TOKEN || !NOTION_DATABASE_ID) {
-    console.log('No Notion credentials, using web scraping only');
-    return null;
-  }
-  try {
-    const res = await fetch(`https://api.notion.com/v1/databases/${NOTION_DATABASE_ID}/query`, {
-      method: 'POST',
+    const response = await fetch(url, {
+      signal: controller.signal,
       headers: {
-        'Authorization': `Bearer ${NOTION_TOKEN}`,
-        'Notion-Version': '2022-06-28',
-        'Content-Type': 'application/json'
-      }
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.7,en;q=0.6",
+        Referer: WEVITY_BASE,
+      },
     });
-    const data = await res.json();
-    return data.results.map(page => ({
-      title: page.properties.Name?.title?.[0]?.plain_text || '',
-      host: page.properties.Host?.rich_text?.[0]?.plain_text || '',
-      deadline: page.properties.Deadline?.date?.start || '',
-      prize: page.properties.Prize?.rich_text?.[0]?.plain_text || '',
-      type: page.properties.Type?.select?.name || '',
-      url: page.properties.URL?.url || '',
-      status: page.properties.Status?.select?.name || '모집중',
-      category: page.properties.Category?.select?.name || '',
-      region: page.properties.Region?.select?.name || '국내'
-    }));
-  } catch (err) {
-    console.error('Notion sync error:', err);
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
+    return response.text();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function inputValue(html, name) {
+  const pattern = new RegExp(`<input[^>]+name=["']${name}["'][^>]+value=["']([^"']*)["']`, "i");
+  return cleanText(pattern.exec(html)?.[1] || "");
+}
+
+function inferType(text = "") {
+  if (/영상|숏폼|UCC|콘텐츠|필름|영화/i.test(text)) return "영상/숏폼";
+  if (/데이터|공공데이터|인공지능/i.test(text)) return "생성형 AI";
+  if (/이미지|사진|디자인|아트|미디어 아트|그림/i.test(text)) return "AI 이미지";
+  if (/스토리|동화|독후감|시나리오|글쓰기|문학/i.test(text)) return "스토리/동화";
+  if (/광고|마케팅|브랜드/i.test(text)) return "AI 광고";
+  return "AI 콘텐츠";
+}
+
+function inferTags(text = "") {
+  const tags = new Set(["#위비티", "#자동수집"]);
+  if (/광고|마케팅|브랜드/i.test(text)) tags.add("#AI광고");
+  if (/이미지|사진|디자인|아트/i.test(text)) tags.add("#AI이미지");
+  if (/영상|숏폼|UCC|필름|영화/i.test(text)) tags.add("#영상");
+  if (/스토리|동화|독후감|문학|시나리오/i.test(text)) tags.add("#스토리");
+  if (/생성형|인공지능|AI/i.test(text)) tags.add("#생성형AI");
+  return [...tags];
+}
+
+function isRelevant(title = "", category = "") {
+  const text = `${title} ${category}`;
+  const hasTopic = TOPIC_KEYWORDS.some((keyword) => text.toLowerCase().includes(keyword.toLowerCase()));
+  const hasNegative = NEGATIVE_KEYWORDS.some((keyword) => text.includes(keyword));
+  return hasTopic && !hasNegative;
+}
+
+function parseDeadline(period = "", fallbackDday = "") {
+  const dateMatches = [...period.matchAll(/(20\d{2})[.\-/년\s]+(\d{1,2})[.\-/월\s]+(\d{1,2})/g)];
+  if (dateMatches.length) {
+    const last = dateMatches.at(-1);
+    return `${last[1]}-${last[2].padStart(2, "0")}-${last[3].padStart(2, "0")}`;
+  }
+
+  const dday = /D-(\d+)/i.exec(`${period} ${fallbackDday}`)?.[1];
+  if (dday) {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() + Number(dday));
+    return date.toISOString().slice(0, 10);
+  }
+
+  return "";
+}
+
+function isActive(deadline = "") {
+  return Boolean(deadline) && deadline >= MIN_DEADLINE;
+}
+
+function parseListCards(html) {
+  const cards = [];
+  const pattern =
+    /<li>\s*<a href="(?<href>[^"]+)"><img[^>]+alt="(?<alt>[^"]*)"[^>]*><\/a>\s*<div class="hide-info">(?<body>[\s\S]*?)<\/div>\s*<\/li>/g;
+
+  for (const match of html.matchAll(pattern)) {
+    const body = match.groups.body;
+    const titleHref = /<div class="hide-tit">\s*<a href="([^"]+)">([\s\S]*?)<\/a>/i.exec(body);
+    const category = /<div class="hide-cat">\s*([\s\S]*?)<\/div>/i.exec(body)?.[1] || "";
+    const dday = /<div class="hide-dday">\s*([^<]+)<\/div>/i.exec(body)?.[1] || "";
+    const title = cleanText(titleHref?.[2] || match.groups.alt);
+    const url = normalizeUrl(titleHref?.[1] || match.groups.href);
+
+    if (title && isRelevant(title, cleanText(category))) {
+      cards.push({
+        title,
+        url,
+        category: cleanText(category),
+        dday: cleanText(dday),
+      });
+    }
+  }
+
+  return cards;
+}
+
+async function enrichFromDetail(item) {
+  try {
+    const html = await fetchText(item.url);
+    const name = inputValue(html, "name") || item.title;
+    const category = inputValue(html, "category") || item.category;
+    const host = inputValue(html, "agent") || "위비티 확인 필요";
+    const period = inputValue(html, "during");
+    const prizeRange = inputValue(html, "money1");
+    const firstPrize = inputValue(html, "money2");
+    const homepage = inputValue(html, "homepage");
+    const deadline = parseDeadline(period, item.dday);
+    const text = `${name} ${category}`;
+
+    return {
+      name,
+      host,
+      type: inferType(text),
+      category,
+      status: "모집중",
+      startDate: period.split("~")[0]?.trim() || "",
+      deadline,
+      region: "국내",
+      language: "한국어",
+      reward: [prizeRange, firstPrize].filter(Boolean).join(" / ") || "공식 페이지 확인",
+      format: "공식 요강 확인",
+      target: "공식 요강 확인",
+      tags: inferTags(text),
+      note: `위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.`,
+      link: homepage || item.url,
+      source: "위비티",
+      sourceUrl: item.url,
+    };
+  } catch (error) {
+    console.warn(`skip detail: ${item.title} (${error.message})`);
     return null;
   }
 }
 
-const SEED_DATA = [
-  {
-    title: "AI 영상 페스티벌 2025",
-    host: "한국콘텐츠진흥원",
-    deadline: "2025-03-15",
-    prize: "총 5,000만원",
-    type: "AI 영상",
-    url: "https://example.com",
-    status: "모집중",
-    category: "콘텐츠",
-    region: "국내"
+function dedupe(items) {
+  const map = new Map();
+  for (const item of items) {
+    const key = `${item.name}`.replace(/\s+/g, "").toLowerCase();
+    if (!key || map.has(key)) continue;
+    map.set(key, item);
   }
-];
+  return [...map.values()].sort((a, b) => a.deadline.localeCompare(b.deadline) || a.name.localeCompare(b.name, "ko"));
+}
 
-(async () => {
-  try {
-    let contests = await syncFromNotion();
-    if (!contests || contests.length === 0) {
-      console.log('Falling back to web scraping...');
-      contests = await syncFromWeb();
-    }
-    if (!contests || contests.length === 0) {
-      console.log('Using seed data as fallback');
-      contests = SEED_DATA;
-    }
-    await fs.writeFile('./data/contests.json', JSON.stringify(contests, null, 2));
-    console.log(`✅ Synced ${contests.length} contests`);
-  } catch (err) {
-    console.error('Fatal sync error:', err);
-    process.exit(1);
+function dedupeCandidates(items) {
+  const map = new Map();
+  for (const item of items) {
+    const key = `${item.title}`.replace(/\s+/g, "").toLowerCase();
+    if (!key || map.has(key)) continue;
+    map.set(key, item);
   }
-})();
+  return [...map.values()].slice(0, 18);
+}
+
+function toCsvValue(value) {
+  const raw = Array.isArray(value) ? value.join(", ") : String(value ?? "");
+  return `"${raw.replaceAll('"', '""')}"`;
+}
+
+function buildNotionCsv(items) {
+  const headers = ["이름", "주최", "분야", "카테고리", "모집 상태", "접수 시작일", "마감일", "상금/혜택", "링크", "출처", "태그", "비고"];
+  const rows = items.map((item) => [
+    item.name,
+    item.host,
+    item.type,
+    item.category,
+    item.status,
+    item.startDate,
+    item.deadline,
+    item.reward,
+    item.link,
+    item.source,
+    item.tags,
+    item.note,
+  ]);
+
+  return [headers, ...rows].map((row) => row.map(toCsvValue).join(",")).join("\n") + "\n";
+}
+
+async function collectWevity() {
+  const candidates = [];
+
+  for (const url of WEVITY_LIST_URLS) {
+    try {
+      const html = await fetchText(url);
+      candidates.push(...parseListCards(html));
+    } catch (error) {
+      console.warn(`skip list: ${url} (${error.message})`);
+    }
+  }
+
+  const uniqueCandidates = dedupeCandidates(candidates);
+
+  const enriched = [];
+  for (const candidate of uniqueCandidates) {
+    console.log(`detail: ${candidate.title}`);
+    const item = await enrichFromDetail(candidate);
+    if (item && isRelevant(item.name, item.category) && isActive(item.deadline)) {
+      enriched.push(item);
+    }
+  }
+
+  return dedupe(enriched);
+}
+
+const contests = await collectWevity();
+if (!contests.length) {
+  throw new Error("No active Wevity contests found. Keeping stale/news data is intentionally disabled.");
+}
+
+await fs.mkdir("data", { recursive: true });
+const json = JSON.stringify(contests, null, 2) + "\n";
+await fs.writeFile(OUTPUT_JSON, json, "utf8");
+await fs.writeFile(ROOT_JSON, json, "utf8");
+await fs.writeFile(OUTPUT_CSV, buildNotionCsv(contests), "utf8");
+
+console.log(`Synced ${contests.length} Wevity contests`);
+console.log(`Wrote ${OUTPUT_JSON}, ${ROOT_JSON}, ${OUTPUT_CSV}`);

@@ -2,18 +2,22 @@ name: Sync contests data
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
       - run: node scripts/sync-notion-to-json.mjs
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'Update contests data'
+          file_pattern: 'data/contests.json data/notion-import.csv contests.json'
