@@ -34,7 +34,7 @@ node scripts/sync-notion-to-json.mjs
 
 ## 자동 업데이트
 
-GitHub Actions의 `Sync contests data` 워크플로우가 매일 실행됩니다.
+GitHub Actions의 `Sync contests data` 워크플로우가 7일에 한 번 실행됩니다.
 데이터가 바뀌면 기존 공모전은 보존하고 새 공모전만 추가/갱신한 뒤 자동 커밋합니다.
 Vercel은 GitHub 변경사항을 감지해 다시 배포합니다.
 
