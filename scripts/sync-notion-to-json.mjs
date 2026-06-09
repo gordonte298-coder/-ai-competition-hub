@@ -38,6 +38,102 @@ const NEGATIVE_KEYWORDS = [
   "인턴",
 ];
 
+const MANUAL_CONTESTS = [
+  {
+    name: "2026년 대한민국 AI 콘텐츠 어워즈",
+    host: "경기도 / 경기콘텐츠진흥원",
+    type: "영상/숏폼",
+    category: "생성형 AI 영상·콘텐츠",
+    status: "모집중",
+    startDate: "2026-06-02",
+    deadline: "2026-07-12",
+    region: "국내",
+    language: "한국어",
+    reward: "1등 800만원 / 2등 300만원 등",
+    format: "AI 기술을 활용한 영상 작품",
+    target: "AI 콘텐츠 크리에이터",
+    tags: ["#생성형AI", "#AI영상", "#콘텐츠어워즈"],
+    note: "경기콘텐츠진흥원 공고와 FilmFreeway 접수 페이지를 함께 확인하세요. FilmFreeway: https://filmfreeway.com/KAICA",
+    link: "https://www.gcon.or.kr/gcon/business/gconNotice/view.do?pbancSrnm=11173&menuNo=200061",
+    source: "수동보강",
+    sourceUrl: "https://filmfreeway.com/KAICA",
+  },
+  {
+    name: "2026 동화나라 창작동화 공모전",
+    host: "동화나라",
+    type: "스토리/동화",
+    category: "생성형 AI 창작동화",
+    status: "모집중",
+    startDate: "2026-05-25",
+    deadline: "2026-06-08",
+    region: "국내",
+    language: "한국어",
+    reward: "대상 15만원 및 수상작 앱 내 정식 오디오북/콘텐츠 발행",
+    format: "AI 활용 단편 창작동화 2,000자 내외 및 기획 의도",
+    target: "AI와 콘텐츠 기획에 관심 있는 대학생/직장인 창작자",
+    tags: ["#생성형AI", "#창작동화", "#스토리"],
+    note: "공모 주제는 '모양이 달라도 우리는 가족이야'. 다양한 가족의 형태를 다룬 따뜻한 창작 동화 기획 공모전입니다.",
+    link: "https://www.allforyoung.com/posts/82469",
+    source: "수동보강",
+  },
+  {
+    name: "사조 AI 숏폼 공모전",
+    host: "사조그룹",
+    type: "영상/숏폼",
+    category: "AI 숏폼 영상",
+    status: "모집중",
+    startDate: "2026-05-04",
+    deadline: "2026-06-14",
+    region: "국내",
+    language: "한국어",
+    reward: "총 상금 1,000만원 / 대상 300만원",
+    format: "30초~1분 이내 세로형 영상",
+    target: "제한없음",
+    tags: ["#AI영상", "#숏폼", "#사조"],
+    note: "위비티 기준 수동 보강 항목입니다. 반드시 주최사 공고와 제출 링크를 함께 확인하세요.",
+    link: "https://www.wevity.com/index.php?c=find&s=_university&gbn=viewok&gp=1&ix=107046",
+    source: "수동보강",
+  },
+  {
+    name: "대한의사협회 제43차 종합학술대회 생성형 AI 영상 공모전",
+    host: "대한의사협회",
+    type: "영상/숏폼",
+    category: "생성형 AI 영상",
+    status: "모집중",
+    startDate: "2026-05-11",
+    deadline: "2026-06-19",
+    region: "국내",
+    language: "한국어",
+    reward: "대상 300만원 / 최우수상 각 200만원 / 우수상 각 100만원",
+    format: "30~45초 세로형 AI 영상, MP4",
+    target: "의료진, 의대생 및 일반인 누구나",
+    tags: ["#생성형AI", "#AI영상", "#의료"],
+    note: "주제는 'AI, 의사의 진심을 그리다'. 인상 깊었던 의사와의 진료 경험 등을 AI 영상으로 구현하는 공모전입니다.",
+    link: "https://www.wevity.com/index_university.php?c=find&s=_university&gbn=view&gp=4&ix=107252",
+    source: "수동보강",
+    sourceUrl: "https://www.kmacongress2026.org/html/?pmode=video",
+  },
+  {
+    name: "2026년 서울 사랑의열매 AI 영상 공모전",
+    host: "서울사회복지공동모금회",
+    type: "영상/숏폼",
+    category: "AI 나눔 메시지 영상",
+    status: "모집중",
+    startDate: "2026-06-01",
+    deadline: "2026-07-31",
+    region: "국내",
+    language: "한국어",
+    reward: "열매대상 100만원 등",
+    format: "3분 영상 또는 30~60초 쇼츠 영상",
+    target: "전 국민, 개인 또는 3인 이하 단체",
+    tags: ["#AI영상", "#숏폼", "#나눔"],
+    note: "AI 나눔 메시지 영상 제작 공모전 'CHEST x AI'. 생성형 AI 기반 제작 문구 삽입이 필요합니다.",
+    link: "https://www.wevity.com/index_university.php?c=find&s=_university&mode=future&gbn=viewok&gp=1&ix=107375",
+    source: "수동보강",
+    sourceUrl: "https://seoul.chest.or.kr/lnk.do?u=851c7ab4",
+  },
+];
+
 function cleanText(value = "") {
   return String(value)
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -326,7 +422,7 @@ async function collectWevity() {
 
 const existing = mergeContests(await readJson(ROOT_JSON), await readJson(OUTPUT_JSON));
 const discovered = await collectWevity();
-const contests = mergeContests(existing, discovered);
+const contests = mergeContests(existing, MANUAL_CONTESTS, discovered);
 
 if (!contests.length) {
   throw new Error("No contests found. Refusing to overwrite the archive with an empty file.");
