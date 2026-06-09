@@ -1,7 +1,6 @@
 import fs from "node:fs/promises";
 
 const WEVITY_BASE = "https://www.wevity.com/";
-const MIN_DEADLINE = "2026-06-01";
 const OUTPUT_JSON = "data/contests.json";
 const ROOT_JSON = "contests.json";
 const OUTPUT_CSV = "data/notion-import.csv";
@@ -55,6 +54,16 @@ function cleanText(value = "") {
 
 function normalizeUrl(url = "") {
   return new URL(url.replaceAll("&amp;", "&"), WEVITY_BASE).toString();
+}
+
+async function readJson(path) {
+  try {
+    const text = await fs.readFile(path, "utf8");
+    const data = JSON.parse(text);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
 }
 
 async function fetchText(url) {
@@ -131,8 +140,18 @@ function parseDeadline(period = "", fallbackDday = "") {
   return "";
 }
 
-function isActive(deadline = "") {
-  return Boolean(deadline) && deadline >= MIN_DEADLINE;
+function statusFromDeadline(deadline = "", rawStatus = "") {
+  if (rawStatus === "상시") return rawStatus;
+  if (!deadline) return rawStatus || "확인 필요";
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const date = new Date(`${deadline}T00:00:00`);
+  const diff = Math.ceil((date - today) / 86400000);
+
+  if (diff < 0) return "마감";
+  if (diff <= 7) return "마감 임박";
+  return "모집중";
 }
 
 function parseListCards(html) {
@@ -179,7 +198,7 @@ async function enrichFromDetail(item) {
       host,
       type: inferType(text),
       category,
-      status: "모집중",
+      status: statusFromDeadline(deadline, "모집중"),
       startDate: period.split("~")[0]?.trim() || "",
       deadline,
       region: "국내",
@@ -188,10 +207,11 @@ async function enrichFromDetail(item) {
       format: "공식 요강 확인",
       target: "공식 요강 확인",
       tags: inferTags(text),
-      note: `위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.`,
+      note: "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
       link: homepage || item.url,
       source: "위비티",
       sourceUrl: item.url,
+      archived: statusFromDeadline(deadline) === "마감",
     };
   } catch (error) {
     console.warn(`skip detail: ${item.title} (${error.message})`);
@@ -199,14 +219,50 @@ async function enrichFromDetail(item) {
   }
 }
 
-function dedupe(items) {
+function normalizeItem(item) {
+  const name = item.name || item.title || item.contestTitle || "";
+  const host = item.host || item.organizer || item.organization || "";
+  const reward = item.reward || item.prize || item.benefit || "";
+  const link = item.link || item.url || "";
+  const status = statusFromDeadline(item.deadline, item.status || item.recruitStatus || "");
+
+  return {
+    ...item,
+    name,
+    host,
+    type: item.type || inferType(`${name} ${item.category || ""}`),
+    category: item.category || "기타",
+    status,
+    deadline: item.deadline || "",
+    reward,
+    link,
+    tags: Array.isArray(item.tags) ? item.tags : Array.isArray(item.keywords) ? item.keywords : [],
+    archived: status === "마감",
+  };
+}
+
+function itemKey(item) {
+  const link = String(item.link || item.url || item.sourceUrl || "").trim().toLowerCase();
+  if (link) return `link:${link}`;
+  return `name:${String(item.name || item.title || "").replace(/\s+/g, "").toLowerCase()}`;
+}
+
+function mergeContests(...groups) {
   const map = new Map();
-  for (const item of items) {
-    const key = `${item.name}`.replace(/\s+/g, "").toLowerCase();
-    if (!key || map.has(key)) continue;
-    map.set(key, item);
+  for (const group of groups) {
+    for (const raw of group) {
+      const item = normalizeItem(raw);
+      const key = itemKey(item);
+      if (!item.name || map.has(key)) continue;
+      map.set(key, { ...map.get(key), ...item });
+    }
   }
-  return [...map.values()].sort((a, b) => a.deadline.localeCompare(b.deadline) || a.name.localeCompare(b.name, "ko"));
+
+  return [...map.values()].sort((a, b) => {
+    const activeA = a.status === "마감" ? 1 : 0;
+    const activeB = b.status === "마감" ? 1 : 0;
+    return activeA - activeB || (a.deadline || "9999-12-31").localeCompare(b.deadline || "9999-12-31") || a.name.localeCompare(b.name, "ko");
+  });
 }
 
 function dedupeCandidates(items) {
@@ -236,7 +292,7 @@ function buildNotionCsv(items) {
     item.deadline,
     item.reward,
     item.link,
-    item.source,
+    item.source || "",
     item.tags,
     item.note,
   ]);
@@ -256,23 +312,24 @@ async function collectWevity() {
     }
   }
 
-  const uniqueCandidates = dedupeCandidates(candidates);
-
   const enriched = [];
-  for (const candidate of uniqueCandidates) {
+  for (const candidate of dedupeCandidates(candidates)) {
     console.log(`detail: ${candidate.title}`);
     const item = await enrichFromDetail(candidate);
-    if (item && isRelevant(item.name, item.category) && isActive(item.deadline)) {
+    if (item && isRelevant(item.name, item.category)) {
       enriched.push(item);
     }
   }
 
-  return dedupe(enriched);
+  return enriched;
 }
 
-const contests = await collectWevity();
+const existing = mergeContests(await readJson(ROOT_JSON), await readJson(OUTPUT_JSON));
+const discovered = await collectWevity();
+const contests = mergeContests(existing, discovered);
+
 if (!contests.length) {
-  throw new Error("No active Wevity contests found. Keeping stale/news data is intentionally disabled.");
+  throw new Error("No contests found. Refusing to overwrite the archive with an empty file.");
 }
 
 await fs.mkdir("data", { recursive: true });
@@ -281,5 +338,6 @@ await fs.writeFile(OUTPUT_JSON, json, "utf8");
 await fs.writeFile(ROOT_JSON, json, "utf8");
 await fs.writeFile(OUTPUT_CSV, buildNotionCsv(contests), "utf8");
 
-console.log(`Synced ${contests.length} Wevity contests`);
-console.log(`Wrote ${OUTPUT_JSON}, ${ROOT_JSON}, ${OUTPUT_CSV}`);
+console.log(`Kept ${existing.length} archived/current contests`);
+console.log(`Discovered ${discovered.length} Wevity contests`);
+console.log(`Wrote ${contests.length} total contests`);
