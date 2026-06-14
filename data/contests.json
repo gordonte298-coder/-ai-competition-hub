@@ -1,27 +1,5 @@
 [
   {
-    "name": "AI EXPO KOREA 2026 - NEXT 해커톤",
-    "host": "AI EXPO KOREA",
-    "type": "해외",
-    "category": "AI 해커톤",
-    "status": "마감 임박",
-    "startDate": "2026-04-01",
-    "deadline": "2026-06-10",
-    "region": "한국",
-    "language": "한국어/영어",
-    "reward": "$50,000",
-    "format": "해커톤",
-    "target": "개발자",
-    "tags": [
-      "#해커톤",
-      "#AI엑스포",
-      "#코엑스"
-    ],
-    "note": "2026.6.10-12 서울 코엑스. 인공지능 & 빅데이터쇼 NEXT 해커톤.",
-    "link": "https://www.smarttechkorea.com",
-    "archived": false
-  },
-  {
     "name": "사조 AI 숏폼 공모전",
     "host": "사조그룹",
     "type": "영상/숏폼",
@@ -49,7 +27,7 @@
     "host": "대한의사협회",
     "type": "영상/숏폼",
     "category": "생성형 AI 영상",
-    "status": "모집중",
+    "status": "마감 임박",
     "startDate": "2026-05-11",
     "deadline": "2026-06-19",
     "region": "국내",
@@ -979,6 +957,28 @@
     "note": "공모 주제는 '모양이 달라도 우리는 가족이야'. 다양한 가족의 형태를 다룬 따뜻한 창작 동화 기획 공모전입니다.",
     "link": "https://www.allforyoung.com/posts/82469",
     "source": "수동보강",
+    "archived": true
+  },
+  {
+    "name": "AI EXPO KOREA 2026 - NEXT 해커톤",
+    "host": "AI EXPO KOREA",
+    "type": "해외",
+    "category": "AI 해커톤",
+    "status": "마감",
+    "startDate": "2026-04-01",
+    "deadline": "2026-06-10",
+    "region": "한국",
+    "language": "한국어/영어",
+    "reward": "$50,000",
+    "format": "해커톤",
+    "target": "개발자",
+    "tags": [
+      "#해커톤",
+      "#AI엑스포",
+      "#코엑스"
+    ],
+    "note": "2026.6.10-12 서울 코엑스. 인공지능 & 빅데이터쇼 NEXT 해커톤.",
+    "link": "https://www.smarttechkorea.com",
     "archived": true
   }
 ]
