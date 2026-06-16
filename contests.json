@@ -1,28 +1,5 @@
 [
   {
-    "name": "사조 AI 숏폼 공모전",
-    "host": "사조그룹",
-    "type": "영상/숏폼",
-    "category": "AI 숏폼 영상",
-    "status": "마감 임박",
-    "startDate": "2026-05-04",
-    "deadline": "2026-06-14",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "총 상금 1,000만원 / 대상 300만원",
-    "format": "30초~1분 이내 세로형 영상",
-    "target": "제한없음",
-    "tags": [
-      "#AI영상",
-      "#숏폼",
-      "#사조"
-    ],
-    "note": "위비티 기준 수동 보강 항목입니다. 반드시 주최사 공고와 제출 링크를 함께 확인하세요.",
-    "link": "https://www.wevity.com/index.php?c=find&s=_university&gbn=viewok&gp=1&ix=107046",
-    "source": "수동보강",
-    "archived": false
-  },
-  {
     "name": "대한의사협회 제43차 종합학술대회 생성형 AI 영상 공모전",
     "host": "대한의사협회",
     "type": "영상/숏폼",
@@ -170,6 +147,53 @@
     "archived": false
   },
   {
+    "name": "빠나나AI x 무통베개 AI 광고 챌린지",
+    "host": "빠나나AI",
+    "type": "영상/숏폼",
+    "category": "AI 광고 영상",
+    "status": "모집중",
+    "startDate": "2026-06-17",
+    "deadline": "2026-07-08",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "대상 500만원 / 금상 200만원 / 은상 100만원 / 인기상 1500크레딧",
+    "format": "10~30초 분량 9:16 또는 3:4 비율 쇼츠",
+    "target": "누구나, 1인 2개 이상 중복 지원 가능",
+    "tags": [
+      "#AI광고",
+      "#AI영상",
+      "#숏폼"
+    ],
+    "note": "무통베개 제품을 활용해 재미있고 참신한 AI 영상 콘텐츠를 만드는 광고 챌린지입니다.",
+    "link": "https://www.allforyoung.com/posts/83237",
+    "source": "수동보강",
+    "archived": false
+  },
+  {
+    "name": "2026 대한민국 미래 철도 AI 영상 공모전",
+    "host": "국가철도공단",
+    "type": "영상/숏폼",
+    "category": "AI 영상",
+    "status": "모집중",
+    "startDate": "2026-06-15",
+    "deadline": "2026-07-10",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "1천만원 이하 / 1등 300만원",
+    "format": "AI 영상 콘텐츠",
+    "target": "제한없음",
+    "tags": [
+      "#AI영상",
+      "#철도",
+      "#콘텐츠"
+    ],
+    "note": "국가철도공단의 미래 철도 주제 AI 영상 공모전입니다.",
+    "link": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=viewok&gp=2&ix=108158",
+    "source": "수동보강",
+    "sourceUrl": "https://sotong.go.kr/front/epilogue/epilogueNewViewPage.do?bbs_id=59c1e7091d4b4cc7b50aecfb7fdac73e",
+    "archived": false
+  },
+  {
     "name": "2026년 대한민국 AI 콘텐츠 어워즈",
     "host": "경기도 / 경기콘텐츠진흥원",
     "type": "영상/숏폼",
@@ -216,6 +240,30 @@
     "link": "https://khp.jmbc.co.kr/bbs/board.php?bo_table=notice&wr_id=20",
     "source": "위비티",
     "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=106656",
+    "archived": false
+  },
+  {
+    "name": "2026 성평등 영상 콘텐츠 공모전",
+    "host": "제주특별자치도",
+    "type": "영상/숏폼",
+    "category": "영상/UCC/사진",
+    "status": "모집중",
+    "startDate": "2026-07-21",
+    "deadline": "2026-07-30",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "1천만원 이하 / 1등 300만원",
+    "format": "영상 콘텐츠",
+    "target": "제한없음",
+    "tags": [
+      "#영상",
+      "#콘텐츠",
+      "#성평등"
+    ],
+    "note": "위비티에서 확인한 제주특별자치도 주최 성평등 영상 콘텐츠 공모전입니다.",
+    "link": "https://www.wevity.com/?c=find&s=1&sp=contents&sw=AI&gbn=viewok&gp=1&ix=108289",
+    "source": "수동보강",
+    "sourceUrl": "https://www.jeju.go.kr/news/news/law/jeju2.htm#A_66686",
     "archived": false
   },
   {
@@ -979,6 +1027,29 @@
     ],
     "note": "2026.6.10-12 서울 코엑스. 인공지능 & 빅데이터쇼 NEXT 해커톤.",
     "link": "https://www.smarttechkorea.com",
+    "archived": true
+  },
+  {
+    "name": "사조 AI 숏폼 공모전",
+    "host": "사조그룹",
+    "type": "영상/숏폼",
+    "category": "AI 숏폼 영상",
+    "status": "마감",
+    "startDate": "2026-05-04",
+    "deadline": "2026-06-14",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "총 상금 1,000만원 / 대상 300만원",
+    "format": "30초~1분 이내 세로형 영상",
+    "target": "제한없음",
+    "tags": [
+      "#AI영상",
+      "#숏폼",
+      "#사조"
+    ],
+    "note": "위비티 기준 수동 보강 항목입니다. 반드시 주최사 공고와 제출 링크를 함께 확인하세요.",
+    "link": "https://www.wevity.com/index.php?c=find&s=_university&gbn=viewok&gp=1&ix=107046",
+    "source": "수동보강",
     "archived": true
   }
 ]
