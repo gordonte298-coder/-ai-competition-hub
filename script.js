@@ -704,7 +704,7 @@ const el = {
   }
 };
 
-let viewDate = new Date(2026, 1, 1);
+let viewDate = new Date();
 let activeToolFilter = "all";
 const validPages = ["home", "contests", "tools", "about"];
 
