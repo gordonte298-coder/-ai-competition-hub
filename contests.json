@@ -1,34 +1,10 @@
 [
   {
-    "name": "대한의사협회 제43차 종합학술대회 생성형 AI 영상 공모전",
-    "host": "대한의사협회",
-    "type": "영상/숏폼",
-    "category": "생성형 AI 영상",
-    "status": "마감 임박",
-    "startDate": "2026-05-11",
-    "deadline": "2026-06-19",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "대상 300만원 / 최우수상 각 200만원 / 우수상 각 100만원",
-    "format": "30~45초 세로형 AI 영상, MP4",
-    "target": "의료진, 의대생 및 일반인 누구나",
-    "tags": [
-      "#생성형AI",
-      "#AI영상",
-      "#의료"
-    ],
-    "note": "주제는 'AI, 의사의 진심을 그리다'. 인상 깊었던 의사와의 진료 경험 등을 AI 영상으로 구현하는 공모전입니다.",
-    "link": "https://www.wevity.com/index_university.php?c=find&s=_university&gbn=view&gp=4&ix=107252",
-    "source": "수동보강",
-    "sourceUrl": "https://www.kmacongress2026.org/html/?pmode=video",
-    "archived": false
-  },
-  {
     "name": "2026 부산광역시 공공데이터•AI 활용 창업경진대회",
     "host": "부산광역시/(재)부산테크노파크",
     "type": "생성형 AI",
     "category": "기획/아이디어, 광고/마케팅, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 취업/창업",
-    "status": "모집중",
+    "status": "마감 임박",
     "startDate": "2026-04-29",
     "deadline": "2026-06-25",
     "region": "국내",
@@ -1050,6 +1026,30 @@
     "note": "위비티 기준 수동 보강 항목입니다. 반드시 주최사 공고와 제출 링크를 함께 확인하세요.",
     "link": "https://www.wevity.com/index.php?c=find&s=_university&gbn=viewok&gp=1&ix=107046",
     "source": "수동보강",
+    "archived": true
+  },
+  {
+    "name": "대한의사협회 제43차 종합학술대회 생성형 AI 영상 공모전",
+    "host": "대한의사협회",
+    "type": "영상/숏폼",
+    "category": "생성형 AI 영상",
+    "status": "마감",
+    "startDate": "2026-05-11",
+    "deadline": "2026-06-19",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "대상 300만원 / 최우수상 각 200만원 / 우수상 각 100만원",
+    "format": "30~45초 세로형 AI 영상, MP4",
+    "target": "의료진, 의대생 및 일반인 누구나",
+    "tags": [
+      "#생성형AI",
+      "#AI영상",
+      "#의료"
+    ],
+    "note": "주제는 'AI, 의사의 진심을 그리다'. 인상 깊었던 의사와의 진료 경험 등을 AI 영상으로 구현하는 공모전입니다.",
+    "link": "https://www.wevity.com/index_university.php?c=find&s=_university&gbn=view&gp=4&ix=107252",
+    "source": "수동보강",
+    "sourceUrl": "https://www.kmacongress2026.org/html/?pmode=video",
     "archived": true
   }
 ]
