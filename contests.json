@@ -1,30 +1,5 @@
 [
   {
-    "name": "2026 부산광역시 공공데이터•AI 활용 창업경진대회",
-    "host": "부산광역시/(재)부산테크노파크",
-    "type": "생성형 AI",
-    "category": "기획/아이디어, 광고/마케팅, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 취업/창업",
-    "status": "마감 임박",
-    "startDate": "2026-04-29",
-    "deadline": "2026-06-25",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "3천만원~1천만원 / 250만원",
-    "format": "공식 요강 확인",
-    "target": "공식 요강 확인",
-    "tags": [
-      "#위비티",
-      "#자동수집",
-      "#AI광고",
-      "#생성형AI"
-    ],
-    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
-    "link": "https://www.busan.go.kr/nbgosi/view?sno=77670&gosiGbn=A&curPage=5",
-    "source": "위비티",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=107424",
-    "archived": false
-  },
-  {
     "name": "2026 쉬운 우리말 쓰기 영상 제작 공모전",
     "host": "국어문화원연합회/",
     "type": "영상/숏폼",
@@ -1193,6 +1168,31 @@
     "link": "https://www.wevity.com/index_university.php?c=find&s=_university&gbn=view&gp=4&ix=107252",
     "source": "수동보강",
     "sourceUrl": "https://www.kmacongress2026.org/html/?pmode=video",
+    "archived": true
+  },
+  {
+    "name": "2026 부산광역시 공공데이터•AI 활용 창업경진대회",
+    "host": "부산광역시/(재)부산테크노파크",
+    "type": "생성형 AI",
+    "category": "기획/아이디어, 광고/마케팅, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 취업/창업",
+    "status": "마감",
+    "startDate": "2026-04-29",
+    "deadline": "2026-06-25",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "3천만원~1천만원 / 250만원",
+    "format": "공식 요강 확인",
+    "target": "공식 요강 확인",
+    "tags": [
+      "#위비티",
+      "#자동수집",
+      "#AI광고",
+      "#생성형AI"
+    ],
+    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
+    "link": "https://www.busan.go.kr/nbgosi/view?sno=77670&gosiGbn=A&curPage=5",
+    "source": "위비티",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=107424",
     "archived": true
   }
 ]
