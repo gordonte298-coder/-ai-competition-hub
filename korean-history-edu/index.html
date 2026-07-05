@@ -13,7 +13,6 @@
 <style>
 /* ============ 디자인 토큰 (website-builder-pro 스킬 기반, 아동용 조정) ============ */
 :root{
-  /* 색: 따뜻한 청록 프라이머리 + 유물빛 주황 액센트 */
   --primary:#0d9488; --primary-strong:#0f766e; --primary-soft:#ccfbf1;
   --accent:#ea580c; --accent-soft:#ffedd5;
   --good:#16a34a; --good-soft:#dcfce7; --bad:#dc2626; --bad-soft:#fee2e2;
@@ -33,7 +32,7 @@
   --fs-lg:clamp(1.15rem,1rem + .8vw,1.4rem);
   --fs-xl:clamp(1.5rem,1.2rem + 1.6vw,2.2rem);
   --fs-2xl:clamp(2rem,1.5rem + 3vw,3.4rem);
-  --tap:52px; /* 최소 터치 타깃 */
+  --tap:52px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -81,6 +80,9 @@ a{color:var(--primary-strong)}
 .btn--accent{background:var(--accent); color:#fff; box-shadow:0 6px 18px rgb(234 88 12 / .25)}
 .btn--ghost{background:var(--surface); color:var(--text); border:2px solid var(--border)}
 .btn:active{transform:scale(.97)}
+.chip{border:2px solid var(--primary-soft); background:var(--surface); color:var(--primary-strong); font-weight:700; border-radius:var(--radius-full); padding:var(--space-2) var(--space-4); cursor:pointer; min-height:44px; font:inherit; transition:background .12s}
+.chip[aria-pressed="true"]{background:var(--primary); color:#fff; border-color:var(--primary)}
+.chip-row{display:flex; flex-wrap:wrap; gap:var(--space-2); justify-content:center}
 
 /* ============ 홈 ============ */
 .hero{text-align:center; padding:var(--space-7) 0 var(--space-6)}
@@ -95,7 +97,7 @@ a{color:var(--primary-strong)}
 .tl-chip .emoji{font-size:2rem}
 .tl-chip .era{font-weight:800; color:var(--primary-strong); margin-top:var(--space-1)}
 .tl-chip .yr{font-size:var(--fs-sm); color:var(--text-muted)}
-.home-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:var(--space-4); margin-top:var(--space-6)}
+.home-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:var(--space-4); margin-top:var(--space-6)}
 .mode-card{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-5); text-align:center; cursor:pointer; transition:transform .15s, box-shadow .15s, border-color .15s; font:inherit; color:inherit}
 .mode-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:var(--primary)}
 .mode-card .big{font-size:2.6rem}
@@ -123,12 +125,28 @@ a{color:var(--primary-strong)}
 .era__done{display:inline-flex; align-items:center; gap:.4em; margin-top:var(--space-4); background:var(--good-soft); color:var(--good); border:none; border-radius:var(--radius-full); padding:var(--space-2) var(--space-4); font-weight:700; font:inherit; cursor:pointer; min-height:44px}
 .era__done.is-done{background:var(--good); color:#fff}
 
+/* ============ 연표 ============ */
+.table-wrap{overflow-x:auto; border:2px solid var(--border); border-radius:var(--radius-lg); background:var(--surface); box-shadow:var(--shadow-sm)}
+.hist-table{width:100%; min-width:760px; border-collapse:collapse; font-size:var(--fs-sm)}
+.hist-table th{background:var(--primary); color:#fff; padding:var(--space-3) var(--space-4); text-align:left; white-space:nowrap; position:sticky; top:0}
+.hist-table td{padding:var(--space-3) var(--space-4); border-bottom:1px solid var(--gray-100); vertical-align:top; line-height:1.6}
+.hist-table tr:nth-child(even) td{background:var(--gray-50)}
+.hist-table td:first-child{white-space:nowrap; font-weight:800; color:var(--primary-strong)}
+.hist-table .yr-cell{white-space:nowrap; color:var(--text-muted)}
+.table-tip{text-align:center; color:var(--text-muted); font-size:var(--fs-sm); margin-top:var(--space-3)}
+
 /* ============ 퀴즈 / 문제 ============ */
 .quiz-wrap,.prob-wrap{max-width:720px; margin-inline:auto}
+.setup-card{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-6); box-shadow:var(--shadow-sm)}
+.setup-card h3{color:var(--primary-strong); text-align:center}
+.setup-label{font-weight:800; margin:var(--space-5) 0 var(--space-3); text-align:center}
+.setup-start{text-align:center; margin-top:var(--space-6)}
+.pool-count{text-align:center; color:var(--text-muted); font-size:var(--fs-sm); margin-top:var(--space-3)}
 .progressbar{height:12px; background:var(--gray-200); border-radius:var(--radius-full); overflow:hidden; margin-bottom:var(--space-5)}
 .progressbar>span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--primary),var(--accent)); transition:width .3s}
 .qcard{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-5); box-shadow:var(--shadow-sm)}
-.qcard__num{font-weight:700; color:var(--accent)}
+.qcard__num{font-weight:700; color:var(--accent); display:flex; gap:var(--space-2); align-items:center; flex-wrap:wrap}
+.qcard__tag{font-size:.78rem; background:var(--primary-soft); color:var(--primary-strong); border-radius:var(--radius-full); padding:1px 10px}
 .qcard__q{font-size:var(--fs-lg); font-weight:800; margin:var(--space-2) 0 var(--space-4)}
 .opt{display:flex; align-items:center; gap:var(--space-3); width:100%; text-align:left; background:var(--gray-50); border:2px solid var(--border); border-radius:var(--radius-md); padding:var(--space-3) var(--space-4); margin-bottom:var(--space-3); font:inherit; cursor:pointer; min-height:var(--tap); transition:border-color .12s, background .12s}
 .opt:hover:not(:disabled){border-color:var(--primary)}
@@ -142,10 +160,15 @@ a{color:var(--primary-strong)}
 .feedback.show{display:block; animation:fade .25s ease both}
 .feedback.ok{background:var(--good-soft); color:#166534}
 .feedback.no{background:var(--bad-soft); color:#991b1b}
-.qnav{display:flex; justify-content:space-between; gap:var(--space-3); margin-top:var(--space-5)}
-.result{text-align:center; background:var(--surface); border:2px solid var(--primary); border-radius:var(--radius-lg); padding:var(--space-7) var(--space-5)}
+.qnav{display:flex; justify-content:space-between; gap:var(--space-3); margin-top:var(--space-5); flex-wrap:wrap}
+.result{text-align:center; background:var(--surface); border:2px solid var(--primary); border-radius:var(--radius-lg); padding:var(--space-6) var(--space-5)}
 .result .big{font-size:4rem}
 .result .score{font-size:var(--fs-2xl); font-weight:800; color:var(--primary-strong)}
+.wrong-note{max-width:720px; margin:var(--space-5) auto 0; text-align:left}
+.wrong-note h4{color:var(--bad); text-align:center}
+.wrong-item{background:var(--bad-soft); border-radius:var(--radius-md); padding:var(--space-3) var(--space-4); margin-bottom:var(--space-3); font-size:var(--fs-sm)}
+.wrong-item b{color:#991b1b}
+.wrong-item .ans{color:#166534; font-weight:700}
 
 /* 문제풀기 */
 .prob{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-5); margin-bottom:var(--space-4); box-shadow:var(--shadow-sm)}
@@ -164,6 +187,10 @@ a{color:var(--primary-strong)}
 
 /* ============ 쓰기 연습 ============ */
 .draw-wrap{max-width:820px; margin-inline:auto}
+.write-modes{margin-bottom:var(--space-5)}
+.hint-card{background:var(--accent-soft); color:#9a3412; font-weight:700; border-radius:var(--radius-md); padding:var(--space-4); text-align:center; margin-bottom:var(--space-4); display:none}
+.hint-card.show{display:block; animation:fade .25s ease both}
+.listen-row{display:flex; gap:var(--space-3); justify-content:center; flex-wrap:wrap; margin-bottom:var(--space-4)}
 .draw-toolbar{display:flex; flex-wrap:wrap; gap:var(--space-2); align-items:center; background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg) var(--radius-lg) 0 0; padding:var(--space-3); border-bottom:none}
 .tool-group{display:flex; gap:var(--space-2); align-items:center; padding-inline:var(--space-2); border-right:2px solid var(--gray-100)}
 .tool-group:last-child{border-right:none; margin-left:auto}
@@ -176,8 +203,6 @@ a{color:var(--primary-strong)}
 .canvas-guide{position:absolute; inset:0; display:grid; place-items:center; font-weight:800; color:rgb(13 148 136 / .12); font-size:clamp(3rem,18vw,9rem); pointer-events:none; user-select:none; letter-spacing:.1em}
 #drawCanvas{display:block; width:100%; height:auto; touch-action:none; cursor:crosshair}
 .prompt-row{display:flex; flex-wrap:wrap; gap:var(--space-2); margin-bottom:var(--space-4); justify-content:center}
-.prompt-chip{border:2px solid var(--primary-soft); background:var(--surface); color:var(--primary-strong); font-weight:700; border-radius:var(--radius-full); padding:var(--space-2) var(--space-4); cursor:pointer; min-height:44px; font:inherit}
-.prompt-chip[aria-pressed="true"]{background:var(--primary); color:#fff; border-color:var(--primary)}
 
 /* ============ 푸터 ============ */
 .source-note{max-width:820px; margin:var(--space-7) auto 0; background:var(--gray-50); border:2px dashed var(--primary-soft); border-radius:var(--radius-lg); padding:var(--space-5); font-size:var(--fs-sm); color:var(--text-muted)}
@@ -203,6 +228,7 @@ a{color:var(--primary-strong)}
     <nav class="tabs" role="tablist" aria-label="학습 모드">
       <button class="tab" role="tab" data-go="home" aria-selected="true">🏠 홈</button>
       <button class="tab" role="tab" data-go="learn" aria-selected="false">📖 배우기</button>
+      <button class="tab" role="tab" data-go="table" aria-selected="false">📜 연표</button>
       <button class="tab" role="tab" data-go="quiz" aria-selected="false">✅ 퀴즈</button>
       <button class="tab" role="tab" data-go="problem" aria-selected="false">✏️ 문제풀기</button>
       <button class="tab" role="tab" data-go="write" aria-selected="false">🖊️ 쓰기연습</button>
@@ -228,9 +254,10 @@ a{color:var(--primary-strong)}
 
     <div class="home-cards">
       <button class="mode-card" data-go="learn"><div class="big">📖</div><h3>배우기</h3><p>시대별로 차근차근 알아봐요</p></button>
-      <button class="mode-card" data-go="quiz"><div class="big">✅</div><h3>퀴즈</h3><p>객관식으로 실력을 확인해요</p></button>
+      <button class="mode-card" data-go="table"><div class="big">📜</div><h3>연표</h3><p>시대를 한눈에 비교해요</p></button>
+      <button class="mode-card" data-go="quiz"><div class="big">✅</div><h3>퀴즈</h3><p>시대·난이도를 골라 도전!</p></button>
       <button class="mode-card" data-go="problem"><div class="big">✏️</div><h3>문제풀기</h3><p>OX·빈칸 문제에 도전!</p></button>
-      <button class="mode-card" data-go="write"><div class="big">🖊️</div><h3>쓰기연습</h3><p>펜으로 또박또박 써 봐요</p></button>
+      <button class="mode-card" data-go="write"><div class="big">🖊️</div><h3>쓰기연습</h3><p>따라쓰고, 듣고 쓰고!</p></button>
     </div>
   </section>
 
@@ -253,11 +280,29 @@ a{color:var(--primary-strong)}
     </div>
   </section>
 
+  <!-- ============ 연표 ============ -->
+  <section class="view" id="view-table" role="tabpanel" aria-label="연표" hidden>
+    <div class="section-head">
+      <span class="eyebrow">📜 연표</span>
+      <h2>시대를 한눈에 비교해요</h2>
+      <p style="color:var(--text-muted)">시기, 세운 사람, 중요한 사건, 문화유산을 표로 정리했어요.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="hist-table">
+        <thead>
+          <tr><th>시대</th><th>시기</th><th>세운 사람 · 시작</th><th>꼭 기억할 사건</th><th>대표 문화유산 · 유물</th></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <p class="table-tip">📱 표가 잘리면 옆으로 밀어서 보세요!</p>
+  </section>
+
   <!-- ============ 퀴즈 ============ -->
   <section class="view" id="view-quiz" role="tabpanel" aria-label="퀴즈" hidden>
     <div class="section-head">
       <span class="eyebrow">✅ 퀴즈</span>
-      <h2>골라서 맞혀 보세요</h2>
+      <h2>시대와 난이도를 골라 도전!</h2>
     </div>
     <div class="quiz-wrap" id="quizWrap"></div>
   </section>
@@ -276,10 +321,25 @@ a{color:var(--primary-strong)}
     <div class="section-head">
       <span class="eyebrow">🖊️ 쓰기연습</span>
       <h2>펜이나 손가락으로 또박또박</h2>
-      <p style="color:var(--text-muted)">아래 낱말을 골라 흐린 글자 위에 <b>따라 써</b> 보세요.</p>
     </div>
     <div class="draw-wrap">
+      <div class="chip-row write-modes" role="group" aria-label="쓰기 모드">
+        <button class="chip" data-wmode="trace" aria-pressed="true">👀 따라쓰기</button>
+        <button class="chip" data-wmode="dictation" aria-pressed="false">🔊 듣고 쓰기</button>
+        <button class="chip" data-wmode="meaning" aria-pressed="false">💡 뜻 보고 쓰기</button>
+      </div>
+
+      <!-- 따라쓰기: 낱말 선택 -->
       <div class="prompt-row" id="promptRow"></div>
+
+      <!-- 듣고 쓰기 / 뜻 보고 쓰기 컨트롤 -->
+      <div class="hint-card" id="hintCard"></div>
+      <div class="listen-row" id="listenRow" style="display:none">
+        <button class="btn btn--primary" id="speakBtn">🔊 다시 듣기</button>
+        <button class="btn btn--ghost" id="revealBtn">👀 정답 보기</button>
+        <button class="btn btn--accent" id="nextWordBtn">🎲 다음 문제</button>
+      </div>
+
       <div class="draw-toolbar">
         <div class="tool-group" role="group" aria-label="색깔">
           <button class="swatch" style="background:#1e293b" data-color="#1e293b" aria-pressed="true" aria-label="검정"></button>
@@ -293,7 +353,7 @@ a{color:var(--primary-strong)}
         </div>
         <div class="tool-group">
           <button class="tool-btn" id="eraserBtn" aria-pressed="false">🧽 지우개</button>
-          <button class="tool-btn" id="guideBtn" aria-pressed="true">👀 따라쓰기</button>
+          <button class="tool-btn" id="guideBtn" aria-pressed="true">👀 가이드</button>
         </div>
         <div class="tool-group">
           <button class="tool-btn" id="undoBtn">↩️ 되돌리기</button>
@@ -329,7 +389,8 @@ const ERAS = [
       "구석기 시대: 돌을 깨뜨려 만든 <b>뗀석기</b>를 쓰고, 먹을 것을 찾아 <b>이동</b>하며 동굴·막집에서 살았어요.",
       "신석기 시대: 돌을 갈아 만든 <b>간석기</b>를 쓰고, <b>농사</b>를 짓기 시작해 한곳에 <b>정착</b>했어요. <b>빗살무늬 토기</b>에 음식을 담았죠.",
       "청동기 시대: <b>청동기</b>를 사용하고 <b>벼농사</b>가 늘었어요. 힘과 재산의 차이로 <b>계급</b>이 생겼고, 지배자의 무덤인 <b>고인돌</b>을 만들었어요."
-    ], pills:["뗀석기","간석기","빗살무늬 토기","고인돌"] },
+    ], pills:["뗀석기","간석기","빗살무늬 토기","고인돌"],
+    tbl:{ founder:"—", events:"농사의 시작(신석기), 계급의 발생(청동기)", relics:"뗀석기 · 간석기 · 빗살무늬 토기 · 고인돌" } },
 
   { id:"gojoseon", emoji:"🐻", title:"고조선", yr:"기원전 2333년~", lead:"우리 역사 속 최초의 나라, 고조선이 세워졌어요!",
     key:[
@@ -337,7 +398,8 @@ const ERAS = [
       "건국 정신은 <b>홍익인간</b> — “널리 인간을 이롭게 한다”는 뜻이에요.",
       "사회 질서를 지키기 위한 <b>8조법(범금 8조)</b>이 있었어요. 지금은 3개 조항만 전해져요. (사람을 죽이면 사형에 처한다 등)",
       "청동기 문화를 바탕으로 세워졌고, 곰과 호랑이가 나오는 <b>단군 신화</b>로 건국 이야기가 전해져요."
-    ], pills:["단군왕검","홍익인간","8조법","청동기 문화"] },
+    ], pills:["단군왕검","홍익인간","8조법","청동기 문화"],
+    tbl:{ founder:"단군왕검", events:"우리 역사 최초의 국가 건국, 8조법", relics:"단군 신화 · 비파형 동검 · 탁자식 고인돌" } },
 
   { id:"threekingdoms", emoji:"⚔️", title:"삼국과 가야", yr:"기원전 1세기~7세기", lead:"고구려·백제·신라 세 나라와 가야가 힘을 겨루던 시대예요.",
     key:[
@@ -345,7 +407,8 @@ const ERAS = [
       "<b>백제</b>: <b>온조</b>가 한강 유역에 세웠어요. <b>근초고왕</b> 때 크게 발전하고 바다 건너 교류했어요.",
       "<b>신라</b>: <b>박혁거세</b>가 세웠어요. <b>진흥왕</b> 때 한강 유역을 차지하며 힘을 키웠어요.",
       "<b>가야</b>: <b>김수로</b>가 세운 여러 나라의 <b>연맹</b>이에요. <b>철</b>이 많이 나서 철기를 잘 만들었어요."
-    ], pills:["광개토대왕","근초고왕","진흥왕","가야의 철"] },
+    ], pills:["광개토대왕","근초고왕","진흥왕","가야의 철"],
+    tbl:{ founder:"주몽(고구려) · 온조(백제) · 박혁거세(신라) · 김수로(가야)", events:"광개토대왕의 영토 확장, 근초고왕·진흥왕의 전성기", relics:"고구려 고분 벽화 · 백제 금동대향로 · 신라 금관 · 가야 철기" } },
 
   { id:"unified", emoji:"🕊️", title:"통일 신라와 발해", yr:"7세기~10세기", lead:"신라가 삼국을 통일하고, 북쪽에는 발해가 세워졌어요.",
     key:[
@@ -353,7 +416,8 @@ const ERAS = [
       "통일 신라는 <b>불교문화</b>가 발달했어요. <b>불국사</b>와 <b>석굴암</b>이 대표적이에요.",
       "고구려 유민 <b>대조영</b>이 북쪽에 <b>발해</b>를 세웠어요. (698년)",
       "발해는 강한 나라로 성장해 <b>‘해동성국’</b>(바다 동쪽의 번성한 나라)이라 불렸어요."
-    ], pills:["삼국 통일(676)","불국사·석굴암","대조영","해동성국"] },
+    ], pills:["삼국 통일(676)","불국사·석굴암","대조영","해동성국"],
+    tbl:{ founder:"문무왕 때 통일 완성(신라) · 대조영(발해)", events:"삼국 통일(676), 발해 건국(698), 해동성국", relics:"불국사 · 석굴암 · 발해 석등" } },
 
   { id:"goryeo", emoji:"🏺", title:"고려", yr:"918년~1392년", lead:"왕건이 세운 고려! 어려움 속에서도 뛰어난 문화를 꽃피웠어요.",
     key:[
@@ -361,7 +425,8 @@ const ERAS = [
       "거란이 쳐들어오자 <b>서희</b>가 <b>외교 담판</b>으로 <b>강동 6주</b>를 얻고, <b>강감찬</b>이 <b>귀주 대첩</b>에서 크게 이겼어요.",
       "몽골이 침입하자 수도를 <b>강화도</b>로 옮겨 맞섰어요. 부처의 힘으로 이겨내길 바라며 <b>팔만대장경</b>을 만들었어요.",
       "세계 최초의 <b>금속 활자</b>로 책을 찍었고(『직지』), 푸른 빛의 <b>고려청자</b>는 세계가 감탄한 예술품이에요."
-    ], pills:["서희·강감찬","팔만대장경","금속 활자","고려청자"] },
+    ], pills:["서희·강감찬","팔만대장경","금속 활자","고려청자"],
+    tbl:{ founder:"왕건", events:"후삼국 통일(936), 서희의 담판, 귀주 대첩, 몽골 항쟁", relics:"팔만대장경 · 고려청자 · 『직지』(금속 활자)" } },
 
   { id:"joseon", emoji:"👑", title:"조선 건국과 초기", yr:"1392년~", lead:"이성계가 세운 조선, 그리고 세종대왕의 빛나는 업적!",
     key:[
@@ -369,36 +434,102 @@ const ERAS = [
       "<b>세종대왕</b>이 우리 글자 <b>훈민정음</b>을 만들었어요. (1443년 창제, 1446년 반포) 백성이 쉽게 글을 읽고 쓰게 하려는 마음이었죠.",
       "과학도 크게 발전했어요. 비의 양을 재는 <b>측우기</b>, 해시계 <b>앙부일구</b>, 물시계 <b>자격루</b>를 만들었어요. (<b>장영실</b>의 활약)",
       "북쪽 국경을 넓혀 <b>4군 6진</b>을 두었어요. (김종서·최윤덕) 오늘날 우리나라 국경의 모습이 이때 갖춰졌어요."
-    ], pills:["한양 천도","훈민정음","측우기·자격루","4군 6진"] },
+    ], pills:["한양 천도","훈민정음","측우기·자격루","4군 6진"],
+    tbl:{ founder:"이성계(태조)", events:"조선 건국(1392), 한양 천도, 훈민정음 창제(1443)·반포(1446), 4군 6진", relics:"훈민정음 · 측우기 · 앙부일구 · 자격루" } },
 ];
+const ERA_NAME = Object.fromEntries(ERAS.map(e=>[e.id, e.title]));
 
-const QUIZ = [
-  { q:"우리 역사 속 최초의 국가는 무엇일까요?", opts:["고구려","고조선","신라","발해"], a:1, why:"단군왕검이 세운 고조선이 우리 역사 최초의 국가예요." },
-  { q:"고조선을 세운 사람은 누구인가요?", opts:["주몽","박혁거세","단군왕검","왕건"], a:2, why:"『삼국유사』에 따르면 단군왕검이 고조선을 세웠어요." },
-  { q:"“널리 인간을 이롭게 한다”는 고조선의 건국 정신은?", opts:["홍익인간","화랑도","훈민정음","팔만대장경"], a:0, why:"홍익인간은 고조선의 건국 정신이에요." },
-  { q:"신석기 시대에 처음 시작된 것은 무엇인가요?", opts:["철기 사용","농사와 정착","금속 활자","고인돌 만들기"], a:1, why:"신석기 시대에 농사를 짓기 시작하며 한곳에 정착했어요." },
-  { q:"고구려의 전성기를 이끈 왕이 아닌 사람은?", opts:["광개토대왕","장수왕","근초고왕","주몽"], a:2, why:"근초고왕은 백제의 왕이에요. 고구려는 광개토대왕·장수왕 때 전성기였어요." },
-  { q:"신라가 삼국을 통일한 해는 언제인가요?", opts:["기원전 2333년","676년","918년","1392년"], a:1, why:"신라는 676년에 삼국을 통일했어요." },
-  { q:"고구려 유민 대조영이 북쪽에 세운 나라는?", opts:["가야","백제","발해","고려"], a:2, why:"대조영이 세운 발해는 ‘해동성국’이라 불릴 만큼 강했어요." },
-  { q:"거란과의 외교 담판으로 강동 6주를 얻은 사람은?", opts:["서희","강감찬","김유신","이성계"], a:0, why:"서희는 뛰어난 외교 담판으로 강동 6주를 얻었어요." },
-  { q:"고려의 자랑스러운 문화유산이 아닌 것은?", opts:["팔만대장경","금속 활자","고려청자","훈민정음"], a:3, why:"훈민정음은 조선 세종대왕 때 만들어졌어요." },
-  { q:"조선을 세운 사람은 누구인가요?", opts:["왕건","이성계","세종대왕","장영실"], a:1, why:"이성계가 1392년에 조선을 세웠어요." },
-  { q:"세종대왕이 만든 우리 글자는 무엇인가요?", opts:["훈민정음","이두","한자","가나"], a:0, why:"세종대왕은 백성을 위해 훈민정음을 만들었어요.(1443년 창제)" },
-  { q:"비가 내린 양을 재기 위해 만든 조선의 발명품은?", opts:["앙부일구","자격루","측우기","혼천의"], a:2, why:"측우기는 비의 양을 재는 기구예요. 해시계는 앙부일구, 물시계는 자격루예요." },
+/* ── 퀴즈 문제은행: era(시대), lv(1 쉬움 / 2 보통 / 3 어려움) ── */
+const QUIZ_BANK = [
+  // 선사 시대
+  { era:"prehistory", lv:1, q:"구석기 시대 사람들이 쓴, 돌을 깨뜨려 만든 도구는?", opts:["뗀석기","간석기","청동검","쇠도끼"], a:0, why:"구석기 시대에는 돌을 깨뜨려 만든 뗀석기를 사용했어요." },
+  { era:"prehistory", lv:1, q:"신석기 시대에 곡식을 담았던, 빗살무늬가 새겨진 그릇은?", opts:["고려청자","빗살무늬 토기","금동대향로","자격루"], a:1, why:"신석기 시대의 대표 유물이 빗살무늬 토기예요." },
+  { era:"prehistory", lv:2, q:"농사를 짓고 한곳에 정착하기 시작한 시대는?", opts:["구석기 시대","신석기 시대","청동기 시대","철기 시대"], a:1, why:"신석기 시대에 농사가 시작되면서 정착 생활을 했어요." },
+  { era:"prehistory", lv:2, q:"고인돌은 무엇인가요?", opts:["지배자의 무덤","곡식 창고","옛날 집터","고기잡이 배"], a:0, why:"고인돌은 청동기 시대 지배자의 무덤이에요." },
+  { era:"prehistory", lv:3, q:"청동기 시대에 대한 설명으로 알맞은 것은?", opts:["모두가 평등하게 살았다","계급이 생겨났다","한글을 사용했다","기와집에서 살았다"], a:1, why:"청동기 시대에는 힘과 재산의 차이로 계급이 생겼어요." },
+  { era:"prehistory", lv:3, q:"구석기 시대 사람들이 이동하며 산 까닭은?", opts:["먹을 것을 찾아서","학교에 다니려고","장사를 하려고","성을 쌓으려고"], a:0, why:"구석기 시대에는 사냥감과 열매 등 먹을 것을 찾아 이동했어요." },
+
+  // 고조선
+  { era:"gojoseon", lv:1, q:"우리 역사 속 최초의 국가는?", opts:["고구려","고조선","신라","발해"], a:1, why:"단군왕검이 세운 고조선이 우리 역사 최초의 국가예요." },
+  { era:"gojoseon", lv:1, q:"고조선을 세운 사람은?", opts:["주몽","박혁거세","단군왕검","왕건"], a:2, why:"『삼국유사』에 따르면 단군왕검이 고조선을 세웠어요." },
+  { era:"gojoseon", lv:2, q:"“널리 인간을 이롭게 한다”는 고조선의 건국 정신은?", opts:["홍익인간","화랑도","충효사상","실학"], a:0, why:"홍익인간은 고조선의 건국 정신이에요." },
+  { era:"gojoseon", lv:2, q:"고조선의 사회 질서를 지키기 위한 법은?", opts:["8조법","경국대전","훈민정음","골품제"], a:0, why:"고조선에는 8조법(범금 8조)이 있었어요." },
+  { era:"gojoseon", lv:3, q:"8조법 중 오늘날까지 전해지는 조항은 몇 개?", opts:["1개","3개","5개","8개"], a:1, why:"8개 조항 중 3개만 전해져요. (사람을 죽이면 사형 등)" },
+  { era:"gojoseon", lv:3, q:"고조선은 어떤 문화를 바탕으로 세워졌나요?", opts:["청동기 문화","철기 문화","불교 문화","유교 문화"], a:0, why:"고조선은 청동기 문화를 바탕으로 세워진 나라예요." },
+
+  // 삼국과 가야
+  { era:"threekingdoms", lv:1, q:"고구려를 세운 사람은?", opts:["주몽","온조","박혁거세","김수로"], a:0, why:"고구려는 주몽이 세웠어요." },
+  { era:"threekingdoms", lv:1, q:"다음 중 삼국(세 나라)이 아닌 것은?", opts:["고구려","백제","신라","발해"], a:3, why:"발해는 삼국 시대가 끝난 뒤 세워진 나라예요." },
+  { era:"threekingdoms", lv:2, q:"광개토대왕과 장수왕 때 전성기를 맞은 나라는?", opts:["백제","신라","고구려","가야"], a:2, why:"고구려는 광개토대왕·장수왕 때 영토를 크게 넓혔어요." },
+  { era:"threekingdoms", lv:2, q:"백제의 전성기를 이끈 왕은?", opts:["근초고왕","진흥왕","장수왕","문무왕"], a:0, why:"백제는 근초고왕 때 크게 발전했어요." },
+  { era:"threekingdoms", lv:2, q:"한강 유역을 차지하며 신라의 전성기를 이끈 왕은?", opts:["박혁거세","진흥왕","김수로","온조"], a:1, why:"진흥왕 때 신라가 한강 유역을 차지했어요." },
+  { era:"threekingdoms", lv:3, q:"가야에 대한 설명으로 옳은 것은?", opts:["철이 풍부한 연맹 왕국이었다","불교를 처음 만들었다","훈민정음을 사용했다","고조선을 무너뜨렸다"], a:0, why:"가야는 철이 풍부했던 여러 나라의 연맹이에요." },
+  { era:"threekingdoms", lv:3, q:"고구려의 전성기를 이끈 왕이 아닌 사람은?", opts:["광개토대왕","장수왕","근초고왕","(모두 고구려 왕이다)"], a:2, why:"근초고왕은 백제의 왕이에요." },
+
+  // 통일 신라와 발해
+  { era:"unified", lv:1, q:"신라가 삼국을 통일한 해는?", opts:["기원전 2333년","676년","918년","1392년"], a:1, why:"신라는 676년에 삼국 통일을 이루었어요." },
+  { era:"unified", lv:1, q:"발해를 세운 사람은?", opts:["대조영","김유신","왕건","장영실"], a:0, why:"고구려 유민 대조영이 698년에 발해를 세웠어요." },
+  { era:"unified", lv:2, q:"통일 신라의 대표적인 불교 문화유산 짝은?", opts:["불국사와 석굴암","측우기와 자격루","팔만대장경과 직지","고인돌과 비파형 동검"], a:0, why:"불국사와 석굴암은 통일 신라의 대표 문화유산이에요." },
+  { era:"unified", lv:2, q:"‘바다 동쪽의 번성한 나라’라는 뜻으로 발해를 부른 말은?", opts:["해동성국","군자국","동방예의지국","금수강산"], a:0, why:"발해는 강성해져서 해동성국이라 불렸어요." },
+  { era:"unified", lv:3, q:"발해를 세운 사람들은 주로 어느 나라의 유민이었나요?", opts:["고구려","백제","가야","일본"], a:0, why:"발해는 고구려 유민 대조영이 세웠어요." },
+  { era:"unified", lv:3, q:"삼국 통일 과정에서 활약한 신라의 장군은?", opts:["김유신","강감찬","서희","이성계"], a:0, why:"김유신 장군이 삼국 통일에 크게 활약했어요." },
+
+  // 고려
+  { era:"goryeo", lv:1, q:"고려를 세운 사람은?", opts:["왕건","이성계","대조영","주몽"], a:0, why:"왕건이 918년에 고려를 세웠어요." },
+  { era:"goryeo", lv:1, q:"푸른 빛이 아름다워 세계가 감탄한 고려의 도자기는?", opts:["고려청자","백자","빗살무늬 토기","옹기"], a:0, why:"고려청자는 고려의 대표 예술품이에요." },
+  { era:"goryeo", lv:2, q:"거란과의 외교 담판으로 강동 6주를 얻은 사람은?", opts:["서희","강감찬","김유신","김종서"], a:0, why:"서희는 담판(대화)으로 싸우지 않고 땅을 얻었어요." },
+  { era:"goryeo", lv:2, q:"귀주 대첩에서 거란을 크게 물리친 장군은?", opts:["강감찬","이성계","장수왕","온조"], a:0, why:"강감찬 장군이 귀주 대첩에서 크게 승리했어요." },
+  { era:"goryeo", lv:2, q:"몽골의 침입을 부처의 힘으로 이겨내길 바라며 만든 것은?", opts:["팔만대장경","측우기","석굴암","금관"], a:0, why:"팔만대장경은 몽골 항쟁 때 만들어졌어요." },
+  { era:"goryeo", lv:3, q:"몽골이 쳐들어오자 고려가 수도를 옮긴 곳은?", opts:["강화도","제주도","한양","평양"], a:0, why:"고려는 강화도로 수도를 옮겨 몽골에 맞섰어요." },
+  { era:"goryeo", lv:3, q:"세계에서 가장 오래된 금속 활자 인쇄본은?", opts:["『직지』","『삼국유사』","훈민정음 해례본","팔만대장경"], a:0, why:"고려의 『직지(직지심체요절)』가 세계에서 가장 오래된 금속 활자 인쇄본이에요." },
+
+  // 조선
+  { era:"joseon", lv:1, q:"조선을 세운 사람은?", opts:["왕건","이성계","세종대왕","장영실"], a:1, why:"이성계가 1392년에 조선을 세웠어요." },
+  { era:"joseon", lv:1, q:"세종대왕이 만든 우리 글자는?", opts:["훈민정음","이두","한자","가나"], a:0, why:"세종대왕은 백성을 위해 훈민정음을 만들었어요." },
+  { era:"joseon", lv:2, q:"조선의 수도는 어디였나요?", opts:["한양","개경","경주","평양"], a:0, why:"조선은 수도를 한양(지금의 서울)으로 옮겼어요." },
+  { era:"joseon", lv:2, q:"비가 내린 양을 재기 위해 만든 발명품은?", opts:["앙부일구","자격루","측우기","혼천의"], a:2, why:"측우기는 비의 양을 재는 기구예요. 해시계는 앙부일구, 물시계는 자격루예요." },
+  { era:"joseon", lv:2, q:"스스로 종을 쳐서 시각을 알려 준 물시계의 이름은?", opts:["자격루","측우기","앙부일구","해시계"], a:0, why:"자격루는 장영실이 만든 자동 물시계예요." },
+  { era:"joseon", lv:3, q:"훈민정음이 창제된 해는?", opts:["1392년","1443년","1446년","1592년"], a:1, why:"1443년에 창제하고 1446년에 반포했어요." },
+  { era:"joseon", lv:3, q:"북쪽 국경에 4군 6진을 개척한 인물은?", opts:["김종서와 최윤덕","서희와 강감찬","김유신과 계백","정몽주와 정도전"], a:0, why:"세종 때 김종서와 최윤덕이 4군 6진을 개척했어요." },
+  { era:"joseon", lv:3, q:"조선이 나라를 다스리는 바탕으로 삼은 가르침은?", opts:["유교","불교","도교","기독교"], a:0, why:"조선은 유교를 바탕으로 나라를 다스렸어요." },
 ];
+const LV_NAME = {1:"쉬움", 2:"보통", 3:"어려움"};
 
 const PROBLEMS = [
   { type:"ox", q:"고조선은 우리 역사 속 최초의 국가이다.", a:true, why:"맞아요! 고조선이 우리 역사 최초의 국가예요." },
   { type:"ox", q:"훈민정음은 고려 시대에 만들어졌다.", a:false, why:"아니에요. 훈민정음은 조선 세종대왕 때 만들어졌어요." },
   { type:"ox", q:"신라의 대조영이 발해를 세웠다.", a:false, why:"아니에요. 발해는 고구려 유민 대조영이 세웠어요." },
   { type:"ox", q:"고려청자와 팔만대장경은 고려의 문화유산이다.", a:true, why:"맞아요! 둘 다 고려의 자랑스러운 문화유산이에요." },
+  { type:"ox", q:"세종대왕 때 측우기, 자격루 같은 과학 기구가 만들어졌다.", a:true, why:"맞아요! 세종 때 과학이 크게 발전했어요. (장영실의 활약)" },
   { type:"blank", q:"조선을 세운 사람은 (   ) 이다.", a:["이성계"], why:"이성계가 1392년에 조선을 세웠어요." },
   { type:"blank", q:"고조선의 건국 정신은 ‘(   )’, 즉 널리 인간을 이롭게 한다는 뜻이다.", a:["홍익인간"], why:"홍익인간이 고조선의 건국 정신이에요." },
   { type:"blank", q:"세종대왕이 만든 우리 글자의 이름은 (   ) 이다.", a:["훈민정음"], why:"훈민정음은 ‘백성을 가르치는 바른 소리’라는 뜻이에요." },
   { type:"blank", q:"거란을 외교 담판으로 물리치고 강동 6주를 얻은 사람은 (   ) 이다.", a:["서희"], why:"서희의 외교 담판으로 고려는 강동 6주를 얻었어요." },
+  { type:"blank", q:"고려를 세운 사람은 (   ) 이다.", a:["왕건"], why:"왕건이 918년에 고려를 세우고 936년에 후삼국을 통일했어요." },
+  { type:"blank", q:"발해를 세운 사람은 (   ) 이다.", a:["대조영"], why:"고구려 유민 대조영이 698년에 발해를 세웠어요." },
 ];
 
-const WRITE_WORDS = ["단군왕검","홍익인간","고조선","훈민정음","세종대왕","광개토대왕","팔만대장경","이성계"];
+/* ── 쓰기 연습 낱말: word + 뜻 힌트 ── */
+const WRITE_ITEMS = [
+  { word:"단군왕검", hint:"우리 역사 최초의 나라, 고조선을 세운 사람이에요." },
+  { word:"홍익인간", hint:"“널리 인간을 이롭게 한다”는 고조선의 건국 정신이에요." },
+  { word:"고조선",   hint:"우리 역사 속 최초의 국가예요." },
+  { word:"고인돌",   hint:"청동기 시대 지배자의 무덤이에요." },
+  { word:"광개토대왕", hint:"고구려의 영토를 크게 넓힌 왕이에요." },
+  { word:"진흥왕",   hint:"한강 유역을 차지하며 신라의 전성기를 이끈 왕이에요." },
+  { word:"대조영",   hint:"고구려 유민으로, 발해를 세운 사람이에요." },
+  { word:"불국사",   hint:"통일 신라의 대표적인 절이에요. 석굴암과 짝꿍!" },
+  { word:"왕건",     hint:"고려를 세우고 후삼국을 통일한 사람이에요." },
+  { word:"서희",     hint:"거란과의 외교 담판으로 강동 6주를 얻은 사람이에요." },
+  { word:"강감찬",   hint:"귀주 대첩에서 거란을 크게 물리친 장군이에요." },
+  { word:"팔만대장경", hint:"몽골의 침입을 이겨내길 바라며 만든 고려의 문화유산이에요." },
+  { word:"고려청자", hint:"푸른 빛이 아름다운 고려의 도자기예요." },
+  { word:"이성계",   hint:"위화도에서 군사를 돌려 조선을 세운 사람이에요." },
+  { word:"세종대왕", hint:"훈민정음을 만든 조선의 왕이에요." },
+  { word:"훈민정음", hint:"세종대왕이 만든 우리 글자예요. ‘백성을 가르치는 바른 소리’라는 뜻!" },
+  { word:"측우기",   hint:"비가 내린 양을 재는 조선의 과학 발명품이에요." },
+  { word:"장영실",   hint:"자격루(물시계) 등을 만든 조선의 과학자예요." },
+];
 
 /* =========================================================
    2) 상태 & 저장
@@ -411,11 +542,12 @@ let state = Object.assign({ learned:[], quizBest:0 }, store.get());
 function save(){ store.set(state); renderStars(); }
 function stars(){ return (state.learned?.length||0) + (state.quizBest||0); }
 function renderStars(){ document.getElementById("starCount").textContent = stars(); }
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
 /* =========================================================
    3) 탭 전환
    ========================================================= */
-const views = { home:"view-home", learn:"view-learn", quiz:"view-quiz", problem:"view-problem", write:"view-write" };
+const views = { home:"view-home", learn:"view-learn", table:"view-table", quiz:"view-quiz", problem:"view-problem", write:"view-write" };
 function go(name){
   if(!views[name]) name="home";
   document.querySelectorAll(".view").forEach(v=>{ v.classList.remove("is-active"); v.hidden=true; });
@@ -431,17 +563,15 @@ document.addEventListener("click", e=>{
 window.addEventListener("hashchange", ()=>go(location.hash.slice(1)));
 
 /* =========================================================
-   4) 렌더링
+   4) 홈 / 배우기 / 연표 렌더링
    ========================================================= */
-// 홈 타임라인
 document.getElementById("tlStrip").innerHTML = ERAS.map(e=>`
   <div class="tl-chip"><div class="emoji">${e.emoji}</div><div class="era">${e.title}</div><div class="yr">${e.yr}</div></div>`).join("");
 
-// 배우기
 function renderEras(){
   document.getElementById("eraList").innerHTML = ERAS.map((e,i)=>{
     const done = state.learned.includes(e.id);
-    return `<details class="era" ${i===0?"":""}>
+    return `<details class="era">
       <summary>
         <span class="era__emoji" aria-hidden="true">${e.emoji}</span>
         <span><span class="era__title">${e.title}</span><br><span class="era__yr">${e.yr}</span></span>
@@ -467,35 +597,103 @@ document.getElementById("eraList").addEventListener("click", e=>{
   save(); renderEras();
 });
 
-// 퀴즈
-let qi=0, qScore=0;
-function renderQuiz(){
-  qi=0; qScore=0; drawQuestion();
+// 연표
+document.getElementById("tableBody").innerHTML = ERAS.map(e=>`
+  <tr>
+    <td>${e.emoji} ${e.title}</td>
+    <td class="yr-cell">${e.yr}</td>
+    <td>${e.tbl.founder}</td>
+    <td>${e.tbl.events}</td>
+    <td>${e.tbl.relics}</td>
+  </tr>`).join("");
+
+/* =========================================================
+   5) 퀴즈 (시대·난이도 선택 + 랜덤 출제 + 오답 노트)
+   ========================================================= */
+let quizSet = { era:"all", lv:0 };       // 선택 상태
+let activeQuiz = [], qi = 0, qScore = 0, wrongList = [];
+
+function poolFor(era, lv){
+  return QUIZ_BANK.filter(x => (era==="all"||x.era===era) && (lv===0||x.lv===lv));
+}
+function renderQuizSetup(){
+  const wrap=document.getElementById("quizWrap");
+  const pool=poolFor(quizSet.era, quizSet.lv);
+  const n=Math.min(10, pool.length);
+  wrap.innerHTML=`
+    <div class="setup-card">
+      <h3>🎯 어떻게 도전할까요?</h3>
+      <div class="setup-label">시대 고르기</div>
+      <div class="chip-row" id="eraChips">
+        <button class="chip" data-era="all" aria-pressed="${quizSet.era==="all"}">🌏 전체</button>
+        ${ERAS.map(e=>`<button class="chip" data-era="${e.id}" aria-pressed="${quizSet.era===e.id}">${e.emoji} ${e.title}</button>`).join("")}
+      </div>
+      <div class="setup-label">난이도 고르기</div>
+      <div class="chip-row" id="lvChips">
+        <button class="chip" data-lv="0" aria-pressed="${quizSet.lv===0}">🌈 전체</button>
+        <button class="chip" data-lv="1" aria-pressed="${quizSet.lv===1}">🌱 쉬움</button>
+        <button class="chip" data-lv="2" aria-pressed="${quizSet.lv===2}">🌿 보통</button>
+        <button class="chip" data-lv="3" aria-pressed="${quizSet.lv===3}">🌳 어려움</button>
+      </div>
+      <div class="pool-count" id="poolCount">이 조건의 문제 ${pool.length}개 중 <b>${n}문제</b>가 무작위로 나와요. 문제와 보기 순서는 매번 달라져요!</div>
+      <div class="setup-start">
+        <button class="btn btn--accent btn--lg" id="startQuiz" ${pool.length===0?"disabled":""}>🚀 시작하기!</button>
+      </div>
+    </div>`;
+  wrap.querySelector("#eraChips").addEventListener("click", e=>{
+    const c=e.target.closest("[data-era]"); if(!c) return;
+    quizSet.era=c.dataset.era; renderQuizSetup();
+  });
+  wrap.querySelector("#lvChips").addEventListener("click", e=>{
+    const c=e.target.closest("[data-lv]"); if(!c) return;
+    quizSet.lv=+c.dataset.lv; renderQuizSetup();
+  });
+  wrap.querySelector("#startQuiz").addEventListener("click", startQuiz);
+}
+function startQuiz(){
+  const pool=poolFor(quizSet.era, quizSet.lv);
+  activeQuiz = shuffle(pool).slice(0, Math.min(10, pool.length))
+    .map(item=>{
+      // 보기 순서도 매번 셔플 (정답 위치 재계산)
+      const opts = shuffle(item.opts.map((t,i)=>({t, ok:i===item.a})));
+      return { ...item, sOpts:opts.map(o=>o.t), sA:opts.findIndex(o=>o.ok) };
+    });
+  qi=0; qScore=0; wrongList=[];
+  drawQuestion();
 }
 function drawQuestion(){
   const wrap=document.getElementById("quizWrap");
-  if(qi>=QUIZ.length){
+  if(qi>=activeQuiz.length){
+    const total=activeQuiz.length;
     const best=Math.max(state.quizBest||0, qScore);
     state.quizBest=best; save();
     wrap.innerHTML=`<div class="result">
-      <div class="big">${qScore===QUIZ.length?"🏆":qScore>=QUIZ.length*0.6?"🎉":"💪"}</div>
-      <p class="score">${qScore} / ${QUIZ.length}점</p>
-      <p>${qScore===QUIZ.length?"완벽해요! 한국사 박사님!":qScore>=QUIZ.length*0.6?"잘했어요! 조금만 더 도전해 볼까요?":"괜찮아요! 배우기를 다시 보고 도전해요."}</p>
+      <div class="big">${qScore===total?"🏆":qScore>=total*0.6?"🎉":"💪"}</div>
+      <p class="score">${qScore} / ${total}점</p>
+      <p>${qScore===total?"완벽해요! 한국사 박사님!":qScore>=total*0.6?"잘했어요! 조금만 더 도전해 볼까요?":"괜찮아요! 배우기를 다시 보고 도전해요."}</p>
       <div class="qnav" style="justify-content:center">
-        <button class="btn btn--primary" id="retryQuiz">🔄 다시 풀기</button>
+        <button class="btn btn--accent" id="retrySame">🔄 같은 조건 다시</button>
+        <button class="btn btn--primary" id="changeSet">🎯 조건 바꾸기</button>
         <button class="btn btn--ghost" data-go="learn">📖 배우러 가기</button>
-      </div></div>`;
-    document.getElementById("retryQuiz").onclick=renderQuiz;
+      </div></div>
+      ${wrongList.length?`<div class="wrong-note"><h4>📝 오답 노트 — 다시 한번 볼까요?</h4>${
+        wrongList.map(w=>`<div class="wrong-item"><b>Q. ${w.q}</b><br>정답: <span class="ans">${w.ans}</span> — ${w.why}</div>`).join("")
+      }</div>`:""}`;
+    document.getElementById("retrySame").onclick=startQuiz;
+    document.getElementById("changeSet").onclick=renderQuizSetup;
     return;
   }
-  const item=QUIZ[qi];
-  const pct=Math.round(qi/QUIZ.length*100);
+  const item=activeQuiz[qi];
+  const pct=Math.round(qi/activeQuiz.length*100);
   wrap.innerHTML=`
     <div class="progressbar"><span style="width:${pct}%"></span></div>
     <div class="qcard">
-      <div class="qcard__num">문제 ${qi+1} / ${QUIZ.length}</div>
+      <div class="qcard__num">문제 ${qi+1} / ${activeQuiz.length}
+        <span class="qcard__tag">${ERA_NAME[item.era]}</span>
+        <span class="qcard__tag">${LV_NAME[item.lv]}</span>
+      </div>
       <div class="qcard__q">${item.q}</div>
-      <div id="opts">${item.opts.map((o,i)=>`
+      <div id="opts">${item.sOpts.map((o,i)=>`
         <button class="opt" data-i="${i}"><span class="opt__key">${"ABCD"[i]}</span><span>${o}</span></button>`).join("")}</div>
       <div class="feedback" id="fb"></div>
       <div class="qnav" id="qnav" style="display:none">
@@ -507,15 +705,21 @@ function drawQuestion(){
     const chosen=+btn.dataset.i;
     opts.forEach(b=>b.disabled=true);
     const fb=document.getElementById("fb");
-    if(chosen===item.a){ btn.classList.add("correct"); qScore++; fb.className="feedback ok show"; fb.innerHTML="⭕ 정답이에요! "+item.why; }
-    else{ btn.classList.add("wrong"); opts[item.a].classList.add("correct"); fb.className="feedback no show"; fb.innerHTML="❌ 아쉬워요! "+item.why; }
+    if(chosen===item.sA){ btn.classList.add("correct"); qScore++; fb.className="feedback ok show"; fb.innerHTML="⭕ 정답이에요! "+item.why; }
+    else{
+      btn.classList.add("wrong"); opts[item.sA].classList.add("correct");
+      fb.className="feedback no show"; fb.innerHTML="❌ 아쉬워요! "+item.why;
+      wrongList.push({ q:item.q, ans:item.sOpts[item.sA], why:item.why });
+    }
     document.getElementById("qnav").style.display="flex";
     document.getElementById("nextBtn").focus();
   }));
   document.getElementById("nextBtn").onclick=()=>{ qi++; drawQuestion(); };
 }
 
-// 문제풀기
+/* =========================================================
+   6) 문제풀기
+   ========================================================= */
 function renderProblems(){
   document.getElementById("probWrap").innerHTML = PROBLEMS.map((p,i)=>{
     if(p.type==="ox"){
@@ -565,19 +769,93 @@ document.getElementById("probWrap").addEventListener("keydown", e=>{
 });
 
 /* =========================================================
-   5) 쓰기 연습 (Canvas + Pointer Events)
+   7) 쓰기 연습 — 3가지 모드 (따라쓰기 / 듣고 쓰기 / 뜻 보고 쓰기)
    ========================================================= */
 const canvas=document.getElementById("drawCanvas");
 const ctx=canvas.getContext("2d");
 let penColor="#1e293b", penSize=7, erasing=false, drawing=false, lastX=0, lastY=0;
 const undoStack=[];
+let writeMode="trace";                 // trace | dictation | meaning
+let currentItem=WRITE_ITEMS[0];
+
+const guideEl=document.getElementById("canvasGuide");
+const guideBtn=document.getElementById("guideBtn");
+const hintCard=document.getElementById("hintCard");
+const listenRow=document.getElementById("listenRow");
+const promptRow=document.getElementById("promptRow");
+const speakBtn=document.getElementById("speakBtn");
+const revealBtn=document.getElementById("revealBtn");
+const nextWordBtn=document.getElementById("nextWordBtn");
+
+function speak(text){
+  try{
+    if(!("speechSynthesis" in window)) return;
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang="ko-KR"; u.rate=0.85;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+function setGuideVisible(on){
+  guideBtn.setAttribute("aria-pressed", String(on));
+  guideEl.style.display=on?"grid":"none";
+}
+function clearCanvas(){
+  const r=canvas.getBoundingClientRect();
+  ctx.fillStyle="#fff"; ctx.fillRect(0,0,r.width||800,r.height||420);
+}
+function pickRandomItem(){
+  let next; do{ next=WRITE_ITEMS[Math.floor(Math.random()*WRITE_ITEMS.length)]; }while(next===currentItem && WRITE_ITEMS.length>1);
+  currentItem=next;
+}
+function applyWriteMode(){
+  guideEl.textContent=currentItem.word;
+  if(writeMode==="trace"){
+    promptRow.style.display="flex"; listenRow.style.display="none";
+    hintCard.classList.remove("show");
+    setGuideVisible(true);
+    renderPromptChips();
+  }else{
+    promptRow.style.display="none"; listenRow.style.display="flex";
+    setGuideVisible(false); clearCanvas();
+    if(writeMode==="dictation"){
+      hintCard.classList.remove("show");
+      speak(currentItem.word);
+    }else{ // meaning
+      hintCard.innerHTML="💡 "+currentItem.hint+"<br><span style='font-weight:600;font-size:var(--fs-sm)'>이 낱말을 아래에 써 보세요!</span>";
+      hintCard.classList.add("show");
+    }
+  }
+}
+function renderPromptChips(){
+  promptRow.innerHTML = WRITE_ITEMS.map(it=>
+    `<button class="chip" data-word="${it.word}" aria-pressed="${it===currentItem}">${it.word}</button>`).join("");
+}
+document.querySelector(".write-modes").addEventListener("click", e=>{
+  const c=e.target.closest("[data-wmode]"); if(!c) return;
+  writeMode=c.dataset.wmode;
+  document.querySelectorAll("[data-wmode]").forEach(x=>x.setAttribute("aria-pressed", String(x===c)));
+  applyWriteMode();
+});
+promptRow.addEventListener("click", e=>{
+  const c=e.target.closest("[data-word]"); if(!c) return;
+  currentItem=WRITE_ITEMS.find(it=>it.word===c.dataset.word)||WRITE_ITEMS[0];
+  renderPromptChips();
+  guideEl.textContent=currentItem.word;
+  setGuideVisible(true);
+});
+speakBtn.addEventListener("click", ()=>speak(writeMode==="meaning"?currentItem.hint:currentItem.word));
+revealBtn.addEventListener("click", ()=>{
+  guideEl.textContent=currentItem.word;
+  setGuideVisible(guideEl.style.display==="none");
+});
+nextWordBtn.addEventListener("click", ()=>{ pickRandomItem(); applyWriteMode(); });
 
 function fitCanvas(){
   const stage=canvas.parentElement;
   const cssW=stage.clientWidth;
   const cssH=Math.round(cssW*0.52);
   const dpr=window.devicePixelRatio||1;
-  // 기존 그림 보존
   const prev=document.createElement("canvas"); prev.width=canvas.width; prev.height=canvas.height;
   prev.getContext("2d").drawImage(canvas,0,0);
   canvas.width=Math.round(cssW*dpr); canvas.height=Math.round(cssH*dpr);
@@ -599,7 +877,6 @@ canvas.addEventListener("pointerdown", e=>{
   try{ canvas.setPointerCapture(e.pointerId); }catch(_){}
   pushUndo(); drawing=true;
   const {x,y}=pos(e); lastX=x; lastY=y;
-  // 점 찍기(탭만 해도 표시되도록)
   ctx.strokeStyle=erasing?"#ffffff":penColor;
   ctx.lineWidth=(erasing?penSize*2.2:penSize)*(0.6+(pos(e).p)*0.8);
   ctx.beginPath(); ctx.moveTo(x-0.1,y-0.1); ctx.lineTo(x,y); ctx.stroke();
@@ -612,12 +889,11 @@ canvas.addEventListener("pointermove", e=>{
   ctx.beginPath(); ctx.moveTo(lastX,lastY); ctx.lineTo(x,y); ctx.stroke();
   lastX=x; lastY=y;
 });
-function endDraw(e){ if(drawing){ drawing=false; } }
+function endDraw(){ drawing=false; }
 canvas.addEventListener("pointerup", endDraw);
 canvas.addEventListener("pointercancel", endDraw);
 canvas.addEventListener("pointerleave", endDraw);
 
-// 색깔
 document.querySelectorAll(".swatch").forEach(s=>s.addEventListener("click", ()=>{
   penColor=s.dataset.color; erasing=false;
   document.getElementById("eraserBtn").setAttribute("aria-pressed","false");
@@ -627,35 +903,19 @@ document.getElementById("penSize").addEventListener("input", e=>penSize=+e.targe
 document.getElementById("eraserBtn").addEventListener("click", e=>{
   erasing=!erasing; e.currentTarget.setAttribute("aria-pressed", String(erasing));
 });
-document.getElementById("clearBtn").addEventListener("click", ()=>{
-  pushUndo();
-  const r=canvas.getBoundingClientRect();
-  ctx.fillStyle="#fff"; ctx.fillRect(0,0,r.width,r.height);
-});
+document.getElementById("clearBtn").addEventListener("click", ()=>{ pushUndo(); clearCanvas(); });
 document.getElementById("undoBtn").addEventListener("click", ()=>{
   const data=undoStack.pop(); if(!data) return;
   const img=new Image(); img.onload=()=>{ const r=canvas.getBoundingClientRect(); ctx.fillStyle="#fff"; ctx.fillRect(0,0,r.width,r.height); ctx.drawImage(img,0,0,r.width,r.height); }; img.src=data;
 });
-const guideBtn=document.getElementById("guideBtn"), guideEl=document.getElementById("canvasGuide");
 guideBtn.addEventListener("click", ()=>{
-  const on=guideBtn.getAttribute("aria-pressed")!=="true";
-  guideBtn.setAttribute("aria-pressed", String(on));
-  guideEl.style.display=on?"grid":"none";
-});
-// 따라쓸 낱말
-document.getElementById("promptRow").innerHTML = WRITE_WORDS.map((w,i)=>
-  `<button class="prompt-chip" data-word="${w}" aria-pressed="${i===0}">${w}</button>`).join("");
-document.getElementById("promptRow").addEventListener("click", e=>{
-  const c=e.target.closest("[data-word]"); if(!c) return;
-  document.querySelectorAll(".prompt-chip").forEach(x=>x.setAttribute("aria-pressed", String(x===c)));
-  guideEl.textContent=c.dataset.word;
-  guideBtn.setAttribute("aria-pressed","true"); guideEl.style.display="grid";
+  setGuideVisible(guideBtn.getAttribute("aria-pressed")!=="true");
 });
 
 /* =========================================================
-   6) 초기화
+   8) 초기화
    ========================================================= */
-renderStars(); renderEras(); renderQuiz(); renderProblems();
+renderStars(); renderEras(); renderQuizSetup(); renderProblems(); applyWriteMode();
 window.addEventListener("resize", ()=>{ if(!document.getElementById("view-write").hidden) fitCanvas(); });
 go(location.hash ? location.hash.slice(1) : "home");
 </script>
