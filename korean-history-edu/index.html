@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>한국사 탐험대 — 고조선부터 조선 초기까지 (초등 한국사)</title>
+<meta name="description" content="초등학생을 위한 한국사 학습 앱. 고조선부터 조선 초기까지 배우고, 퀴즈로 확인하고, 태블릿 펜으로 직접 써 보세요.">
+<meta property="og:title" content="한국사 탐험대 — 초등 한국사 (고조선~조선 초기)">
+<meta property="og:description" content="배우고, 퀴즈 풀고, 펜으로 직접 써 보는 초등 한국사 학습 앱">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://fastly.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ============ 디자인 토큰 (website-builder-pro 스킬 기반, 아동용 조정) ============ */
+:root{
+  /* 색: 따뜻한 청록 프라이머리 + 유물빛 주황 액센트 */
+  --primary:#0d9488; --primary-strong:#0f766e; --primary-soft:#ccfbf1;
+  --accent:#ea580c; --accent-soft:#ffedd5;
+  --good:#16a34a; --good-soft:#dcfce7; --bad:#dc2626; --bad-soft:#fee2e2;
+  --gray-50:#f8fafc; --gray-100:#f1f5f9; --gray-200:#e2e8f0; --gray-300:#cbd5e1;
+  --gray-400:#94a3b8; --gray-500:#64748b; --gray-600:#475569; --gray-700:#334155;
+  --gray-800:#1e293b; --gray-900:#0f172a;
+  --bg:#fffdf7; --surface:#ffffff; --border:var(--gray-200);
+  --text:var(--gray-900); --text-muted:var(--gray-600);
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
+  --shadow-sm:0 1px 2px rgb(0 0 0 / .06);
+  --shadow-md:0 6px 18px rgb(13 148 136 / .12);
+  --shadow-lg:0 16px 40px rgb(13 148 136 / .18);
+  --radius-md:12px; --radius-lg:20px; --radius-xl:28px; --radius-full:9999px;
+  --fs-sm:clamp(.85rem,.8rem + .3vw,.95rem);
+  --fs-base:clamp(1rem,.95rem + .4vw,1.1rem);
+  --fs-lg:clamp(1.15rem,1rem + .8vw,1.4rem);
+  --fs-xl:clamp(1.5rem,1.2rem + 1.6vw,2.2rem);
+  --fs-2xl:clamp(2rem,1.5rem + 3vw,3.4rem);
+  --tap:52px; /* 최소 터치 타깃 */
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Pretendard Variable",Pretendard,system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  font-size:var(--fs-base); line-height:1.7; word-break:keep-all; -webkit-text-size-adjust:100%;
+}
+h1,h2,h3{line-height:1.25; text-wrap:balance; margin:0 0 var(--space-3)}
+p{margin:0 0 var(--space-3)}
+img{max-width:100%}
+a{color:var(--primary-strong)}
+:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+.container{width:min(1080px,100% - 2*var(--space-4)); margin-inline:auto}
+.skip{position:absolute; left:-999px; top:0; background:var(--primary); color:#fff; padding:var(--space-3) var(--space-4); z-index:100; border-radius:0 0 var(--radius-md) 0}
+.skip:focus{left:0}
+
+/* ============ 헤더 / 탭 ============ */
+.header{position:sticky; top:0; z-index:50; background:rgb(255 253 247 / .85); backdrop-filter:blur(10px); border-bottom:2px solid var(--primary-soft)}
+.header__bar{display:flex; align-items:center; gap:var(--space-4); min-height:64px; padding-block:var(--space-2)}
+.brand{display:flex; align-items:center; gap:var(--space-2); font-weight:800; font-size:var(--fs-lg); color:var(--primary-strong); text-decoration:none; white-space:nowrap}
+.brand__logo{font-size:1.6em; line-height:1}
+.score-pill{margin-left:auto; display:flex; align-items:center; gap:var(--space-2); background:var(--accent-soft); color:var(--accent); font-weight:700; padding:var(--space-2) var(--space-4); border-radius:var(--radius-full); font-size:var(--fs-sm); white-space:nowrap}
+.tabs{display:flex; gap:var(--space-2); overflow-x:auto; padding-block:var(--space-2); scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto; display:inline-flex; align-items:center; gap:.4em; min-height:var(--tap);
+  padding:var(--space-2) var(--space-5); border:2px solid transparent; border-radius:var(--radius-full);
+  background:var(--surface); color:var(--text-muted); font-weight:700; font-size:var(--fs-base);
+  cursor:pointer; transition:background .15s, color .15s, transform .1s; box-shadow:var(--shadow-sm);
+}
+.tab:hover{color:var(--text)}
+.tab[aria-selected="true"]{background:var(--primary); color:#fff; box-shadow:var(--shadow-md)}
+.tab:active{transform:scale(.96)}
+
+/* ============ 공통 ============ */
+.view{display:none; padding-block:var(--space-6) var(--space-8)}
+.view.is-active{display:block; animation:fade .35s ease both}
+@keyframes fade{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+.section-head{text-align:center; max-width:640px; margin:0 auto var(--space-6)}
+.section-head .eyebrow{display:inline-block; background:var(--primary-soft); color:var(--primary-strong); font-weight:700; font-size:var(--fs-sm); padding:var(--space-1) var(--space-4); border-radius:var(--radius-full); margin-bottom:var(--space-3)}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5em; min-height:var(--tap); padding:var(--space-3) var(--space-6); border:none; border-radius:var(--radius-full); font-weight:800; font-size:var(--fs-base); font-family:inherit; cursor:pointer; text-decoration:none; transition:background .15s, transform .1s, box-shadow .15s}
+.btn--primary{background:var(--primary); color:#fff; box-shadow:var(--shadow-md)}
+.btn--primary:hover{background:var(--primary-strong)}
+.btn--accent{background:var(--accent); color:#fff; box-shadow:0 6px 18px rgb(234 88 12 / .25)}
+.btn--ghost{background:var(--surface); color:var(--text); border:2px solid var(--border)}
+.btn:active{transform:scale(.97)}
+
+/* ============ 홈 ============ */
+.hero{text-align:center; padding:var(--space-7) 0 var(--space-6)}
+.hero h1{font-size:var(--fs-2xl); color:var(--primary-strong)}
+.hero h1 .hl{color:var(--accent)}
+.hero p.lead{font-size:var(--fs-lg); color:var(--text-muted); max-width:640px; margin-inline:auto}
+.hero__cta{display:flex; gap:var(--space-3); justify-content:center; flex-wrap:wrap; margin-top:var(--space-5)}
+.hero__mascot{font-size:clamp(3.5rem,10vw,6rem); line-height:1; margin-bottom:var(--space-3); animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}}
+.timeline-strip{display:flex; gap:var(--space-2); overflow-x:auto; padding:var(--space-5) var(--space-1) var(--space-2); scroll-snap-type:x mandatory; scrollbar-width:thin}
+.tl-chip{flex:0 0 auto; scroll-snap-align:start; background:var(--surface); border:2px solid var(--primary-soft); border-radius:var(--radius-lg); padding:var(--space-4); width:150px; text-align:center; box-shadow:var(--shadow-sm)}
+.tl-chip .emoji{font-size:2rem}
+.tl-chip .era{font-weight:800; color:var(--primary-strong); margin-top:var(--space-1)}
+.tl-chip .yr{font-size:var(--fs-sm); color:var(--text-muted)}
+.home-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:var(--space-4); margin-top:var(--space-6)}
+.mode-card{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-5); text-align:center; cursor:pointer; transition:transform .15s, box-shadow .15s, border-color .15s; font:inherit; color:inherit}
+.mode-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:var(--primary)}
+.mode-card .big{font-size:2.6rem}
+.mode-card h3{margin:var(--space-2) 0 var(--space-1)}
+.mode-card p{color:var(--text-muted); font-size:var(--fs-sm); margin:0}
+
+/* ============ 배우기 (아코디언) ============ */
+.era-list{display:grid; gap:var(--space-4); max-width:820px; margin-inline:auto}
+.era{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm)}
+.era[open]{border-color:var(--primary)}
+.era>summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:var(--space-4); padding:var(--space-4) var(--space-5); min-height:var(--tap)}
+.era>summary::-webkit-details-marker{display:none}
+.era__emoji{font-size:2.2rem; flex:0 0 auto}
+.era__title{font-weight:800; font-size:var(--fs-lg); color:var(--primary-strong)}
+.era__yr{font-size:var(--fs-sm); color:var(--text-muted)}
+.era__toggle{margin-left:auto; font-size:1.4rem; color:var(--primary); transition:transform .2s}
+.era[open] .era__toggle{transform:rotate(45deg)}
+.era__body{padding:0 var(--space-5) var(--space-5); border-top:2px dashed var(--primary-soft)}
+.era__lead{background:var(--accent-soft); color:#9a3412; font-weight:700; padding:var(--space-3) var(--space-4); border-radius:var(--radius-md); margin:var(--space-4) 0}
+.era__body h4{color:var(--primary-strong); margin:var(--space-4) 0 var(--space-2); font-size:var(--fs-base)}
+.era__body ul{margin:0; padding-left:1.3em}
+.era__body li{margin-bottom:var(--space-2)}
+.pill-row{display:flex; flex-wrap:wrap; gap:var(--space-2); margin-top:var(--space-2)}
+.pill{background:var(--primary-soft); color:var(--primary-strong); font-weight:700; font-size:var(--fs-sm); padding:var(--space-1) var(--space-3); border-radius:var(--radius-full)}
+.era__done{display:inline-flex; align-items:center; gap:.4em; margin-top:var(--space-4); background:var(--good-soft); color:var(--good); border:none; border-radius:var(--radius-full); padding:var(--space-2) var(--space-4); font-weight:700; font:inherit; cursor:pointer; min-height:44px}
+.era__done.is-done{background:var(--good); color:#fff}
+
+/* ============ 퀴즈 / 문제 ============ */
+.quiz-wrap,.prob-wrap{max-width:720px; margin-inline:auto}
+.progressbar{height:12px; background:var(--gray-200); border-radius:var(--radius-full); overflow:hidden; margin-bottom:var(--space-5)}
+.progressbar>span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--primary),var(--accent)); transition:width .3s}
+.qcard{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-5); box-shadow:var(--shadow-sm)}
+.qcard__num{font-weight:700; color:var(--accent)}
+.qcard__q{font-size:var(--fs-lg); font-weight:800; margin:var(--space-2) 0 var(--space-4)}
+.opt{display:flex; align-items:center; gap:var(--space-3); width:100%; text-align:left; background:var(--gray-50); border:2px solid var(--border); border-radius:var(--radius-md); padding:var(--space-3) var(--space-4); margin-bottom:var(--space-3); font:inherit; cursor:pointer; min-height:var(--tap); transition:border-color .12s, background .12s}
+.opt:hover:not(:disabled){border-color:var(--primary)}
+.opt__key{flex:0 0 auto; width:32px; height:32px; display:grid; place-items:center; background:var(--primary-soft); color:var(--primary-strong); border-radius:var(--radius-full); font-weight:800}
+.opt.correct{background:var(--good-soft); border-color:var(--good)}
+.opt.correct .opt__key{background:var(--good); color:#fff}
+.opt.wrong{background:var(--bad-soft); border-color:var(--bad)}
+.opt.wrong .opt__key{background:var(--bad); color:#fff}
+.opt:disabled{cursor:default; opacity:1}
+.feedback{margin-top:var(--space-3); padding:var(--space-3) var(--space-4); border-radius:var(--radius-md); font-weight:600; display:none}
+.feedback.show{display:block; animation:fade .25s ease both}
+.feedback.ok{background:var(--good-soft); color:#166534}
+.feedback.no{background:var(--bad-soft); color:#991b1b}
+.qnav{display:flex; justify-content:space-between; gap:var(--space-3); margin-top:var(--space-5)}
+.result{text-align:center; background:var(--surface); border:2px solid var(--primary); border-radius:var(--radius-lg); padding:var(--space-7) var(--space-5)}
+.result .big{font-size:4rem}
+.result .score{font-size:var(--fs-2xl); font-weight:800; color:var(--primary-strong)}
+
+/* 문제풀기 */
+.prob{background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-5); margin-bottom:var(--space-4); box-shadow:var(--shadow-sm)}
+.prob__type{display:inline-block; font-size:var(--fs-sm); font-weight:700; color:#fff; background:var(--accent); padding:2px var(--space-3); border-radius:var(--radius-full); margin-bottom:var(--space-2)}
+.prob__type.ox{background:var(--primary)}
+.prob__q{font-size:var(--fs-lg); font-weight:700; margin-bottom:var(--space-4)}
+.ox-row{display:flex; gap:var(--space-3)}
+.ox-btn{flex:1; min-height:var(--tap); font-size:1.6rem; font-weight:800; border:2px solid var(--border); border-radius:var(--radius-md); background:var(--gray-50); cursor:pointer; transition:border-color .12s}
+.ox-btn:hover:not(:disabled){border-color:var(--primary)}
+.ox-btn.correct{background:var(--good-soft); border-color:var(--good); color:var(--good)}
+.ox-btn.wrong{background:var(--bad-soft); border-color:var(--bad); color:var(--bad)}
+.blank-row{display:flex; gap:var(--space-3); flex-wrap:wrap}
+.blank-input{flex:1; min-width:160px; min-height:var(--tap); padding:var(--space-3) var(--space-4); border:2px solid var(--border); border-radius:var(--radius-md); font:inherit}
+.blank-input.correct{border-color:var(--good); background:var(--good-soft)}
+.blank-input.wrong{border-color:var(--bad); background:var(--bad-soft)}
+
+/* ============ 쓰기 연습 ============ */
+.draw-wrap{max-width:820px; margin-inline:auto}
+.draw-toolbar{display:flex; flex-wrap:wrap; gap:var(--space-2); align-items:center; background:var(--surface); border:2px solid var(--border); border-radius:var(--radius-lg) var(--radius-lg) 0 0; padding:var(--space-3); border-bottom:none}
+.tool-group{display:flex; gap:var(--space-2); align-items:center; padding-inline:var(--space-2); border-right:2px solid var(--gray-100)}
+.tool-group:last-child{border-right:none; margin-left:auto}
+.swatch{width:36px; height:36px; border-radius:var(--radius-full); border:3px solid #fff; box-shadow:0 0 0 2px var(--border); cursor:pointer; padding:0}
+.swatch[aria-pressed="true"]{box-shadow:0 0 0 3px var(--accent)}
+.tool-btn{min-height:44px; padding:var(--space-2) var(--space-4); border:2px solid var(--border); background:var(--gray-50); border-radius:var(--radius-md); font:inherit; font-weight:700; cursor:pointer}
+.tool-btn[aria-pressed="true"]{background:var(--primary); color:#fff; border-color:var(--primary)}
+.size-range{width:110px}
+.canvas-stage{position:relative; background:#fff; border:2px solid var(--border); border-radius:0 0 var(--radius-lg) var(--radius-lg); overflow:hidden; touch-action:none}
+.canvas-guide{position:absolute; inset:0; display:grid; place-items:center; font-weight:800; color:rgb(13 148 136 / .12); font-size:clamp(3rem,18vw,9rem); pointer-events:none; user-select:none; letter-spacing:.1em}
+#drawCanvas{display:block; width:100%; height:auto; touch-action:none; cursor:crosshair}
+.prompt-row{display:flex; flex-wrap:wrap; gap:var(--space-2); margin-bottom:var(--space-4); justify-content:center}
+.prompt-chip{border:2px solid var(--primary-soft); background:var(--surface); color:var(--primary-strong); font-weight:700; border-radius:var(--radius-full); padding:var(--space-2) var(--space-4); cursor:pointer; min-height:44px; font:inherit}
+.prompt-chip[aria-pressed="true"]{background:var(--primary); color:#fff; border-color:var(--primary)}
+
+/* ============ 푸터 ============ */
+.source-note{max-width:820px; margin:var(--space-7) auto 0; background:var(--gray-50); border:2px dashed var(--primary-soft); border-radius:var(--radius-lg); padding:var(--space-5); font-size:var(--fs-sm); color:var(--text-muted)}
+.source-note h4{color:var(--text); margin:0 0 var(--space-2)}
+.source-note a{color:var(--primary-strong); font-weight:600}
+.footer{text-align:center; padding:var(--space-7) var(--space-4) var(--space-8); color:var(--text-muted); font-size:var(--fs-sm)}
+
+/* ============ 모션 최소화 ============ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="header">
+  <div class="container">
+    <div class="header__bar">
+      <a class="brand" href="#home" data-go="home"><span class="brand__logo">🏯</span> 한국사 탐험대</a>
+      <span class="score-pill" id="scorePill" title="지금까지 모은 별">⭐ <span id="starCount">0</span>개</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="학습 모드">
+      <button class="tab" role="tab" data-go="home" aria-selected="true">🏠 홈</button>
+      <button class="tab" role="tab" data-go="learn" aria-selected="false">📖 배우기</button>
+      <button class="tab" role="tab" data-go="quiz" aria-selected="false">✅ 퀴즈</button>
+      <button class="tab" role="tab" data-go="problem" aria-selected="false">✏️ 문제풀기</button>
+      <button class="tab" role="tab" data-go="write" aria-selected="false">🖊️ 쓰기연습</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="container">
+
+  <!-- ============ 홈 ============ -->
+  <section class="view is-active" id="view-home" role="tabpanel" aria-label="홈">
+    <div class="hero">
+      <div class="hero__mascot" aria-hidden="true">🧭</div>
+      <h1>우리 역사 대탐험<br><span class="hl">고조선</span>부터 <span class="hl">조선 초기</span>까지</h1>
+      <p class="lead">배우고, 퀴즈로 확인하고, 태블릿 펜으로 직접 써 보는 초등 한국사! 시간 여행을 떠나 볼까요?</p>
+      <div class="hero__cta">
+        <button class="btn btn--primary" data-go="learn">📖 배우러 가기</button>
+        <button class="btn btn--accent" data-go="quiz">✅ 퀴즈 도전!</button>
+      </div>
+    </div>
+
+    <div class="timeline-strip" aria-label="시대 미리보기" id="tlStrip"></div>
+
+    <div class="home-cards">
+      <button class="mode-card" data-go="learn"><div class="big">📖</div><h3>배우기</h3><p>시대별로 차근차근 알아봐요</p></button>
+      <button class="mode-card" data-go="quiz"><div class="big">✅</div><h3>퀴즈</h3><p>객관식으로 실력을 확인해요</p></button>
+      <button class="mode-card" data-go="problem"><div class="big">✏️</div><h3>문제풀기</h3><p>OX·빈칸 문제에 도전!</p></button>
+      <button class="mode-card" data-go="write"><div class="big">🖊️</div><h3>쓰기연습</h3><p>펜으로 또박또박 써 봐요</p></button>
+    </div>
+  </section>
+
+  <!-- ============ 배우기 ============ -->
+  <section class="view" id="view-learn" role="tabpanel" aria-label="배우기" hidden>
+    <div class="section-head">
+      <span class="eyebrow">📖 배우기</span>
+      <h2>시대를 눌러서 펼쳐 보세요</h2>
+      <p style="color:var(--text-muted)">다 읽으면 <b>“다 배웠어요!”</b> 버튼을 눌러 별을 모아요.</p>
+    </div>
+    <div class="era-list" id="eraList"></div>
+    <div class="source-note">
+      <h4>📚 이 내용은 어디서 왔나요?</h4>
+      초등학교 사회과 교육과정(한국사 영역)의 흐름에 맞춰 정리했어요. 더 정확한 학습과 확인을 위해 아래 <b>국가 공인 자료</b>를 함께 보세요.
+      <div class="pill-row" style="margin-top:var(--space-3)">
+        <a class="pill" href="https://www.edunet.net" target="_blank" rel="noopener">에듀넷·티클리어</a>
+        <a class="pill" href="https://contents.history.go.kr" target="_blank" rel="noopener">우리역사넷(국사편찬위)</a>
+        <a class="pill" href="https://www.museum.go.kr" target="_blank" rel="noopener">국립중앙박물관</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 퀴즈 ============ -->
+  <section class="view" id="view-quiz" role="tabpanel" aria-label="퀴즈" hidden>
+    <div class="section-head">
+      <span class="eyebrow">✅ 퀴즈</span>
+      <h2>골라서 맞혀 보세요</h2>
+    </div>
+    <div class="quiz-wrap" id="quizWrap"></div>
+  </section>
+
+  <!-- ============ 문제풀기 ============ -->
+  <section class="view" id="view-problem" role="tabpanel" aria-label="문제풀기" hidden>
+    <div class="section-head">
+      <span class="eyebrow">✏️ 문제풀기</span>
+      <h2>OX와 빈칸 문제에 도전!</h2>
+    </div>
+    <div class="prob-wrap" id="probWrap"></div>
+  </section>
+
+  <!-- ============ 쓰기연습 ============ -->
+  <section class="view" id="view-write" role="tabpanel" aria-label="쓰기연습" hidden>
+    <div class="section-head">
+      <span class="eyebrow">🖊️ 쓰기연습</span>
+      <h2>펜이나 손가락으로 또박또박</h2>
+      <p style="color:var(--text-muted)">아래 낱말을 골라 흐린 글자 위에 <b>따라 써</b> 보세요.</p>
+    </div>
+    <div class="draw-wrap">
+      <div class="prompt-row" id="promptRow"></div>
+      <div class="draw-toolbar">
+        <div class="tool-group" role="group" aria-label="색깔">
+          <button class="swatch" style="background:#1e293b" data-color="#1e293b" aria-pressed="true" aria-label="검정"></button>
+          <button class="swatch" style="background:#dc2626" data-color="#dc2626" aria-pressed="false" aria-label="빨강"></button>
+          <button class="swatch" style="background:#2563eb" data-color="#2563eb" aria-pressed="false" aria-label="파랑"></button>
+          <button class="swatch" style="background:#16a34a" data-color="#16a34a" aria-pressed="false" aria-label="초록"></button>
+        </div>
+        <div class="tool-group" role="group" aria-label="굵기">
+          <label for="penSize" style="font-size:var(--fs-sm); font-weight:700">굵기</label>
+          <input class="size-range" type="range" id="penSize" min="2" max="24" value="7">
+        </div>
+        <div class="tool-group">
+          <button class="tool-btn" id="eraserBtn" aria-pressed="false">🧽 지우개</button>
+          <button class="tool-btn" id="guideBtn" aria-pressed="true">👀 따라쓰기</button>
+        </div>
+        <div class="tool-group">
+          <button class="tool-btn" id="undoBtn">↩️ 되돌리기</button>
+          <button class="tool-btn" id="clearBtn">🗑️ 전체지우기</button>
+        </div>
+      </div>
+      <div class="canvas-stage">
+        <div class="canvas-guide" id="canvasGuide">단군왕검</div>
+        <canvas id="drawCanvas" width="800" height="420" aria-label="필기 연습판"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <div class="source-note" id="globalSource">
+    <h4>ℹ️ 정확한 학습을 위한 안내</h4>
+    이 앱은 초등 한국사 학습을 돕기 위해 만들었어요. 연도·인물·사건은 널리 인정되는 내용(예: <b>삼국유사</b> 기록에 따른 고조선 건국 기원전 2333년)만 담았습니다.
+    학교 수업과 함께 볼 때는 반드시 <b>교과서</b>와 <a href="https://contents.history.go.kr" target="_blank" rel="noopener">우리역사넷</a>·<a href="https://www.edunet.net" target="_blank" rel="noopener">에듀넷</a> 같은 국가 공인 자료로 다시 한번 확인해 주세요.
+  </div>
+</main>
+
+<footer class="footer">
+  🏯 한국사 탐험대 · 초등 한국사 학습용 · 진도와 점수는 이 기기(브라우저)에만 저장돼요.
+</footer>
+
+<script>
+"use strict";
+/* =========================================================
+   1) 학습 데이터 (교육과정 흐름 기반, 정확성 우선)
+   ========================================================= */
+const ERAS = [
+  { id:"prehistory", emoji:"🪨", title:"선사 시대", yr:"아주 먼 옛날", lead:"글자가 없던 시대! 돌과 흙으로 살아간 사람들의 이야기예요.",
+    key:[
+      "구석기 시대: 돌을 깨뜨려 만든 <b>뗀석기</b>를 쓰고, 먹을 것을 찾아 <b>이동</b>하며 동굴·막집에서 살았어요.",
+      "신석기 시대: 돌을 갈아 만든 <b>간석기</b>를 쓰고, <b>농사</b>를 짓기 시작해 한곳에 <b>정착</b>했어요. <b>빗살무늬 토기</b>에 음식을 담았죠.",
+      "청동기 시대: <b>청동기</b>를 사용하고 <b>벼농사</b>가 늘었어요. 힘과 재산의 차이로 <b>계급</b>이 생겼고, 지배자의 무덤인 <b>고인돌</b>을 만들었어요."
+    ], pills:["뗀석기","간석기","빗살무늬 토기","고인돌"] },
+
+  { id:"gojoseon", emoji:"🐻", title:"고조선", yr:"기원전 2333년~", lead:"우리 역사 속 최초의 나라, 고조선이 세워졌어요!",
+    key:[
+      "<b>단군왕검</b>이 세운 우리 역사 <b>최초의 국가</b>예요. (『삼국유사』 기록에 따르면 기원전 2333년)",
+      "건국 정신은 <b>홍익인간</b> — “널리 인간을 이롭게 한다”는 뜻이에요.",
+      "사회 질서를 지키기 위한 <b>8조법(범금 8조)</b>이 있었어요. 지금은 3개 조항만 전해져요. (사람을 죽이면 사형에 처한다 등)",
+      "청동기 문화를 바탕으로 세워졌고, 곰과 호랑이가 나오는 <b>단군 신화</b>로 건국 이야기가 전해져요."
+    ], pills:["단군왕검","홍익인간","8조법","청동기 문화"] },
+
+  { id:"threekingdoms", emoji:"⚔️", title:"삼국과 가야", yr:"기원전 1세기~7세기", lead:"고구려·백제·신라 세 나라와 가야가 힘을 겨루던 시대예요.",
+    key:[
+      "<b>고구려</b>: <b>주몽</b>이 세웠어요. <b>광개토대왕</b>과 <b>장수왕</b> 때 만주와 한반도 북부까지 크게 넓혔어요.",
+      "<b>백제</b>: <b>온조</b>가 한강 유역에 세웠어요. <b>근초고왕</b> 때 크게 발전하고 바다 건너 교류했어요.",
+      "<b>신라</b>: <b>박혁거세</b>가 세웠어요. <b>진흥왕</b> 때 한강 유역을 차지하며 힘을 키웠어요.",
+      "<b>가야</b>: <b>김수로</b>가 세운 여러 나라의 <b>연맹</b>이에요. <b>철</b>이 많이 나서 철기를 잘 만들었어요."
+    ], pills:["광개토대왕","근초고왕","진흥왕","가야의 철"] },
+
+  { id:"unified", emoji:"🕊️", title:"통일 신라와 발해", yr:"7세기~10세기", lead:"신라가 삼국을 통일하고, 북쪽에는 발해가 세워졌어요.",
+    key:[
+      "신라가 <b>김유신</b>·<b>김춘추(태종무열왕)</b>·<b>문무왕</b>을 거치며 <b>삼국을 통일</b>했어요. (676년, 당나라 군대까지 몰아냄)",
+      "통일 신라는 <b>불교문화</b>가 발달했어요. <b>불국사</b>와 <b>석굴암</b>이 대표적이에요.",
+      "고구려 유민 <b>대조영</b>이 북쪽에 <b>발해</b>를 세웠어요. (698년)",
+      "발해는 강한 나라로 성장해 <b>‘해동성국’</b>(바다 동쪽의 번성한 나라)이라 불렸어요."
+    ], pills:["삼국 통일(676)","불국사·석굴암","대조영","해동성국"] },
+
+  { id:"goryeo", emoji:"🏺", title:"고려", yr:"918년~1392년", lead:"왕건이 세운 고려! 어려움 속에서도 뛰어난 문화를 꽃피웠어요.",
+    key:[
+      "<b>왕건</b>이 고려를 세우고(918년) <b>후삼국을 통일</b>했어요.(936년)",
+      "거란이 쳐들어오자 <b>서희</b>가 <b>외교 담판</b>으로 <b>강동 6주</b>를 얻고, <b>강감찬</b>이 <b>귀주 대첩</b>에서 크게 이겼어요.",
+      "몽골이 침입하자 수도를 <b>강화도</b>로 옮겨 맞섰어요. 부처의 힘으로 이겨내길 바라며 <b>팔만대장경</b>을 만들었어요.",
+      "세계 최초의 <b>금속 활자</b>로 책을 찍었고(『직지』), 푸른 빛의 <b>고려청자</b>는 세계가 감탄한 예술품이에요."
+    ], pills:["서희·강감찬","팔만대장경","금속 활자","고려청자"] },
+
+  { id:"joseon", emoji:"👑", title:"조선 건국과 초기", yr:"1392년~", lead:"이성계가 세운 조선, 그리고 세종대왕의 빛나는 업적!",
+    key:[
+      "<b>이성계</b>가 위화도에서 군사를 돌린 뒤 <b>조선</b>을 세웠어요.(1392년) 수도를 <b>한양(서울)</b>으로 옮기고 <b>유교</b>를 바탕으로 나라를 다스렸어요.",
+      "<b>세종대왕</b>이 우리 글자 <b>훈민정음</b>을 만들었어요. (1443년 창제, 1446년 반포) 백성이 쉽게 글을 읽고 쓰게 하려는 마음이었죠.",
+      "과학도 크게 발전했어요. 비의 양을 재는 <b>측우기</b>, 해시계 <b>앙부일구</b>, 물시계 <b>자격루</b>를 만들었어요. (<b>장영실</b>의 활약)",
+      "북쪽 국경을 넓혀 <b>4군 6진</b>을 두었어요. (김종서·최윤덕) 오늘날 우리나라 국경의 모습이 이때 갖춰졌어요."
+    ], pills:["한양 천도","훈민정음","측우기·자격루","4군 6진"] },
+];
+
+const QUIZ = [
+  { q:"우리 역사 속 최초의 국가는 무엇일까요?", opts:["고구려","고조선","신라","발해"], a:1, why:"단군왕검이 세운 고조선이 우리 역사 최초의 국가예요." },
+  { q:"고조선을 세운 사람은 누구인가요?", opts:["주몽","박혁거세","단군왕검","왕건"], a:2, why:"『삼국유사』에 따르면 단군왕검이 고조선을 세웠어요." },
+  { q:"“널리 인간을 이롭게 한다”는 고조선의 건국 정신은?", opts:["홍익인간","화랑도","훈민정음","팔만대장경"], a:0, why:"홍익인간은 고조선의 건국 정신이에요." },
+  { q:"신석기 시대에 처음 시작된 것은 무엇인가요?", opts:["철기 사용","농사와 정착","금속 활자","고인돌 만들기"], a:1, why:"신석기 시대에 농사를 짓기 시작하며 한곳에 정착했어요." },
+  { q:"고구려의 전성기를 이끈 왕이 아닌 사람은?", opts:["광개토대왕","장수왕","근초고왕","주몽"], a:2, why:"근초고왕은 백제의 왕이에요. 고구려는 광개토대왕·장수왕 때 전성기였어요." },
+  { q:"신라가 삼국을 통일한 해는 언제인가요?", opts:["기원전 2333년","676년","918년","1392년"], a:1, why:"신라는 676년에 삼국을 통일했어요." },
+  { q:"고구려 유민 대조영이 북쪽에 세운 나라는?", opts:["가야","백제","발해","고려"], a:2, why:"대조영이 세운 발해는 ‘해동성국’이라 불릴 만큼 강했어요." },
+  { q:"거란과의 외교 담판으로 강동 6주를 얻은 사람은?", opts:["서희","강감찬","김유신","이성계"], a:0, why:"서희는 뛰어난 외교 담판으로 강동 6주를 얻었어요." },
+  { q:"고려의 자랑스러운 문화유산이 아닌 것은?", opts:["팔만대장경","금속 활자","고려청자","훈민정음"], a:3, why:"훈민정음은 조선 세종대왕 때 만들어졌어요." },
+  { q:"조선을 세운 사람은 누구인가요?", opts:["왕건","이성계","세종대왕","장영실"], a:1, why:"이성계가 1392년에 조선을 세웠어요." },
+  { q:"세종대왕이 만든 우리 글자는 무엇인가요?", opts:["훈민정음","이두","한자","가나"], a:0, why:"세종대왕은 백성을 위해 훈민정음을 만들었어요.(1443년 창제)" },
+  { q:"비가 내린 양을 재기 위해 만든 조선의 발명품은?", opts:["앙부일구","자격루","측우기","혼천의"], a:2, why:"측우기는 비의 양을 재는 기구예요. 해시계는 앙부일구, 물시계는 자격루예요." },
+];
+
+const PROBLEMS = [
+  { type:"ox", q:"고조선은 우리 역사 속 최초의 국가이다.", a:true, why:"맞아요! 고조선이 우리 역사 최초의 국가예요." },
+  { type:"ox", q:"훈민정음은 고려 시대에 만들어졌다.", a:false, why:"아니에요. 훈민정음은 조선 세종대왕 때 만들어졌어요." },
+  { type:"ox", q:"신라의 대조영이 발해를 세웠다.", a:false, why:"아니에요. 발해는 고구려 유민 대조영이 세웠어요." },
+  { type:"ox", q:"고려청자와 팔만대장경은 고려의 문화유산이다.", a:true, why:"맞아요! 둘 다 고려의 자랑스러운 문화유산이에요." },
+  { type:"blank", q:"조선을 세운 사람은 (   ) 이다.", a:["이성계"], why:"이성계가 1392년에 조선을 세웠어요." },
+  { type:"blank", q:"고조선의 건국 정신은 ‘(   )’, 즉 널리 인간을 이롭게 한다는 뜻이다.", a:["홍익인간"], why:"홍익인간이 고조선의 건국 정신이에요." },
+  { type:"blank", q:"세종대왕이 만든 우리 글자의 이름은 (   ) 이다.", a:["훈민정음"], why:"훈민정음은 ‘백성을 가르치는 바른 소리’라는 뜻이에요." },
+  { type:"blank", q:"거란을 외교 담판으로 물리치고 강동 6주를 얻은 사람은 (   ) 이다.", a:["서희"], why:"서희의 외교 담판으로 고려는 강동 6주를 얻었어요." },
+];
+
+const WRITE_WORDS = ["단군왕검","홍익인간","고조선","훈민정음","세종대왕","광개토대왕","팔만대장경","이성계"];
+
+/* =========================================================
+   2) 상태 & 저장
+   ========================================================= */
+const store = {
+  get(){ try{ return JSON.parse(localStorage.getItem("khe")||"{}"); }catch(e){ return {}; } },
+  set(v){ try{ localStorage.setItem("khe", JSON.stringify(v)); }catch(e){} },
+};
+let state = Object.assign({ learned:[], quizBest:0 }, store.get());
+function save(){ store.set(state); renderStars(); }
+function stars(){ return (state.learned?.length||0) + (state.quizBest||0); }
+function renderStars(){ document.getElementById("starCount").textContent = stars(); }
+
+/* =========================================================
+   3) 탭 전환
+   ========================================================= */
+const views = { home:"view-home", learn:"view-learn", quiz:"view-quiz", problem:"view-problem", write:"view-write" };
+function go(name){
+  if(!views[name]) name="home";
+  document.querySelectorAll(".view").forEach(v=>{ v.classList.remove("is-active"); v.hidden=true; });
+  const el=document.getElementById(views[name]); el.hidden=false; el.classList.add("is-active");
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", String(t.dataset.go===name)));
+  if(location.hash!=="#"+name) history.replaceState(null,"","#"+name);
+  window.scrollTo({top:0, behavior:"instant" in window ? "instant" : "auto"});
+  if(name==="write") setTimeout(fitCanvas, 50);
+}
+document.addEventListener("click", e=>{
+  const t=e.target.closest("[data-go]"); if(t){ e.preventDefault(); go(t.dataset.go); }
+});
+window.addEventListener("hashchange", ()=>go(location.hash.slice(1)));
+
+/* =========================================================
+   4) 렌더링
+   ========================================================= */
+// 홈 타임라인
+document.getElementById("tlStrip").innerHTML = ERAS.map(e=>`
+  <div class="tl-chip"><div class="emoji">${e.emoji}</div><div class="era">${e.title}</div><div class="yr">${e.yr}</div></div>`).join("");
+
+// 배우기
+function renderEras(){
+  document.getElementById("eraList").innerHTML = ERAS.map((e,i)=>{
+    const done = state.learned.includes(e.id);
+    return `<details class="era" ${i===0?"":""}>
+      <summary>
+        <span class="era__emoji" aria-hidden="true">${e.emoji}</span>
+        <span><span class="era__title">${e.title}</span><br><span class="era__yr">${e.yr}</span></span>
+        <span class="era__toggle" aria-hidden="true">＋</span>
+      </summary>
+      <div class="era__body">
+        <p class="era__lead">${e.lead}</p>
+        <h4>🔎 꼭 알아둘 내용</h4>
+        <ul>${e.key.map(k=>`<li>${k}</li>`).join("")}</ul>
+        <h4>🏷️ 핵심 낱말</h4>
+        <div class="pill-row">${e.pills.map(p=>`<span class="pill">${p}</span>`).join("")}</div>
+        <br>
+        <button class="era__done ${done?"is-done":""}" data-era="${e.id}">${done?"✅ 다 배웠어요!":"👉 다 배웠어요!"}</button>
+      </div>
+    </details>`;
+  }).join("");
+}
+document.getElementById("eraList").addEventListener("click", e=>{
+  const b=e.target.closest("[data-era]"); if(!b) return;
+  const id=b.dataset.era;
+  if(!state.learned.includes(id)) state.learned.push(id);
+  else state.learned = state.learned.filter(x=>x!==id);
+  save(); renderEras();
+});
+
+// 퀴즈
+let qi=0, qScore=0;
+function renderQuiz(){
+  qi=0; qScore=0; drawQuestion();
+}
+function drawQuestion(){
+  const wrap=document.getElementById("quizWrap");
+  if(qi>=QUIZ.length){
+    const best=Math.max(state.quizBest||0, qScore);
+    state.quizBest=best; save();
+    wrap.innerHTML=`<div class="result">
+      <div class="big">${qScore===QUIZ.length?"🏆":qScore>=QUIZ.length*0.6?"🎉":"💪"}</div>
+      <p class="score">${qScore} / ${QUIZ.length}점</p>
+      <p>${qScore===QUIZ.length?"완벽해요! 한국사 박사님!":qScore>=QUIZ.length*0.6?"잘했어요! 조금만 더 도전해 볼까요?":"괜찮아요! 배우기를 다시 보고 도전해요."}</p>
+      <div class="qnav" style="justify-content:center">
+        <button class="btn btn--primary" id="retryQuiz">🔄 다시 풀기</button>
+        <button class="btn btn--ghost" data-go="learn">📖 배우러 가기</button>
+      </div></div>`;
+    document.getElementById("retryQuiz").onclick=renderQuiz;
+    return;
+  }
+  const item=QUIZ[qi];
+  const pct=Math.round(qi/QUIZ.length*100);
+  wrap.innerHTML=`
+    <div class="progressbar"><span style="width:${pct}%"></span></div>
+    <div class="qcard">
+      <div class="qcard__num">문제 ${qi+1} / ${QUIZ.length}</div>
+      <div class="qcard__q">${item.q}</div>
+      <div id="opts">${item.opts.map((o,i)=>`
+        <button class="opt" data-i="${i}"><span class="opt__key">${"ABCD"[i]}</span><span>${o}</span></button>`).join("")}</div>
+      <div class="feedback" id="fb"></div>
+      <div class="qnav" id="qnav" style="display:none">
+        <span></span><button class="btn btn--primary" id="nextBtn">다음 ▶</button>
+      </div>
+    </div>`;
+  const opts=wrap.querySelectorAll(".opt");
+  opts.forEach(btn=>btn.addEventListener("click", ()=>{
+    const chosen=+btn.dataset.i;
+    opts.forEach(b=>b.disabled=true);
+    const fb=document.getElementById("fb");
+    if(chosen===item.a){ btn.classList.add("correct"); qScore++; fb.className="feedback ok show"; fb.innerHTML="⭕ 정답이에요! "+item.why; }
+    else{ btn.classList.add("wrong"); opts[item.a].classList.add("correct"); fb.className="feedback no show"; fb.innerHTML="❌ 아쉬워요! "+item.why; }
+    document.getElementById("qnav").style.display="flex";
+    document.getElementById("nextBtn").focus();
+  }));
+  document.getElementById("nextBtn").onclick=()=>{ qi++; drawQuestion(); };
+}
+
+// 문제풀기
+function renderProblems(){
+  document.getElementById("probWrap").innerHTML = PROBLEMS.map((p,i)=>{
+    if(p.type==="ox"){
+      return `<div class="prob" data-i="${i}">
+        <span class="prob__type ox">OX 문제</span>
+        <div class="prob__q">${i+1}. ${p.q}</div>
+        <div class="ox-row">
+          <button class="ox-btn" data-v="true">⭕</button>
+          <button class="ox-btn" data-v="false">❌</button>
+        </div>
+        <div class="feedback" id="pfb${i}"></div>
+      </div>`;
+    }
+    return `<div class="prob" data-i="${i}">
+      <span class="prob__type">빈칸 채우기</span>
+      <div class="prob__q">${i+1}. ${p.q}</div>
+      <div class="blank-row">
+        <input class="blank-input" type="text" inputmode="text" placeholder="여기에 답을 써요" aria-label="답 입력">
+        <button class="btn btn--primary" data-check>확인</button>
+      </div>
+      <div class="feedback" id="pfb${i}"></div>
+    </div>`;
+  }).join("");
+}
+document.getElementById("probWrap").addEventListener("click", e=>{
+  const card=e.target.closest(".prob"); if(!card) return;
+  const i=+card.dataset.i, p=PROBLEMS[i], fb=document.getElementById("pfb"+i);
+  if(e.target.closest(".ox-btn")){
+    const btn=e.target.closest(".ox-btn"); const v=btn.dataset.v==="true";
+    card.querySelectorAll(".ox-btn").forEach(b=>b.disabled=true);
+    if(v===p.a){ btn.classList.add("correct"); fb.className="feedback ok show"; fb.innerHTML="⭕ 정답! "+p.why; }
+    else{ btn.classList.add("wrong"); fb.className="feedback no show"; fb.innerHTML="❌ 땡! "+p.why; }
+  }
+  if(e.target.closest("[data-check]")){
+    const input=card.querySelector(".blank-input");
+    const val=(input.value||"").replace(/\s/g,"");
+    const ok=p.a.some(ans=>ans.replace(/\s/g,"")===val);
+    input.classList.remove("correct","wrong");
+    if(ok){ input.classList.add("correct"); fb.className="feedback ok show"; fb.innerHTML="⭕ 정답이에요! "+p.why; }
+    else{ input.classList.add("wrong"); fb.className="feedback no show"; fb.innerHTML="❌ 다시 생각해 봐요! "+p.why; }
+  }
+});
+document.getElementById("probWrap").addEventListener("keydown", e=>{
+  if(e.key==="Enter" && e.target.classList.contains("blank-input")){
+    e.preventDefault(); e.target.closest(".prob").querySelector("[data-check]").click();
+  }
+});
+
+/* =========================================================
+   5) 쓰기 연습 (Canvas + Pointer Events)
+   ========================================================= */
+const canvas=document.getElementById("drawCanvas");
+const ctx=canvas.getContext("2d");
+let penColor="#1e293b", penSize=7, erasing=false, drawing=false, lastX=0, lastY=0;
+const undoStack=[];
+
+function fitCanvas(){
+  const stage=canvas.parentElement;
+  const cssW=stage.clientWidth;
+  const cssH=Math.round(cssW*0.52);
+  const dpr=window.devicePixelRatio||1;
+  // 기존 그림 보존
+  const prev=document.createElement("canvas"); prev.width=canvas.width; prev.height=canvas.height;
+  prev.getContext("2d").drawImage(canvas,0,0);
+  canvas.width=Math.round(cssW*dpr); canvas.height=Math.round(cssH*dpr);
+  canvas.style.height=cssH+"px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.lineCap="round"; ctx.lineJoin="round";
+  ctx.fillStyle="#fff"; ctx.fillRect(0,0,cssW,cssH);
+  ctx.drawImage(prev,0,0,cssW,cssH);
+}
+function pos(e){
+  const r=canvas.getBoundingClientRect();
+  return { x:(e.clientX-r.left), y:(e.clientY-r.top), p:(e.pressure&&e.pressure>0?e.pressure:0.5) };
+}
+function pushUndo(){
+  try{ undoStack.push(canvas.toDataURL()); if(undoStack.length>20) undoStack.shift(); }catch(e){}
+}
+canvas.addEventListener("pointerdown", e=>{
+  e.preventDefault();
+  try{ canvas.setPointerCapture(e.pointerId); }catch(_){}
+  pushUndo(); drawing=true;
+  const {x,y}=pos(e); lastX=x; lastY=y;
+  // 점 찍기(탭만 해도 표시되도록)
+  ctx.strokeStyle=erasing?"#ffffff":penColor;
+  ctx.lineWidth=(erasing?penSize*2.2:penSize)*(0.6+(pos(e).p)*0.8);
+  ctx.beginPath(); ctx.moveTo(x-0.1,y-0.1); ctx.lineTo(x,y); ctx.stroke();
+});
+canvas.addEventListener("pointermove", e=>{
+  if(!drawing) return; e.preventDefault();
+  const {x,y,p}=pos(e);
+  ctx.strokeStyle=erasing?"#ffffff":penColor;
+  ctx.lineWidth=(erasing?penSize*2.2:penSize)*(0.6+p*0.8);
+  ctx.beginPath(); ctx.moveTo(lastX,lastY); ctx.lineTo(x,y); ctx.stroke();
+  lastX=x; lastY=y;
+});
+function endDraw(e){ if(drawing){ drawing=false; } }
+canvas.addEventListener("pointerup", endDraw);
+canvas.addEventListener("pointercancel", endDraw);
+canvas.addEventListener("pointerleave", endDraw);
+
+// 색깔
+document.querySelectorAll(".swatch").forEach(s=>s.addEventListener("click", ()=>{
+  penColor=s.dataset.color; erasing=false;
+  document.getElementById("eraserBtn").setAttribute("aria-pressed","false");
+  document.querySelectorAll(".swatch").forEach(x=>x.setAttribute("aria-pressed", String(x===s)));
+}));
+document.getElementById("penSize").addEventListener("input", e=>penSize=+e.target.value);
+document.getElementById("eraserBtn").addEventListener("click", e=>{
+  erasing=!erasing; e.currentTarget.setAttribute("aria-pressed", String(erasing));
+});
+document.getElementById("clearBtn").addEventListener("click", ()=>{
+  pushUndo();
+  const r=canvas.getBoundingClientRect();
+  ctx.fillStyle="#fff"; ctx.fillRect(0,0,r.width,r.height);
+});
+document.getElementById("undoBtn").addEventListener("click", ()=>{
+  const data=undoStack.pop(); if(!data) return;
+  const img=new Image(); img.onload=()=>{ const r=canvas.getBoundingClientRect(); ctx.fillStyle="#fff"; ctx.fillRect(0,0,r.width,r.height); ctx.drawImage(img,0,0,r.width,r.height); }; img.src=data;
+});
+const guideBtn=document.getElementById("guideBtn"), guideEl=document.getElementById("canvasGuide");
+guideBtn.addEventListener("click", ()=>{
+  const on=guideBtn.getAttribute("aria-pressed")!=="true";
+  guideBtn.setAttribute("aria-pressed", String(on));
+  guideEl.style.display=on?"grid":"none";
+});
+// 따라쓸 낱말
+document.getElementById("promptRow").innerHTML = WRITE_WORDS.map((w,i)=>
+  `<button class="prompt-chip" data-word="${w}" aria-pressed="${i===0}">${w}</button>`).join("");
+document.getElementById("promptRow").addEventListener("click", e=>{
+  const c=e.target.closest("[data-word]"); if(!c) return;
+  document.querySelectorAll(".prompt-chip").forEach(x=>x.setAttribute("aria-pressed", String(x===c)));
+  guideEl.textContent=c.dataset.word;
+  guideBtn.setAttribute("aria-pressed","true"); guideEl.style.display="grid";
+});
+
+/* =========================================================
+   6) 초기화
+   ========================================================= */
+renderStars(); renderEras(); renderQuiz(); renderProblems();
+window.addEventListener("resize", ()=>{ if(!document.getElementById("view-write").hidden) fitCanvas(); });
+go(location.hash ? location.hash.slice(1) : "home");
+</script>
+</body>
+</html>
