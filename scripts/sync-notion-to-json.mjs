@@ -8,6 +8,7 @@ const OUTPUT_CSV = "data/notion-import.csv";
 const WEVITY_LIST_URLS = [
   "https://www.wevity.com/",
   "https://www.wevity.com/?c=find&s=1&gub=1&cidx=2",
+  "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10",
 ];
 
 const TOPIC_KEYWORDS = [
@@ -516,7 +517,7 @@ function dedupeCandidates(items) {
     if (!key || map.has(key)) continue;
     map.set(key, item);
   }
-  return [...map.values()].slice(0, 18);
+  return [...map.values()].slice(0, 60);
 }
 
 function toCsvValue(value) {
