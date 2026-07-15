@@ -6,9 +6,12 @@ const ROOT_JSON = "contests.json";
 const OUTPUT_CSV = "data/notion-import.csv";
 
 const WEVITY_LIST_URLS = [
+  "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10",
+  "https://www.wevity.com/?c=find&s=1&gub=1&cidx=11",
+  "https://www.wevity.com/?c=find&s=1&gub=1&cidx=15",
+  "https://www.wevity.com/?c=find&s=1&gub=1&cidx=8",
   "https://www.wevity.com/",
   "https://www.wevity.com/?c=find&s=1&gub=1&cidx=2",
-  "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10",
 ];
 
 const TOPIC_KEYWORDS = [
@@ -244,6 +247,63 @@ const MANUAL_CONTESTS = [
     link: "https://www.allforyoung.com/posts/83274",
     source: "수동보강",
     sourceUrl: "https://kfe2026ai.my.canva.site/",
+  },
+  {
+    name: "코웨이 비렉스 AI 영상 광고 · 숏폼 공모전",
+    host: "코웨이 / (주)스튜디오프리윌루전, AI-Kive",
+    type: "AI 광고",
+    category: "AI 영상 광고·숏폼",
+    status: "모집중",
+    startDate: "2026-07-01",
+    deadline: "2026-07-30",
+    region: "국내",
+    language: "한국어",
+    reward: "3천만원~1천만원",
+    format: "AI 기반 영상 광고 또는 숏폼",
+    target: "공식 페이지 확인",
+    tags: ["#AI광고", "#AI영상", "#숏폼"],
+    note: "코웨이 비렉스 브랜드 주제 AI 영상 광고·숏폼 공모전입니다. 세부 제출 규격과 참가 자격은 AI-Kive 공식 페이지에서 확인하세요.",
+    link: "https://aikive.com/event/083997de1ae04659ade4e709b8802735",
+    source: "수동보강",
+    sourceUrl: "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=108662",
+  },
+  {
+    name: "제2회 매일유업 대학생 AI 영상 공모전",
+    host: "매일유업",
+    type: "영상/숏폼",
+    category: "대학생 AI 영상",
+    status: "모집중",
+    startDate: "2026-07-13",
+    deadline: "2026-08-17",
+    region: "국내",
+    language: "한국어",
+    reward: "3천만원~1천만원 / 특별상 300만원",
+    format: "AI 활용 영상 작품",
+    target: "대학생, 공식 페이지 확인",
+    tags: ["#AI영상", "#대학생", "#매일유업"],
+    note: "매일유업이 주최하는 대학생 대상 AI 영상 공모전입니다. 접수 방식과 작품 규격은 공식 페이지를 확인하세요.",
+    link: "https://ai-challenge-maeil.com",
+    source: "수동보강",
+    sourceUrl: "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109144",
+  },
+  {
+    name: "2026 대전 AI 영상 공모전",
+    host: "대전광역시 / (주)스튜디오프리윌루전, AI-Kive",
+    type: "영상/숏폼",
+    category: "AI 영상",
+    status: "모집중",
+    startDate: "2026-07-20",
+    deadline: "2026-08-18",
+    region: "국내",
+    language: "한국어",
+    reward: "5천만원~3천만원 / 대상 1,000만원",
+    format: "AI 활용 영상 작품",
+    target: "공식 페이지 확인",
+    tags: ["#AI영상", "#대전", "#AIKive"],
+    note: "대전광역시 주최 AI 영상 공모전입니다. 제출 규격과 참가 자격은 AI-Kive 공식 페이지에서 확인하세요.",
+    link: "https://aikive.com/event/5105995dd52643bf9dd53285a2f8137d?tab=DETAILS",
+    source: "수동보강",
+    sourceUrl: "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109142",
   },
   {
     name: "타임라이더 1주년 기념 경주월드 AI 숏폼 공모전",
@@ -517,7 +577,7 @@ function dedupeCandidates(items) {
     if (!key || map.has(key)) continue;
     map.set(key, item);
   }
-  return [...map.values()].slice(0, 60);
+  return [...map.values()].slice(0, 160);
 }
 
 function toCsvValue(value) {

@@ -1,54 +1,5 @@
 [
   {
-    "name": "2026년 대한민국 AI 콘텐츠 어워즈",
-    "host": "경기도 / 경기콘텐츠진흥원",
-    "type": "영상/숏폼",
-    "category": "생성형 AI 영상·콘텐츠",
-    "status": "마감 임박",
-    "startDate": "2026-06-02",
-    "deadline": "2026-07-12",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "1등 800만원 / 2등 300만원 등",
-    "format": "AI 기술을 활용한 영상 작품",
-    "target": "AI 콘텐츠 크리에이터",
-    "tags": [
-      "#생성형AI",
-      "#AI영상",
-      "#콘텐츠어워즈"
-    ],
-    "note": "경기콘텐츠진흥원 공고와 FilmFreeway 접수 페이지를 함께 확인하세요. FilmFreeway: https://filmfreeway.com/KAICA",
-    "link": "https://www.gcon.or.kr/gcon/business/gconNotice/view.do?pbancSrnm=11173&menuNo=200061",
-    "source": "수동보강",
-    "sourceUrl": "https://filmfreeway.com/KAICA",
-    "archived": false
-  },
-  {
-    "name": "2026년 전주MBC K-하이테크 플랫폼 제2회 가상현실 공간 창작 공모전",
-    "host": "전주MBC K-하이테크 플랫폼/",
-    "type": "영상/숏폼",
-    "category": "기획/아이디어, 영상/UCC/사진, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 건축/건설/인테리어, 기타",
-    "status": "마감 임박",
-    "startDate": "2026-06-15",
-    "deadline": "2026-07-14",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "3천만원~1천만원 / 맥북 (300만원 상당) + 도지사상",
-    "format": "공식 요강 확인",
-    "target": "공식 요강 확인",
-    "tags": [
-      "#위비티",
-      "#자동수집",
-      "#AI이미지",
-      "#영상"
-    ],
-    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
-    "link": "https://khp.jmbc.co.kr/bbs/board.php?bo_table=notice&wr_id=20",
-    "source": "위비티",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=106656",
-    "archived": false
-  },
-  {
     "name": "핵융합에너지 X-이벤트 AI 영상 공모전",
     "host": "한국핵융합에너지연구원",
     "type": "영상/숏폼",
@@ -171,6 +122,30 @@
     "archived": false
   },
   {
+    "name": "코웨이 비렉스 AI 영상 광고 · 숏폼 공모전",
+    "host": "코웨이 / (주)스튜디오프리윌루전, AI-Kive",
+    "type": "AI 광고",
+    "category": "AI 영상 광고·숏폼",
+    "status": "모집중",
+    "startDate": "2026-07-01",
+    "deadline": "2026-07-30",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "3천만원~1천만원",
+    "format": "AI 기반 영상 광고 또는 숏폼",
+    "target": "공식 페이지 확인",
+    "tags": [
+      "#AI광고",
+      "#AI영상",
+      "#숏폼"
+    ],
+    "note": "코웨이 비렉스 브랜드 주제 AI 영상 광고·숏폼 공모전입니다. 세부 제출 규격과 참가 자격은 AI-Kive 공식 페이지에서 확인하세요.",
+    "link": "https://aikive.com/event/083997de1ae04659ade4e709b8802735",
+    "source": "수동보강",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=108662",
+    "archived": false
+  },
+  {
     "name": "[국립아시아문화전당] 2026 ACC 민주·인권·평화 영상(+AI) 콘텐츠 공모전",
     "host": "국립아시아문화전당/",
     "type": "영상/숏폼",
@@ -269,6 +244,54 @@
     "link": "https://contest.kfpd.org/",
     "source": "위비티",
     "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108549",
+    "archived": false
+  },
+  {
+    "name": "제2회 매일유업 대학생 AI 영상 공모전",
+    "host": "매일유업",
+    "type": "영상/숏폼",
+    "category": "대학생 AI 영상",
+    "status": "모집중",
+    "startDate": "2026-07-13",
+    "deadline": "2026-08-17",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "3천만원~1천만원 / 특별상 300만원",
+    "format": "AI 활용 영상 작품",
+    "target": "대학생, 공식 페이지 확인",
+    "tags": [
+      "#AI영상",
+      "#대학생",
+      "#매일유업"
+    ],
+    "note": "매일유업이 주최하는 대학생 대상 AI 영상 공모전입니다. 접수 방식과 작품 규격은 공식 페이지를 확인하세요.",
+    "link": "https://ai-challenge-maeil.com",
+    "source": "수동보강",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109144",
+    "archived": false
+  },
+  {
+    "name": "2026 대전 AI 영상 공모전",
+    "host": "대전광역시 / (주)스튜디오프리윌루전, AI-Kive",
+    "type": "영상/숏폼",
+    "category": "AI 영상",
+    "status": "모집중",
+    "startDate": "2026-07-20",
+    "deadline": "2026-08-18",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "5천만원~3천만원 / 대상 1,000만원",
+    "format": "AI 활용 영상 작품",
+    "target": "공식 페이지 확인",
+    "tags": [
+      "#AI영상",
+      "#대전",
+      "#AIKive"
+    ],
+    "note": "대전광역시 주최 AI 영상 공모전입니다. 제출 규격과 참가 자격은 AI-Kive 공식 페이지에서 확인하세요.",
+    "link": "https://aikive.com/event/5105995dd52643bf9dd53285a2f8137d?tab=DETAILS",
+    "source": "수동보강",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109142",
     "archived": false
   },
   {
@@ -1193,6 +1216,55 @@
     "note": "타임라이더 또는 경주월드를 주제로 생성형 AI를 활용해 제작하는 세로형 숏폼 공모전입니다.",
     "link": "https://www.allforyoung.com/posts/83320",
     "source": "수동보강",
+    "archived": true
+  },
+  {
+    "name": "2026년 대한민국 AI 콘텐츠 어워즈",
+    "host": "경기도 / 경기콘텐츠진흥원",
+    "type": "영상/숏폼",
+    "category": "생성형 AI 영상·콘텐츠",
+    "status": "마감",
+    "startDate": "2026-06-02",
+    "deadline": "2026-07-12",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "1등 800만원 / 2등 300만원 등",
+    "format": "AI 기술을 활용한 영상 작품",
+    "target": "AI 콘텐츠 크리에이터",
+    "tags": [
+      "#생성형AI",
+      "#AI영상",
+      "#콘텐츠어워즈"
+    ],
+    "note": "경기콘텐츠진흥원 공고와 FilmFreeway 접수 페이지를 함께 확인하세요. FilmFreeway: https://filmfreeway.com/KAICA",
+    "link": "https://www.gcon.or.kr/gcon/business/gconNotice/view.do?pbancSrnm=11173&menuNo=200061",
+    "source": "수동보강",
+    "sourceUrl": "https://filmfreeway.com/KAICA",
+    "archived": true
+  },
+  {
+    "name": "2026년 전주MBC K-하이테크 플랫폼 제2회 가상현실 공간 창작 공모전",
+    "host": "전주MBC K-하이테크 플랫폼/",
+    "type": "영상/숏폼",
+    "category": "기획/아이디어, 영상/UCC/사진, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 건축/건설/인테리어, 기타",
+    "status": "마감",
+    "startDate": "2026-06-15",
+    "deadline": "2026-07-14",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "3천만원~1천만원 / 맥북 (300만원 상당) + 도지사상",
+    "format": "공식 요강 확인",
+    "target": "공식 요강 확인",
+    "tags": [
+      "#위비티",
+      "#자동수집",
+      "#AI이미지",
+      "#영상"
+    ],
+    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
+    "link": "https://khp.jmbc.co.kr/bbs/board.php?bo_table=notice&wr_id=20",
+    "source": "위비티",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=106656",
     "archived": true
   }
 ]
