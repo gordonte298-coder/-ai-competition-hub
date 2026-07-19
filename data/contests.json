@@ -1,29 +1,5 @@
 [
   {
-    "name": "핵융합에너지 X-이벤트 AI 영상 공모전",
-    "host": "한국핵융합에너지연구원",
-    "type": "영상/숏폼",
-    "category": "생성형 AI 과학 영상",
-    "status": "마감 임박",
-    "startDate": "2026-06-16",
-    "deadline": "2026-07-15",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "총 시상금 700만원 / 대상 300만원",
-    "format": "생성형 AI를 활용한 100초 이내 영상 콘텐츠",
-    "target": "대한민국 국민 누구나, 개인 또는 최대 3인 팀",
-    "tags": [
-      "#생성형AI",
-      "#AI영상",
-      "#핵융합에너지"
-    ],
-    "note": "핵융합에너지를 둘러싼 X-이벤트와 연쇄적인 미래 상황을 생성형 AI 영상으로 표현하는 공모전입니다.",
-    "link": "https://www.allforyoung.com/posts/83274",
-    "source": "수동보강",
-    "sourceUrl": "https://kfe2026ai.my.canva.site/",
-    "archived": false
-  },
-  {
     "name": "2026 성평등 영상 콘텐츠 공모전",
     "host": "제주특별자치도",
     "type": "영상/숏폼",
@@ -1265,6 +1241,30 @@
     "link": "https://khp.jmbc.co.kr/bbs/board.php?bo_table=notice&wr_id=20",
     "source": "위비티",
     "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=106656",
+    "archived": true
+  },
+  {
+    "name": "핵융합에너지 X-이벤트 AI 영상 공모전",
+    "host": "한국핵융합에너지연구원",
+    "type": "영상/숏폼",
+    "category": "생성형 AI 과학 영상",
+    "status": "마감",
+    "startDate": "2026-06-16",
+    "deadline": "2026-07-15",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "총 시상금 700만원 / 대상 300만원",
+    "format": "생성형 AI를 활용한 100초 이내 영상 콘텐츠",
+    "target": "대한민국 국민 누구나, 개인 또는 최대 3인 팀",
+    "tags": [
+      "#생성형AI",
+      "#AI영상",
+      "#핵융합에너지"
+    ],
+    "note": "핵융합에너지를 둘러싼 X-이벤트와 연쇄적인 미래 상황을 생성형 AI 영상으로 표현하는 공모전입니다.",
+    "link": "https://www.allforyoung.com/posts/83274",
+    "source": "수동보강",
+    "sourceUrl": "https://kfe2026ai.my.canva.site/",
     "archived": true
   }
 ]
