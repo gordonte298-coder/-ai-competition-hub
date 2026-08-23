@@ -1,77 +1,5 @@
 [
   {
-    "name": "제2회 매일유업 대학생 AI 영상 공모전",
-    "host": "매일유업",
-    "type": "영상/숏폼",
-    "category": "대학생 AI 영상",
-    "status": "마감 임박",
-    "startDate": "2026-07-13",
-    "deadline": "2026-08-17",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "3천만원~1천만원 / 특별상 300만원",
-    "format": "AI 활용 영상 작품",
-    "target": "대학생, 공식 페이지 확인",
-    "tags": [
-      "#AI영상",
-      "#대학생",
-      "#매일유업"
-    ],
-    "note": "매일유업이 주최하는 대학생 대상 AI 영상 공모전입니다. 접수 방식과 작품 규격은 공식 페이지를 확인하세요.",
-    "link": "https://ai-challenge-maeil.com",
-    "source": "수동보강",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109144",
-    "archived": false
-  },
-  {
-    "name": "2026 대전 AI 영상 공모전",
-    "host": "대전광역시 / (주)스튜디오프리윌루전, AI-Kive",
-    "type": "영상/숏폼",
-    "category": "AI 영상",
-    "status": "마감 임박",
-    "startDate": "2026-07-20",
-    "deadline": "2026-08-18",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "5천만원~3천만원 / 대상 1,000만원",
-    "format": "AI 활용 영상 작품",
-    "target": "공식 페이지 확인",
-    "tags": [
-      "#AI영상",
-      "#대전",
-      "#AIKive"
-    ],
-    "note": "대전광역시 주최 AI 영상 공모전입니다. 제출 규격과 참가 자격은 AI-Kive 공식 페이지에서 확인하세요.",
-    "link": "https://aikive.com/event/5105995dd52643bf9dd53285a2f8137d?tab=DETAILS",
-    "source": "수동보강",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109142",
-    "archived": false
-  },
-  {
-    "name": "2026년 제12회 스토리텔링 공모전 (일상 속의 장애인)",
-    "host": "밀알복지재단/",
-    "type": "스토리/동화",
-    "category": "문학/글/시나리오, 예체능/미술/음악, 기타",
-    "status": "마감 임박",
-    "startDate": "2026-07-01",
-    "deadline": "2026-08-21",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "3천만원~1천만원 / 200만원",
-    "format": "공식 요강 확인",
-    "target": "공식 요강 확인",
-    "tags": [
-      "#위비티",
-      "#자동수집",
-      "#스토리"
-    ],
-    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
-    "link": "https://story.miral.org/bbs/board.php?bo_table=sub3_1&wr_id=54",
-    "source": "위비티",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108477",
-    "archived": false
-  },
-  {
     "name": "2026 Little Ambassador 선발 공모전 - 6·25 전쟁 UN 참전용사에게 감사편지쓰기",
     "host": "H2O품앗이운동본부/",
     "type": "스토리/동화",
@@ -141,6 +69,30 @@
     "link": "http://www.koreamother.or.kr/sub/sub02_03.php?boardid=bookreview&mode=view&idx=18&sk=&sw=&offset=&category=",
     "source": "위비티",
     "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108474",
+    "archived": false
+  },
+  {
+    "name": "제3회 전국 K스토리 공모전",
+    "host": "문화체육관광부, 충청북도, 진천군, 한국콘텐츠진흥원/충북과학기술혁신원(진천 K스토리창작클러스터)",
+    "type": "스토리/동화",
+    "category": "문학/글/시나리오",
+    "status": "모집중",
+    "startDate": "2026-09-14",
+    "deadline": "2026-10-01",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "3천만원~1천만원 / 500만원",
+    "format": "공식 요강 확인",
+    "target": "공식 요강 확인",
+    "tags": [
+      "#위비티",
+      "#자동수집",
+      "#스토리"
+    ],
+    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
+    "link": "https://www.jincheon-kstory.com/home/sub.do?menukey=7320&mode=view&sn=1784188983-839-325",
+    "source": "위비티",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=109579",
     "archived": false
   },
   {
@@ -1386,6 +1338,78 @@
     "link": "https://contest.kfpd.org/",
     "source": "위비티",
     "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108549",
+    "archived": true
+  },
+  {
+    "name": "제2회 매일유업 대학생 AI 영상 공모전",
+    "host": "매일유업",
+    "type": "영상/숏폼",
+    "category": "대학생 AI 영상",
+    "status": "마감",
+    "startDate": "2026-07-13",
+    "deadline": "2026-08-17",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "3천만원~1천만원 / 특별상 300만원",
+    "format": "AI 활용 영상 작품",
+    "target": "대학생, 공식 페이지 확인",
+    "tags": [
+      "#AI영상",
+      "#대학생",
+      "#매일유업"
+    ],
+    "note": "매일유업이 주최하는 대학생 대상 AI 영상 공모전입니다. 접수 방식과 작품 규격은 공식 페이지를 확인하세요.",
+    "link": "https://ai-challenge-maeil.com",
+    "source": "수동보강",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109144",
+    "archived": true
+  },
+  {
+    "name": "2026 대전 AI 영상 공모전",
+    "host": "대전광역시 / (주)스튜디오프리윌루전, AI-Kive",
+    "type": "영상/숏폼",
+    "category": "AI 영상",
+    "status": "마감",
+    "startDate": "2026-07-20",
+    "deadline": "2026-08-18",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "5천만원~3천만원 / 대상 1,000만원",
+    "format": "AI 활용 영상 작품",
+    "target": "공식 페이지 확인",
+    "tags": [
+      "#AI영상",
+      "#대전",
+      "#AIKive"
+    ],
+    "note": "대전광역시 주최 AI 영상 공모전입니다. 제출 규격과 참가 자격은 AI-Kive 공식 페이지에서 확인하세요.",
+    "link": "https://aikive.com/event/5105995dd52643bf9dd53285a2f8137d?tab=DETAILS",
+    "source": "수동보강",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=10&gbn=view&gp=1&ix=109142",
+    "archived": true
+  },
+  {
+    "name": "2026년 제12회 스토리텔링 공모전 (일상 속의 장애인)",
+    "host": "밀알복지재단/",
+    "type": "스토리/동화",
+    "category": "문학/글/시나리오, 예체능/미술/음악, 기타",
+    "status": "마감",
+    "startDate": "2026-07-01",
+    "deadline": "2026-08-21",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "3천만원~1천만원 / 200만원",
+    "format": "공식 요강 확인",
+    "target": "공식 요강 확인",
+    "tags": [
+      "#위비티",
+      "#자동수집",
+      "#스토리"
+    ],
+    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
+    "link": "https://story.miral.org/bbs/board.php?bo_table=sub3_1&wr_id=54",
+    "source": "위비티",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108477",
     "archived": true
   }
 ]
