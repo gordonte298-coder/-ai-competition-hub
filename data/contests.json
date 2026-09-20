@@ -1,58 +1,10 @@
 [
   {
-    "name": "2026년 제6회 K-인공지능(AI) 제조데이터 분석 경진대회",
-    "host": "중소벤처기업부/중소기업기술정보진흥원, 포항공과대학교, 이노비즈협회",
-    "type": "생성형 AI",
-    "category": "기획/아이디어, 논문/리포트, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 기타",
-    "status": "마감 임박",
-    "startDate": "2026-08-24",
-    "deadline": "2026-09-17",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "5천만원~3천만원 / 1,000만원",
-    "format": "공식 요강 확인",
-    "target": "공식 요강 확인",
-    "tags": [
-      "#위비티",
-      "#자동수집",
-      "#생성형AI"
-    ],
-    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
-    "link": "https://www.kamp-ai.kr/contestMain",
-    "source": "위비티",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=110622",
-    "archived": false
-  },
-  {
-    "name": "[월간좋은생각] 제11회 청년이야기 대상",
-    "host": "좋은생각사람들/한화손보",
-    "type": "스토리/동화",
-    "category": "문학/글/시나리오, 예체능/미술/음악, 기타",
-    "status": "마감 임박",
-    "startDate": "2026-07-01",
-    "deadline": "2026-09-18",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "1천만원이하 / 200만원",
-    "format": "공식 요강 확인",
-    "target": "공식 요강 확인",
-    "tags": [
-      "#위비티",
-      "#자동수집",
-      "#스토리"
-    ],
-    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
-    "link": "https://www.positive.co.kr/about/youngmanstory",
-    "source": "위비티",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108892",
-    "archived": false
-  },
-  {
     "name": "제5회 2026 대한민국 고등학생 AI•SW 개발 공모전",
     "host": "한국인공지능•소프트웨어산업협회/정보기술•사업관리산업 인적자원개발위원회",
     "type": "AI 이미지",
     "category": "논문/리포트, 디자인/캐릭터/웹툰, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 예체능/미술/음악",
-    "status": "모집중",
+    "status": "마감 임박",
     "startDate": "2026-08-18",
     "deadline": "2026-09-27",
     "region": "국내",
@@ -1535,6 +1487,54 @@
     "link": "http://www.koreamother.or.kr/sub/sub02_03.php?boardid=bookreview&mode=view&idx=18&sk=&sw=&offset=&category=",
     "source": "위비티",
     "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108474",
+    "archived": true
+  },
+  {
+    "name": "2026년 제6회 K-인공지능(AI) 제조데이터 분석 경진대회",
+    "host": "중소벤처기업부/중소기업기술정보진흥원, 포항공과대학교, 이노비즈협회",
+    "type": "생성형 AI",
+    "category": "기획/아이디어, 논문/리포트, 웹/모바일/IT, 게임/소프트웨어, 과학/공학, 기타",
+    "status": "마감",
+    "startDate": "2026-08-24",
+    "deadline": "2026-09-17",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "5천만원~3천만원 / 1,000만원",
+    "format": "공식 요강 확인",
+    "target": "공식 요강 확인",
+    "tags": [
+      "#위비티",
+      "#자동수집",
+      "#생성형AI"
+    ],
+    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
+    "link": "https://www.kamp-ai.kr/contestMain",
+    "source": "위비티",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=110622",
+    "archived": true
+  },
+  {
+    "name": "[월간좋은생각] 제11회 청년이야기 대상",
+    "host": "좋은생각사람들/한화손보",
+    "type": "스토리/동화",
+    "category": "문학/글/시나리오, 예체능/미술/음악, 기타",
+    "status": "마감",
+    "startDate": "2026-07-01",
+    "deadline": "2026-09-18",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "1천만원이하 / 200만원",
+    "format": "공식 요강 확인",
+    "target": "공식 요강 확인",
+    "tags": [
+      "#위비티",
+      "#자동수집",
+      "#스토리"
+    ],
+    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
+    "link": "https://www.positive.co.kr/about/youngmanstory",
+    "source": "위비티",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=108892",
     "archived": true
   }
 ]
