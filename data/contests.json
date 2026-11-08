@@ -1,35 +1,10 @@
 [
   {
-    "name": "한층 업그레이드된 책쓰기 프로젝트 59기 모집｜1인1권 출간보장/6주과정/인세지급",
-    "host": "글ego/",
-    "type": "스토리/동화",
-    "category": "기획/아이디어, 광고/마케팅, 논문/리포트, 문학/글/시나리오, 예체능/미술/음악, 기타",
-    "status": "마감 임박",
-    "startDate": "2026-10-24",
-    "deadline": "2026-11-06",
-    "region": "국내",
-    "language": "한국어",
-    "reward": "다양한 혜택",
-    "format": "공식 요강 확인",
-    "target": "공식 요강 확인",
-    "tags": [
-      "#위비티",
-      "#자동수집",
-      "#AI광고",
-      "#스토리"
-    ],
-    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
-    "link": "https://cafe.naver.com/egowriting/18029",
-    "source": "위비티",
-    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=111881",
-    "archived": false
-  },
-  {
     "name": "2026 DATA·AI 분석 경진대회",
     "host": "한국과학기술정보연구원/과기정통부, 과기연구회, 국회도서관, 대전광역시, 해양경찰청, 한국수자원공사, 대전중구청",
     "type": "AI 콘텐츠",
     "category": "웹/모바일/IT, 과학/공학, 기타",
-    "status": "모집중",
+    "status": "마감 임박",
     "startDate": "2026-08-11",
     "deadline": "2026-11-10",
     "region": "국내",
@@ -53,7 +28,7 @@
     "host": "SBS A&T/(주)진심커뮤니케이션",
     "type": "영상/숏폼",
     "category": "기획/아이디어, 광고/마케팅, 영상/UCC/사진, 웹/모바일/IT, 예체능/미술/음악",
-    "status": "모집중",
+    "status": "마감 임박",
     "startDate": "2026-10-12",
     "deadline": "2026-11-12",
     "region": "국내",
@@ -79,7 +54,7 @@
     "host": "건강보험심사평가원/",
     "type": "영상/숏폼",
     "category": "광고/마케팅, 영상/UCC/사진, 웹/모바일/IT, 예체능/미술/음악, 기타",
-    "status": "모집중",
+    "status": "마감 임박",
     "startDate": "2026-10-19",
     "deadline": "2026-11-15",
     "region": "국내",
@@ -1808,6 +1783,31 @@
     "link": "https://blog.naver.com/nanum-research/224366678368",
     "source": "위비티",
     "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=109936",
+    "archived": true
+  },
+  {
+    "name": "한층 업그레이드된 책쓰기 프로젝트 59기 모집｜1인1권 출간보장/6주과정/인세지급",
+    "host": "글ego/",
+    "type": "스토리/동화",
+    "category": "기획/아이디어, 광고/마케팅, 논문/리포트, 문학/글/시나리오, 예체능/미술/음악, 기타",
+    "status": "마감",
+    "startDate": "2026-10-24",
+    "deadline": "2026-11-06",
+    "region": "국내",
+    "language": "한국어",
+    "reward": "다양한 혜택",
+    "format": "공식 요강 확인",
+    "target": "공식 요강 확인",
+    "tags": [
+      "#위비티",
+      "#자동수집",
+      "#AI광고",
+      "#스토리"
+    ],
+    "note": "위비티에서 자동 수집한 공모전입니다. 접수기간, 제출 형식, 참가 조건은 공식 페이지에서 다시 확인하세요.",
+    "link": "https://cafe.naver.com/egowriting/18029",
+    "source": "위비티",
+    "sourceUrl": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=111881",
     "archived": true
   }
 ]
